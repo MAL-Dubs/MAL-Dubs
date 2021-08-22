@@ -3,6 +3,10 @@ MAL Dubs is a userscript which labels 3895 English dubbed titles on MyAnimeList.
 
 Whether you watch dubs because you like to multitask while watching, because you have a visual impairment that makes subtitles difficult to read, or because you prefer hearing a performance in a language you speak, it can be hard to use MyAnimeList to find anime dubbed in English. This user script fixes that problem.
 
+![labels](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/labels.png)
+
+![filters](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/filter.png)
+
 ## Instructions
 
 **Step 1: Install the Tampermonkey Script Manager extension**
