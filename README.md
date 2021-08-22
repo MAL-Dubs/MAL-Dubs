@@ -14,5 +14,8 @@ Whether you watch dubs because you like to multitask while watching, because you
 
 [Click here to install](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/master/mal-dubs.user.js)
 
-## Donate to keep this updated with the latest dubbed anime.
+## Support this project
+
+I personally add each title whenever a new dub is announced. Your support will help me to keep you up to date!
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y21HXGO)
