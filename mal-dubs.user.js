@@ -12,7 +12,7 @@
 // @match        http://*.myanimelist.net/*
 // @match        https://*.myanimelist.net/*
 // @iconURL      https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/icon.png
-// @license      GPL version 2 or any later version; http://www.gnu.org/licenses/gpl-2.0.txt
+// @license      GPL version 3.0; http://www.gnu.org/licenses/gpl-3.0.txt
 // @resource     CSS https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/css/style.css
 // @grant        GM_xmlhttpRequest
 // @grant        GM_addStyle
