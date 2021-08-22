@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MyAnimeList Label English Dubs
 // @namespace    https://greasyfork.org/en/scripts/376546-myanimelist-label-english-dubs
-// @version      0.9.00
+// @version      0.9.01
 // @description  Labels dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @downloadURL  https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/master/mal-dubs.user.js
@@ -30,7 +30,7 @@
 		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime\/(\d+)\/?.*/,
 		recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+\-\d+)\/?.*/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
-		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubIDs.json`
+		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubIDs.json`;
 
 	GM_addStyle(GM_getResourceText('CSS'));
 
@@ -195,6 +195,4 @@
 			localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
 		},false);
 	}
-
-
 })();
