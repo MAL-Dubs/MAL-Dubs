@@ -1,0 +1,103 @@
+.hidden { display: none !important; }
+.seasonal-anime-list > article { display: none; }
+
+[title=Dubbed].imagelink,
+.classic .seasonal-anime-list > .seasonal-anime > .image { overflow: hidden; }
+
+[title=Dubbed]::after {
+  font-family: FontAwesome;
+  font-weight: normal;
+}
+
+[title=Dubbed].imagelink::after {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  position: absolute;
+  left: 0;
+  content: "\f028";
+  font-size: 16px;
+  font-style: normal;
+  padding: 4px 5px;
+  border-radius: 0 0 5px 0;
+}
+
+[title=Dubbed]:not(.imagelink)::after {
+  content: "\f028";
+  text-decoration: none;
+  font-style: normal;
+  display: inline-block;
+  margin: 0 0.4em;
+  font-size: calc(1em + 1px);
+}
+
+[title=Dubbed]:not(.imagelink):hover::after { text-decoration: none; }
+
+.classic [title=Dubbed].imagelink::after {
+  content: "DUB";
+  border-radius: 0;
+  transform: rotate(-45deg);
+  top: -5px;
+  left: -20px;
+  padding: 12px 0 0 0;
+  width: 61px;
+  height: 19px;
+  background-color: #2e51a2;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+.classic [title=Dubbed]:not(.imagelink)::after {
+  content: "Dubbed";
+  display: inline-block;
+  background: #1d439b;
+  color: #fff;
+  padding: 0 0.5em;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  font-weight: 500;
+  border-radius: 0.25em;
+  line-height: 1.4em;
+  vertical-align: middle;
+  font-family: Avenir, "lucida grande", tahoma, verdana, arial, sans-serif;
+}
+
+input#undubbed-filter { display: none; }
+
+.btn-show-undubbed {
+  background-image: url(/images/icon_check_box.png?v=1626400800);
+  background-position: 0 -38px;
+  background-repeat: no-repeat;
+  background-size: 12px auto;
+  color: #787878;
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 16px;
+  padding-right: 2px;
+  position: relative;
+  line-height: 1.5em;
+}
+
+input[type=checkbox]:checked + label.btn-show-undubbed::after {
+  background-image: url(/images/icon_check_box.png?v=1626400800);
+  background-position: -1px 3px;
+  background-repeat: no-repeat;
+  background-size: 12px auto;
+  content: "";
+  display: block;
+  height: 12px;
+  left: 0;
+  position: absolute;
+  top: 2px;
+  width: 12px;
+}
+
+.js-search-filter-block .btn-show-undubbed { margin-top: 4px; }
+h2.top-rank-header2 .btn-show-undubbed { margin-top: 2px; }
+
+h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::after {
+  background-position: 0 3px;
+  left: -1px;
+}
