@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MyAnimeList Label English Dubs
-// @namespace    https://greasyfork.org/en/scripts/376546-myanimelist-label-english-dubs
+// @namespace    https://github.com/MAL-Dubs
 // @version      0.9.01
 // @description  Labels dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
