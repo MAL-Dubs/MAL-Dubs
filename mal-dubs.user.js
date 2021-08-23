@@ -38,6 +38,7 @@
 	if(dubbedIDs === null){
 		GM_xmlhttpRequest({
 			method: "GET",
+			nocache: true,
 			url: IDURL,
 			onload: function(response) {
 				dubbedIDs = JSON.parse(response.responseText);
@@ -64,10 +65,11 @@
 
 	function dubCache() {
 		if (localStorage.getItem('dubCacheDate') === null){localStorage.setItem('dubCacheDate',Date.now());}
-		if(parseInt(localStorage.getItem('dubCacheDate'))+1800000<Date.now()){
+		if(parseInt(localStorage.getItem('dubCacheDate'))+600000<Date.now()){
 			GM_xmlhttpRequest({
 				method: "GET",
 				url: IDURL,
+				nocache: true,
 				revalidate: true,
 				onload: function(response) {
 					localStorage.setItem('dubIDs',response.responseText);
