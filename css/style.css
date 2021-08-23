@@ -4,25 +4,29 @@
 [title=Dubbed].imagelink,
 .classic .seasonal-anime-list > .seasonal-anime > .image { overflow: hidden; }
 
-[title=Dubbed]::after {
+[title=Dubbed]::after,
+[title="Incomplete Dub"]::after {
   font-family: FontAwesome;
   font-weight: normal;
 }
 
-[title=Dubbed].imagelink::after {
+[title=Dubbed]::after { content: "\f028"; }
+[title="Incomplete Dub"]::after { content: "\f027"; }
+
+[title=Dubbed].imagelink::after,
+[title="Incomplete Dub"].imagelink::after {
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   position: absolute;
   left: 0;
-  content: "\f028";
   font-size: 16px;
   font-style: normal;
   padding: 4px 5px;
   border-radius: 0 0 5px 0;
 }
 
-[title=Dubbed]:not(.imagelink)::after {
-  content: "\f028";
+[title=Dubbed]:not(.imagelink)::after,
+[title="Incomplete Dub"]:not(.imagelink)::after {
   text-decoration: none;
   font-style: normal;
   display: inline-block;
@@ -30,7 +34,8 @@
   font-size: calc(1em + 1px);
 }
 
-[title=Dubbed]:not(.imagelink):hover::after { text-decoration: none; }
+[title=Dubbed]:not(.imagelink):hover::after,
+[title="Incomplete Dub"]:not(.imagelink):hover::after { text-decoration: none; }
 
 .classic [title=Dubbed].imagelink::after {
   content: "DUB";

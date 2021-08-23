@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.01
+// @version      0.9.02
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @downloadURL  https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/master/mal-dubs.user.js
@@ -30,7 +30,8 @@
 		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime\/(\d+)\/?.*/,
 		recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+\-\d+)\/?.*/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
-		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubIDs.json`;
+		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubIDs.json`,
+			incompleteDubs = [122,170,235,250,516,687,738,918,966,967,1486,2280,7674,8687,10033,40010];
 
 	GM_addStyle(GM_getResourceText('CSS'));
 
@@ -89,6 +90,7 @@
 				e.id = 'checked';
 				if (dubbedIDs.includes(id)){
 					e.title = "Dubbed";
+					if (incompleteDubs.includes(id)) {e.title = "Incomplete Dub";}
 				}
 			}
 		});
@@ -101,6 +103,7 @@
 				var linkid = parseInt(rgx.exec(dubbedLinks.item(entry[0]).getAttribute('href'))[2]);
 				if (dubbedIDs.includes(linkid)) {
 					dubbedLinks.item(entry[0]).title = "Dubbed";
+					if (incompleteDubs.includes(linkid)) {dubbedLinks.item(entry[0]).title = "Incomplete Dub";}
 				} else {dubbedLinks.item(entry[0]).title = "Undubbed";}
 			}
 		}
@@ -111,12 +114,14 @@
 		if (dubbedIDs.includes(parseInt(thispage))) {
 			var pagetitle = document.querySelectorAll("h1.title-name")[0];
 			pagetitle.title = "Dubbed";
+			if (incompleteDubs.includes(parseInt(thispage))) {pagetitle.title = "Incomplete Dub";}
 		}
 		for (var rec of dubbedRecs.entries()) {
 			var recID = parseInt(recrgx.exec(dubbedRecs.item(rec[0]))[2].replace(thispage+"-", "").replace("-"+thispage,""));
 			if (dubbedIDs.includes(recID)) {
 				dubbedRecs.item(rec[0]).title = "Dubbed";
 				dubbedRecs.item(rec[0]).classList.add("imagelink");
+				if (incompleteDubs.includes(recID)) {dubbedRecs.item(rec[0]).title = "Incomplete Dub"}
 			}
 		}
 	}
@@ -142,6 +147,7 @@
 			if (dubbedIDs.includes(thumbID)) {
 				e.title = "Dubbed";
 				e.classList.add("imagelink");
+				if (incompleteDubs.includes(thumbID)) {e.title = "Incomplete Dub"}
 			} else {e.title = "Undubbed";}
 		});
 	}
