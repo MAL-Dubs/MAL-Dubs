@@ -25,10 +25,8 @@
 
 (function() {
 	const dubbedLinks = document.querySelectorAll("p.title-text>a,content-result .information>a:first-child,.list>.information>a:first-child,table.anime_detail_related_anime a[href^='/anime'],p.data a.title,td.data.title a:first-child,.list td:nth-child(2)>a.hoverinfo_trigger,#content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'],#content>div>div>table>tbody>tr>td>a[href*='/anime'],#content>table>tbody>tr>td:nth-child(2)>div.js-scrollfix-bottom-rel>div>table>tbody>tr>td:nth-child(2)>div:nth-child(2)>a:nth-child(1),.news-container h2 a[href*='/anime/'],li.ranking-unit>div>h3>a,tr.ranking-list>td:nth-child(2)>div>div>h3>a,div.borderClass>a,#content>table>tbody>tr>td:nth-child(1)>a:nth-child(1),[id^='#revAreaItemTrigger'],.news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,#content>div:nth-child(3)>a"),
-		dubbedRecs = document.querySelectorAll("div#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*='suggestion'])"),
 		dubbedThumbs = "div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1)",
 		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime\/(\d+)\/?.*/,
-		recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+\-\d+)\/?.*/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
 		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubIDs.json`,
 			incompleteDubs = [122,170,235,250,516,687,738,918,966,967,1486,2280,7674,8687,10033,40010];
@@ -96,20 +94,22 @@
 	}
 
 	function animePages() {
-		var thispage = rgx.exec(document.location.href)[2];
+		var thispage = rgx.exec(document.location.href)[2],
+			dubbedRecs = document.querySelectorAll("div#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*='suggestion'])"),
+			recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+\-\d+)\/?.*/;
 		if (dubbedIDs.includes(parseInt(thispage))) {
 			var pagetitle = document.querySelectorAll("h1.title-name")[0];
 			pagetitle.title = "Dubbed";
 			if (incompleteDubs.includes(parseInt(thispage))) {pagetitle.title = "Incomplete Dub";}
 		}
-		dubbedRecs.foreach ( e => {
-			var recID = parseInt(recrgx.exec(e)[2].replace(thispage+"-", "").replace("-"+thispage,""));
+		for (var rec of dubbedRecs.entries()) {
+			var recID = parseInt(recrgx.exec(dubbedRecs.item(rec[0]))[2].replace(thispage+"-", "").replace("-"+thispage,""));
 			if (dubbedIDs.includes(recID)) {
-				e.title = "Dubbed";
-				e.classList.add("imagelink");
-				if (incompleteDubs.includes(recID)) {e.title = "Incomplete Dub";}
+				dubbedRecs.item(rec[0]).title = "Dubbed";
+				dubbedRecs.item(rec[0]).classList.add("imagelink");
+				if (incompleteDubs.includes(recID)) {dubbedRecs.item(rec[0]).title = "Incomplete Dub";}
 			}
-		});
+		}
 	}
 
 	function scanList() {
