@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.02
+// @version      0.9.03
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
-// @downloadURL  https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/master/mal-dubs.user.js
-// @updateURL    https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/master/mal-dubs.user.js
+// @downloadURL  https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js
+// @updateURL    https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
 // @match        http://myanimelist.net/*
 // @match        https://myanimelist.net/*
@@ -80,33 +80,19 @@
 		}
 	}
 
-	function scanList() {
-		let listEntries = document.querySelectorAll('#list-container>div.list-block>div>table>tbody[class=list-item]>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle');
-		listEntries.forEach( e => {
-			var id = parseInt(e.href.match(/\/(\d+)\//)[1]);
-			if (e.id === 'checked') {
-				return true;
-			} else {
-				e.id = 'checked';
-				if (dubbedIDs.includes(id)){
-					e.title = "Dubbed";
-					if (incompleteDubs.includes(id)) {e.title = "Incomplete Dub";}
-				}
-			}
-		});
+	function labelDub(anime) {
+		if (rgx.test(anime.href)) {
+			var linkID = parseInt(anime.href.match(/\/(\d+)\//)[1]);
+			if (dubbedIDs.includes(linkID)) {
+				anime.title = "Dubbed";
+				if (incompleteDubs.includes(linkID)) {anime.title = "Incomplete Dub";}
+			} else {anime.title = "Undubbed";}
+		}
 	}
 
 	function parseSite() {
 		labelThumbnails();
-		for (var entry of dubbedLinks.entries()) {
-			if (rgx.test(dubbedLinks.item(entry[0]).getAttribute('href'))) {
-				var linkid = parseInt(rgx.exec(dubbedLinks.item(entry[0]).getAttribute('href'))[2]);
-				if (dubbedIDs.includes(linkid)) {
-					dubbedLinks.item(entry[0]).title = "Dubbed";
-					if (incompleteDubs.includes(linkid)) {dubbedLinks.item(entry[0]).title = "Incomplete Dub";}
-				} else {dubbedLinks.item(entry[0]).title = "Undubbed";}
-			}
-		}
+		dubbedLinks.forEach (e => {labelDub(e);});
 	}
 
 	function animePages() {
@@ -116,14 +102,26 @@
 			pagetitle.title = "Dubbed";
 			if (incompleteDubs.includes(parseInt(thispage))) {pagetitle.title = "Incomplete Dub";}
 		}
-		for (var rec of dubbedRecs.entries()) {
-			var recID = parseInt(recrgx.exec(dubbedRecs.item(rec[0]))[2].replace(thispage+"-", "").replace("-"+thispage,""));
+		dubbedRecs.foreach ( e => {
+			var recID = parseInt(recrgx.exec(e)[2].replace(thispage+"-", "").replace("-"+thispage,""));
 			if (dubbedIDs.includes(recID)) {
-				dubbedRecs.item(rec[0]).title = "Dubbed";
-				dubbedRecs.item(rec[0]).classList.add("imagelink");
-				if (incompleteDubs.includes(recID)) {dubbedRecs.item(rec[0]).title = "Incomplete Dub"}
+				e.title = "Dubbed";
+				e.classList.add("imagelink");
+				if (incompleteDubs.includes(recID)) {e.title = "Incomplete Dub";}
 			}
-		}
+		});
+	}
+
+	function scanList() {
+		let listEntries = document.querySelectorAll('#list-container>div.list-block>div>table>tbody[class=list-item]>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle');
+		listEntries.forEach( e => {
+			if (e.classList.contains('checked')) {
+				return true;
+			} else {
+				labelDub(e);
+				e.classList.add('checked');
+			}
+		});
 	}
 
 	function addScrollListener() {
@@ -143,12 +141,8 @@
 
 	function labelThumbnails() {
 		document.querySelectorAll(dubbedThumbs).forEach(e => {
-			var thumbID = parseInt(e.href.match(/\/(\d+)\//)[1]);
-			if (dubbedIDs.includes(thumbID)) {
-				e.title = "Dubbed";
-				e.classList.add("imagelink");
-				if (incompleteDubs.includes(thumbID)) {e.title = "Incomplete Dub"}
-			} else {e.title = "Undubbed";}
+			labelDub(e);
+			e.classList.add("imagelink");
 		});
 	}
 
