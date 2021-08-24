@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.04
+// @version      0.9.05
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @downloadURL  https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js
@@ -28,20 +28,23 @@
 		dubbedThumbs = "div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1)",
 		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime\/(\d+)\/?.*/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
-		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubIDs.json`,
-			incompleteDubs = [122,170,235,250,516,687,738,918,966,967,1486,2280,7674,8687,10033,31631,32772,40010];
+		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json`;
 
 	GM_addStyle(GM_getResourceText('CSS'));
 
-	var dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
-	if(dubbedIDs === null){
+	var dubbedIDs = JSON.parse(localStorage.getItem('dubIDs')),
+		incompleteDubs = JSON.parse(localStorage.getItem('incompleteIDs'));
+	if(dubbedIDs === null || incompleteDubs === null) {
 		GM_xmlhttpRequest({
 			method: "GET",
 			nocache: true,
 			url: IDURL,
 			onload: function(response) {
-				dubbedIDs = JSON.parse(response.responseText);
-				localStorage.setItem('dubIDs',response.responseText);
+				var data = JSON.parse(response.responseText);
+				dubbedIDs = data.dubbed;
+				incompleteDubs = data.incomplete;
+				localStorage.setItem('dubIDs', JSON.stringify(dubbedIDs));
+				localStorage.setItem('incompleteIDs', JSON.stringify(incompleteDubs));
 				onComplete();
 				localStorage.setItem('dubCacheDate',Date.now());
 			}
@@ -73,7 +76,9 @@
 				nocache: true,
 				revalidate: true,
 				onload: function(response) {
-					localStorage.setItem('dubIDs',response.responseText);
+					var data = JSON.parse(response.responseText);
+					localStorage.setItem('dubIDs', JSON.stringify(data.dubbed));
+					localStorage.setItem('incompleteIDs', JSON.stringify(data.incomplete));
 					localStorage.setItem('dubCacheDate',Date.now());
 				}
 			});
