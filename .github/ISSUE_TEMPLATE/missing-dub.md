@@ -14,4 +14,4 @@ The title of the anime and it’s corresponding page on MyAnimeList
 A link to the dub’s announcement.
 
 **Additional context**
-Add any other context or screenshots about the feature request here.
+Add any other context or information about the title in question.
