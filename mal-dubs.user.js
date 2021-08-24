@@ -25,7 +25,7 @@
 // ==/UserScript==
 
 (function() {
-	const dubbedLinks = document.querySelectorAll("p.title-text>a,content-result .information>a:first-child,.list>.information>a:first-child,table.anime_detail_related_anime a[href^='/anime'],p.data a.title,td.data.title a:first-child,.list td:nth-child(2)>a.hoverinfo_trigger,#content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'],#content>div>div>table>tbody>tr>td>a[href*='/anime'],#content>table>tbody>tr>td:nth-child(2)>div.js-scrollfix-bottom-rel>div>table>tbody>tr>td:nth-child(2)>div:nth-child(2)>a:nth-child(1),.news-container h2 a[href*='/anime/'],li.ranking-unit>div>h3>a,tr.ranking-list>td:nth-child(2)>div>div>h3>a,div.borderClass>a,#content>table>tbody>tr>td:nth-child(1)>a:nth-child(1),[id^='#revAreaItemTrigger'],.news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,#content>div:nth-child(3)>a"),
+	const dubbedLinks = document.querySelectorAll("p.title-text>a, content-result .information>a:first-child, .list>.information>a:first-child, table.anime_detail_related_anime a[href^='/anime'], p.data a.title, td.data.title a:first-child, .list td:nth-child(2)>a.hoverinfo_trigger, #content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'], #content>div>div>table>tbody>tr>td>a[href*='/anime'], #content>table>tbody>tr>td:nth-child(2)>div.js-scrollfix-bottom-rel>div>table>tbody>tr>td:nth-child(2)>div:nth-child(2)>a:nth-child(1), .news-container h2 a[href*='/anime/'], li.ranking-unit>div>h3>a, tr.ranking-list>td:nth-child(2)>div>div>h3>a, div.borderClass>a[href^='anime/'], #content>table>tbody>tr>td:nth-child(1)>a:nth-child(1), [id^='#revAreaItemTrigger'], .news-container a[href^='https://myanimelist.net/anime/'], .animeography>.title>a"),
 		dubbedThumbs = "div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1)",
 		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime\/(\d+)\/?.*/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
@@ -88,7 +88,7 @@
 
 	function labelDub(anime) {
 		if (rgx.test(anime.href)) {
-			var linkID = parseInt(anime.href.match(/\/(\d+)\//)[1]);
+			var linkID = parseInt(anime.href.match(/\/(\d+)\/?/)[1]);
 			if (dubbedIDs.includes(linkID)) {
 				anime.title = "Dubbed";
 				if (incompleteDubs.includes(linkID)) {anime.title = "Incomplete Dub";}
