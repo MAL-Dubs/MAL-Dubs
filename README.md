@@ -16,7 +16,7 @@ Whether you watch dubs because you like to multitask while watching, because you
 
 **Step 2: Install the script**
 
-[Click here to install](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/master/mal-dubs.user.js)
+[Click here to install](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js)
 
 ## Support this project
 
