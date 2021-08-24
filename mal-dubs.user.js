@@ -11,6 +11,7 @@
 // @match        https://myanimelist.net/*
 // @match        http://*.myanimelist.net/*
 // @match        https://*.myanimelist.net/*
+// @exclude      /^https?:\/\/myanimelist.net\/(editprofile\.php.*|notification\/setting|ownlist\/style|account\/?.*|apiconfig|forum\/?.*|watch\/.*|store\/?.*|about\/?.*|advertising\/?.*|membership\/?.*|modules\/?.*)$/
 // @iconURL      https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/icon.png
 // @license      GPL version 3.0; http://www.gnu.org/licenses/gpl-3.0.txt
 // @resource     CSS https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/css/style.css
