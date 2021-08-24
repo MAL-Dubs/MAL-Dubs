@@ -29,7 +29,7 @@
 		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime\/(\d+)\/?.*/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
 		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubIDs.json`,
-			incompleteDubs = [122,170,235,250,516,687,738,918,966,967,1486,2280,7674,8687,10033,31631,40010];
+			incompleteDubs = [122,170,235,250,516,687,738,918,966,967,1486,2280,7674,8687,10033,31631,32772,40010];
 
 	GM_addStyle(GM_getResourceText('CSS'));
 
