@@ -34,10 +34,14 @@
   font-size: calc(1em + 1px);
 }
 
+.classic [title=Dubbed]::after { background-color: #1d439b; }
+.classic [title="Incomplete Dub"]::after { background-color: hsl(0, 0%, 41%); }
+
 [title=Dubbed]:not(.imagelink):hover::after,
 [title="Incomplete Dub"]:not(.imagelink):hover::after { text-decoration: none; }
 
-.classic [title=Dubbed].imagelink::after {
+.classic [title=Dubbed].imagelink::after,
+.classic [title="Incomplete Dub"].imagelink::after {
   content: "DUB";
   border-radius: 0;
   transform: rotate(-45deg);
@@ -46,7 +50,6 @@
   padding: 12px 0 0 0;
   width: 61px;
   height: 19px;
-  background-color: #2e51a2;
   text-align: center;
   line-height: 1.6;
   font-size: 10px;
@@ -54,14 +57,14 @@
   font-family: Verdana, Arial, sans-serif;
 }
 
-.classic [title=Dubbed]:not(.imagelink)::after {
+.classic [title=Dubbed]:not(.imagelink)::after,
+.classic [title="Incomplete Dub"]:not(.imagelink)::after {
   content: "Dubbed";
   display: inline-block;
-  background: #1d439b;
   color: #fff;
   padding: 0 0.5em;
   font-size: 0.8em;
-  margin-left: 0.5em;
+  margin: 0 0 0 0.5em;
   font-weight: 500;
   border-radius: 0.25em;
   line-height: 1.4em;
@@ -105,4 +108,69 @@ h2.top-rank-header2 .btn-show-undubbed { margin-top: 2px; }
 h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::after {
   background-position: 0 3px;
   left: -1px;
+}
+
+#dubmenu {
+  position: relative;
+  display: inline;
+  padding: 0;
+}
+
+#dubmenu > a { cursor: pointer; }
+
+#dub-dropdown {
+  display: none;
+  font-size: 11px;
+  position: absolute;
+  z-index: 201;
+  right: -9px;
+  top: 21px;
+  border: 2px solid #2e51a2;
+  background: white;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.on #dub-dropdown { display: block; }
+
+.header-right + .header-right #dub-dropdown,
+.header-right > div:nth-child(1) > #dub-dropdown {
+  right: -50%;
+}
+
+#dub-dropdown > ul {
+  padding: 0;
+  margin: 0;
+}
+
+#dub-dropdown li { list-style: none; }
+
+#dub-dropdown a {
+  background-color: #fff;
+  border-bottom: #2e51a2 1px solid;
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  white-space: nowrap;
+  text-align: center;
+}
+
+#dub-dropdown a,
+#dub-dropdown a:visited {
+  text-decoration: none;
+}
+
+#dub-dropdown a:hover {
+  text-decoration: none;
+  color: #1d439b;
+  background-color: #e1e7f5;
+}
+
+#dub-dropdown ul li:last-of-type a {
+  border-bottom: #2e51a2 0 solid;
 }

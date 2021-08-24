@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.03
+// @version      0.9.04
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @downloadURL  https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js
@@ -58,8 +58,10 @@
 			parseSite();
 			if (document.location.href.match(filteruri)) {searchFilter();}
 			if (document.location.href.match(rgx)) {animePages();}
+			placeHeaderMenu();
 			setTimeout(()=>labelThumbnails(),400);
 		}
+		setTheme();
 	}
 
 	function dubCache() {
@@ -197,4 +199,77 @@
 			localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
 		},false);
 	}
+
+	function setTheme() {
+		if (localStorage.getItem('classicTheme')) {
+		  var classicSetting = localStorage.getItem('classicTheme');
+		} else {
+		  classicSetting = 'false';
+		}
+
+		if (localStorage.getItem('classicTheme') == 'true') {
+			document.body.classList.add('classic');
+		}
+	}
+
+	function toggleClassic() {
+		if (localStorage.getItem('classicTheme') === 'true' ) {
+			document.body.classList.remove('classic');
+			localStorage.setItem('classicTheme', false);
+		} else {
+			document.body.classList.add('classic');
+			localStorage.setItem('classicTheme', true);
+		}
+	}
+
+	function placeHeaderMenu(){
+		let menuContainer = document.createElement("div");
+		menuContainer.id = "dubmenu";
+		menuContainer.classList.add('header-right');
+		menuContainer.innerHTML += `<a id="menu-toggle"><i class="fa fa-volume-up mr4"></i>Dubs</a>
+		<div id="dub-dropdown"><ul>
+		<li><a id="theme-toggle" href="#">Switch Style</a></li>
+		<li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="blank">Report Issues</a></li>
+		<li><a href="https://discord.gg/wMfD2RM7Vt" target="blank">Join Discord</a></li>
+		<li><a href="https://ko-fi.com/maldubs" target="blank">Donate<i class="fa fa-heart-o ml4" style="color: #ff5f5f;"></i></a></li>
+		</ul></div>`;
+		if (document.body.contains(document.querySelector('#contentWrapper>div:nth-child(1)>a.header-right'))) {
+			menuContainer.classList.add("header-right");
+			document.querySelector('#contentWrapper > div:nth-child(1)>a.header-right').after(menuContainer);
+		} else if (document.body.contains(document.querySelector('#contentWrapper>div:nth-child(1)>.h1.edit-info>div.header-right'))) {
+			menuContainer.classList.remove("header-right");
+			menuContainer.classList.add("mr16");
+			document.querySelector("div.header-right").prepend(menuContainer);
+		} else {
+			document.querySelector('#contentWrapper > div:nth-child(1)').prepend(menuContainer);
+		}
+
+		document.getElementById('theme-toggle').addEventListener('click', toggleClassic, false);
+		document.getElementById('menu-toggle').addEventListener('click', toggleMenu, false);
+	}
+
+	function toggleMenu() {
+		var dropdown = document.getElementById('dubmenu');
+		if(dropdown.classList.contains("on")) {
+			dropdown.classList.remove("on");
+		} else {
+			dropdown.classList.add("on");
+			hideOnClickOutside(dropdown);
+		}
+	}
+
+	// hide function from jquery
+	function hideOnClickOutside(element) {
+		const outsideClickListener = event => {
+			if (!element.contains(event.target) && isVisible(element)) {
+				element.classList.remove("on");
+				removeClickListener();
+			}
+		};
+		const removeClickListener = () => document.removeEventListener('click', outsideClickListener);
+		document.addEventListener('click', outsideClickListener);
+	}
+
+	const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+	// source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
 })();
