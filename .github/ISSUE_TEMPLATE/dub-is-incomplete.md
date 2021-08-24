@@ -2,7 +2,7 @@
 name: Dub is Incomplete
 about: Propose the addition of a series which was never fully dubbed.
 title: "[INCOMPLETE]"
-labels: ''
+labels: incomplete dub
 assignees: ''
 
 ---
