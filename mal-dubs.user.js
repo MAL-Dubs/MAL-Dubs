@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.06
+// @version      0.9.07
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -23,9 +23,9 @@
 // ==/UserScript==
 
 (function() {
-	const dubbedLinks = document.querySelectorAll("p.title-text>a, content-result .information>a:first-child, .list>.information>a:first-child, table.anime_detail_related_anime a[href^='/anime'], p.data a.title, td.data.title a:first-child, .list td:nth-child(2)>a.hoverinfo_trigger, #content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'], #content>div>div>table>tbody>tr>td>a[href*='/anime'], #content>table>tbody>tr>td:nth-child(2)>div.js-scrollfix-bottom-rel>div>table>tbody>tr>td:nth-child(2)>div:nth-child(2)>a:nth-child(1), .news-container h2 a[href*='/anime/'], li.ranking-unit>div>h3>a, tr.ranking-list>td:nth-child(2)>div>div>h3>a, div.borderClass>a[href^='anime/'], #content>table>tbody>tr>td:nth-child(1)>a:nth-child(1), [id^='#revAreaItemTrigger'], .news-container a[href^='https://myanimelist.net/anime/'], .animeography>.title>a"),
+	const dubbedLinks = document.querySelectorAll("p.title-text>a, content-result .information>a:first-child, .list>.information>a:first-child, table.anime_detail_related_anime a[href^='/anime'], p.data a.title, td.data.title a:first-child, .list td:nth-child(2)>a.hoverinfo_trigger, #content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'], #content>div>div>table>tbody>tr>td>a[href*='/anime'], #content>table>tbody>tr>td:nth-child(2)>div.js-scrollfix-bottom-rel>div>table>tbody>tr>td:nth-child(2)>div:nth-child(2)>a:nth-child(1), .news-container h2 a[href*='/anime/'], li.ranking-unit>div>h3>a, tr.ranking-list>td:nth-child(2)>div>div>h3>a, div.borderClass>a[href^='anime/'], #content>table>tbody>tr>td:nth-child(1)>a:nth-child(1), [id^='#revAreaItemTrigger'], .news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,body.profile ul.favorites-list.anime>li>div:nth-child(2)>a,body.profile div.updates.anime>div.statistics-updates>div.data>a,body.page-history #content>div.history_content_wrapper>table>tbody>tr>td:nth-child(1)>a"),
 		dubbedThumbs = "div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1)",
-		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime\/(\d+)\/?.*/,
+		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
 		const IDURL = `https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json`;
 
@@ -86,7 +86,7 @@
 
 	function labelDub(anime) {
 		if (rgx.test(anime.href)) {
-			var linkID = parseInt(anime.href.match(/\/(\d+)\/?/)[1]);
+			var linkID = parseInt(anime.href.match(/(\/|\.php\?id=)(\d+)\/?/)[2]);
 			if (dubbedIDs.includes(linkID)) {
 				anime.title = "Dubbed";
 				if (incompleteDubs.includes(linkID)) {anime.title = "Incomplete Dub";}
@@ -100,7 +100,7 @@
 	}
 
 	function animePages() {
-		var thispage = rgx.exec(document.location.href)[2],
+		var thispage = rgx.exec(document.location.href)[3],
 			dubbedRecs = document.querySelectorAll("div#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*='suggestion'])"),
 			recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+\-\d+)\/?.*/;
 		if (dubbedIDs.includes(parseInt(thispage))) {
