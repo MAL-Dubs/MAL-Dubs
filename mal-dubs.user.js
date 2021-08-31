@@ -1,15 +1,12 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.07
+// @version      0.9.08
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
-// @match        http://myanimelist.net/*
-// @match        https://myanimelist.net/*
-// @match        http://*.myanimelist.net/*
-// @match        https://*.myanimelist.net/*
-// @exclude      /^https?:\/\/myanimelist.net\/(editprofile\.php.*|notification\/setting|ownlist\/style|account\/?.*|apiconfig|forum\/?.*|watch\/.*|store\/?.*|about\/?.*|advertising\/?.*|membership\/?.*|modules\/?.*)$/
+// @include      /^https?:\/\/myanimelist\.net(\/.*)?$/
+// @exclude      /^https?:\/\/myanimelist\.net\/(editprofile\.php.*|notification\/setting|ownlist\/style|account\/?.*|apiconfig|forum\/?.*|watch\/.*|store\/?.*|about\/?.*|advertising\/?.*|membership\/?.*|modules\/?.*)$/
 // @iconURL      https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/icon.png
 // @license      GPL version 3.0; http://www.gnu.org/licenses/gpl-3.0.txt
 // @resource     CSS https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/css/style.css
