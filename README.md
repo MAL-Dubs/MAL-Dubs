@@ -24,3 +24,7 @@ Whether you watch dubs because you like to multitask while watching, because you
 I personally add each title whenever a new dub is announced. Your support will help me to keep you up to date!
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y21HXGO)
+
+## Join the Discord
+
+Join the [Anime Dub Club Discord Server](https://discord.gg/wMfD2RM7Vt)!
