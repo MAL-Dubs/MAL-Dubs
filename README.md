@@ -19,12 +19,14 @@ Whether you watch dubs because you like to multitask while watching, because you
 
 [Click here to install](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js)
 
-## Support this project
+## Support this Project
 
 I personally add each title whenever a new dub is announced. Your support will help me to keep you up to date!
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y21HXGO)
 
-## Join the Discord
+## Join the Community
 
-Join the [Anime Dub Club Discord Server](https://discord.gg/wMfD2RM7Vt)!
+If you love dubbed anime and want a place to chat about it:
+
+[![Anime Dub Club Discord Server](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/discord.svg)](https://discord.gg/wMfD2RM7Vt)
