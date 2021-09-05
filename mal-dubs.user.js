@@ -139,7 +139,7 @@
 		window.addEventListener('load', function() {
 			scanList();
 			addScrollListener();
-		})
+		});
 	}
 
 	function labelThumbnails() {
@@ -202,13 +202,7 @@
 	}
 
 	function setTheme() {
-		if (localStorage.getItem('classicTheme')) {
-		  var classicSetting = localStorage.getItem('classicTheme');
-		} else {
-		  classicSetting = 'false';
-		}
-
-		if (localStorage.getItem('classicTheme') == 'true') {
+		if (localStorage.getItem('classicTheme') === 'true') {
 			document.body.classList.add('classic');
 		}
 	}
