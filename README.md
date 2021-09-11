@@ -1,5 +1,5 @@
 # MAL (MyAnimeList) Dubs
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MAL-Dubs/MAL-Dubs?color=lightgrey&label=Version)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MAL-Dubs/MAL-Dubs?label=Version)
 [![Install with Tampermonkey](https://img.shields.io/badge/Install%20directly%20with-Tampermonkey-00485b?logo=tampermonkey)](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js)
 [![Discord](https://img.shields.io/discord/850163973080743967?color=5865F2&logo=discord&logoColor=white&label=Discord)](https://discord.gg/wMfD2RM7Vt)
 
