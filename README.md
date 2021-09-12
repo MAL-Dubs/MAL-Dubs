@@ -1,7 +1,7 @@
 # MAL (MyAnimeList) Dubs
 [![Install with Tampermonkey](https://img.shields.io/badge/Install%20directly%20with-Tampermonkey-00485b?logo=tampermonkey)](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MAL-Dubs/MAL-Dubs?label=Version)
-![Dub count](https://img.shields.io/badge/Dubs-3972-2e51a2?logo=myanimelist)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MAL-Dubs/MAL-Dubs?label=Version)](#mal-myanimelist-dubs)
+[![Dub count](https://img.shields.io/badge/Dubs-3.972000e+0351a2?logo=myanimelist)](#mal-myanimelist-dubs)
 [![Discord](https://img.shields.io/discord/850163973080743967?color=5865F2&logo=discord&logoColor=white&label=Discord)](https://discord.gg/wMfD2RM7Vt)
 
 MAL Dubs is a userscript which labels 3972 English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
