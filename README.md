@@ -4,7 +4,7 @@
 ![Dub count](https://img.shields.io/badge/Dubs-3968-2e51a2?logo=myanimelist)
 [![Discord](https://img.shields.io/discord/850163973080743967?color=5865F2&logo=discord&logoColor=white&label=Discord)](https://discord.gg/wMfD2RM7Vt)
 
-MAL Dubs is a userscript which labels 3970 English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
+MAL Dubs is a userscript which labels 3971 English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 
 Whether you watch dubs because you like to multitask while watching, because you have a visual impairment that makes subtitles difficult to read, or because you prefer hearing a performance in a language you speak, it can be hard to use MyAnimeList to find anime dubbed in English. This userscript fixes that problem.
 
