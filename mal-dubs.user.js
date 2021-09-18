@@ -224,9 +224,9 @@
 		menuContainer.innerHTML += `<a id="menu-toggle"><i class="fa fa-volume-up mr4"></i>Dubs</a>
 		<div id="dub-dropdown"><ul>
 		<li><a id="theme-toggle" href="#">Switch Style</a></li>
-		<li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="_blank">Report Issues</a></li>
-		<li><a href="https://discord.gg/wMfD2RM7Vt" target="_blank">Join Discord</a></li>
-		<li><a href="https://ko-fi.com/maldubs" target="_blank">Donate<i class="fa fa-heart-o ml4" style="color: #ff5f5f;"></i></a></li>
+		<li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="_blank" rel="noreferrer">Report Issues</a></li>
+		<li><a href="https://discord.gg/wMfD2RM7Vt" target="_blank" rel="noreferrer">Join Discord</a></li>
+		<li><a href="https://ko-fi.com/maldubs" target="_blank" rel="noreferrer">Donate<i class="fa fa-heart-o ml4" style="color: #ff5f5f;"></i></a></li>
 		</ul></div>`;
 		if (document.body.contains(document.querySelector('#contentWrapper>div:nth-child(1)>a.header-right'))) {
 			menuContainer.classList.add("header-right");
