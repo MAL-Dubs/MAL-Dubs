@@ -1,5 +1,5 @@
 .hidden { display: none !important; }
-.seasonal-anime-list > article { display: none; }
+.seasonal-anime-list > article.js-middle_ad { display: none !important; }
 
 [title=Dubbed].imagelink,
 [title="Incomplete Dub"].imagelink,
