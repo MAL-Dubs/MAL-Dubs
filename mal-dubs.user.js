@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.12
+// @version      0.9.13
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -232,12 +232,12 @@
 		let menuContainer = document.createElement("div");
 		menuContainer.id = "dubmenu";
 		menuContainer.classList.add('header-right');
-		menuContainer.innerHTML += `<a id="menu-toggle"><i class="fa fa-volume-up mr4"></i>Dubs</a>
+		menuContainer.innerHTML += `<a id="menu-toggle"><i class="fa-solid fa-volume-high mr4"></i>Dubs</a>
 		<div id="dub-dropdown"><ul>
 		<li><a id="theme-toggle" href="#">Switch Style</a></li>
 		<li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="_blank" rel="noreferrer">Report Issues</a></li>
 		<li><a href="https://discord.gg/wMfD2RM7Vt" target="_blank" rel="noreferrer">Join Discord</a></li>
-		<li><a href="https://ko-fi.com/maldubs" target="_blank" rel="noreferrer">Donate<i class="fa fa-heart-o ml4" style="color: #ff5f5f;"></i></a></li>
+		<li><a href="https://ko-fi.com/maldubs" target="_blank" rel="noreferrer">Donate<i class="fa-regular fa-heart ml4" style="color: #ff5f5f;"></i></a></li>
 		</ul></div>`;
 		if (document.body.contains(document.querySelector('#contentWrapper>div:nth-child(1)>a.header-right'))) {
 			menuContainer.classList.add("header-right");

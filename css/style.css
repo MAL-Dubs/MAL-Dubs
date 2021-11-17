@@ -7,8 +7,8 @@
 
 [title=Dubbed]::after,
 [title="Incomplete Dub"]::after {
-  font-family: FontAwesome;
-  font-weight: normal;
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
 }
 
 [title=Dubbed]::after { content: "\f028"; }
