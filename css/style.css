@@ -32,7 +32,6 @@
   font-style: normal;
   display: inline-block;
   margin: 0 0.4em;
-  font-size: calc(1em + 1px);
 }
 
 .classic [title=Dubbed]::after { background-color: #1d439b; }
