@@ -112,7 +112,7 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
 
 #dubmenu {
   position: relative;
-  display: inline;
+  display: inline-block;
   padding: 0;
 }
 
