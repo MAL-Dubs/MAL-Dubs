@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.15
+// @version      0.9.16
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -20,7 +20,7 @@
 // ==/UserScript==
 
 (function() {
-	const dubbedLinks = document.querySelectorAll("p.title-text>a, content-result .information>a:first-child, .list>.information>a:first-child, table.anime_detail_related_anime a[href^='/anime'], p.data a.title, td.data.title a:first-child, .list td:nth-child(2)>a.hoverinfo_trigger, #content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'], #content>div>div>table>tbody>tr>td>a[href*='/anime'], #content>table>tbody>tr>td:nth-child(2)>div.js-scrollfix-bottom-rel>div>table>tbody>tr>td:nth-child(2)>div:nth-child(2)>a:nth-child(1), .news-container h2 a[href*='/anime/'], li.ranking-unit>div>h3>a, tr.ranking-list>td:nth-child(2)>div>div>h3>a, div.borderClass>a[href^='anime/'], #content>table>tbody>tr>td:nth-child(1)>a:nth-child(1), [id^='#revAreaItemTrigger'], .news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,body.profile div.updates.anime>div.statistics-updates>div.data>a,body.page-history #content>div.history_content_wrapper>table>tbody>tr>td:nth-child(1)>a,.page-forum a[href^='https://myanimelist.net/anime/'] :not(.anime_episode_detail a),.page-forum a[href^='/anime/'] :not(.anime_episode_detail a),.page-blog-detail a[href^='https://myanimelist.net/anime/'],.page-blog-detail a[href^='/anime/'],a.js-people-title,div.boxlist-container.anime>div>div.data>div.title>a"),
+	const dubbedLinks = document.querySelectorAll("p.title-text>a, content-result .information>a:first-child, .list>.information>a:first-child, table.anime_detail_related_anime a[href^='/anime'], p.data a.title, td.data.title a:first-child, .list td:nth-child(2)>a.hoverinfo_trigger, #content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'], #content>div>div>table>tbody>tr>td>a[href*='/anime'], #content>table>tbody>tr>td:nth-child(2)>div.js-scrollfix-bottom-rel>div>table>tbody>tr>td:nth-child(2)>div:nth-child(2)>a:nth-child(1), .news-container h2 a[href*='/anime/'], li.ranking-unit>div>h3>a, tr.ranking-list>td:nth-child(2)>div>div>h3>a, div.borderClass>a[href^='anime/'], #content>table>tbody>tr>td:nth-child(1)>a:nth-child(1), [id^='#revAreaItemTrigger'], .news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,body.profile div.updates.anime>div.statistics-updates>div.data>a,body.page-history #content>div.history_content_wrapper>table>tbody>tr>td:nth-child(1)>a,.page-forum a[href^='https://myanimelist.net/anime/'] :not(.anime_episode_detail a),.page-forum a[href^='/anime/'] :not(.anime_episode_detail a),.page-blog-detail a[href^='https://myanimelist.net/anime/'],.page-blog-detail a[href^='/anime/'],a.js-people-title,div.boxlist-container.anime>div>div.data>div.title>a,[id^='sinfo'],[id^='#revAreaAnimeHover']"),
 		dubbedThumbs = "div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1),#anime_favorites>.fav-slide-outer>ul>li>a",
 		rgx = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/,
 		filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
@@ -164,6 +164,8 @@
 		links.forEach(e => {
 			if(document.location.href.match(/.*\/topanime\.php.*/)){
 				e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("hidden");
+			} else if(document.location.href.match(/.*anime\.php\?.*cat=anime.*/)) {
+				e.parentNode.parentNode.parentNode.classList.add("hidden");
 			} else {e.parentNode.parentNode.classList.add("hidden");}
 		});
 	}
@@ -172,6 +174,8 @@
 		links.forEach(e => {
 			if(document.location.href.match(/.*\/topanime\.php.*/)){
 				e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove("hidden");
+			} else if(document.location.href.match(/.*anime\.php\?.*cat=anime.*/)) {
+				e.parentNode.parentNode.parentNode.classList.remove("hidden");
 			} else {e.parentNode.parentNode.classList.remove("hidden");}
 		});
 	}
