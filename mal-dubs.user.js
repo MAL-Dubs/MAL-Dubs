@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.17
+// @version      0.9.18
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -164,7 +164,7 @@
 		links.forEach(e => {
 			if(document.location.href.match(/.*\/topanime\.php.*/)){
 				e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add("hidden");
-			} else if(document.location.href.match(/.*anime\.php\?.*cat=anime.*/)) {
+			} else if(document.location.href.match(/.*anime\.php\?.*cat=0.*/)) {
 				e.parentNode.parentNode.parentNode.classList.add("hidden");
 			} else {e.parentNode.parentNode.classList.add("hidden");}
 		});
@@ -174,7 +174,7 @@
 		links.forEach(e => {
 			if(document.location.href.match(/.*\/topanime\.php.*/)){
 				e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove("hidden");
-			} else if(document.location.href.match(/.*anime\.php\?.*cat=anime.*/)) {
+			} else if(document.location.href.match(/.*anime\.php\?.*cat=0.*/)) {
 				e.parentNode.parentNode.parentNode.classList.remove("hidden");
 			} else {e.parentNode.parentNode.classList.remove("hidden");}
 		});
