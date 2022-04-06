@@ -5,6 +5,7 @@
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
+// @updateURL    https://github.com/MAL-Dubs/MAL-Dubs/raw/main/mal-dubs.user.js
 // @include      /^https?:\/\/myanimelist\.net(\/.*)?$/
 // @exclude      /^https?:\/\/myanimelist\.net\/(editprofile\.php.*|notification\/setting|ownlist\/style|account\/?.*|apiconfig|watch\/.*|store\/?.*|about\/?.*|advertising\/?.*|membership\/?.*|modules\/?.*)$/
 // @iconURL      https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/icon.png
