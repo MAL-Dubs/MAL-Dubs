@@ -158,7 +158,6 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
   white-space: nowrap;
-  text-align: center;
 }
 
 #dub-dropdown a,
