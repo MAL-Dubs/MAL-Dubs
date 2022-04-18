@@ -1,6 +1,8 @@
 .hidden { display: none !important; }
 .seasonal-anime-list > article.js-middle_ad { display: none !important; }
-.seasonal-anime-list > article.js-middle_ad,.js-middle_ad.seasonal-middle { display: none !important; }
+
+.seasonal-anime-list > article.js-middle_ad,
+.js-middle_ad.seasonal-middle { display: none !important; }
 
 [title=Dubbed].imagelink,
 [title="Incomplete Dub"].imagelink,
@@ -117,7 +119,10 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   padding: 0;
 }
 
-#dubmenu > a { cursor: pointer; display: block;}
+#dubmenu > a {
+  cursor: pointer;
+  display: block;
+}
 
 #dub-dropdown {
   display: none;
@@ -158,6 +163,7 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
   white-space: nowrap;
+  text-align: left;
 }
 
 #dub-dropdown a,
