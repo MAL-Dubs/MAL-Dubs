@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.27
+// @version      0.9.30
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -238,26 +238,16 @@
 	}
 
 	function placeHeaderMenu(){
-		let menuContainer = document.createElement("div");
+		var menuContainer = document.createElement('div', {class : 'header-menu-unit header-dub'}),
+		borderDiv = document.createElement('div');
 		menuContainer.id = "dubmenu";
-		menuContainer.classList.add('header-right');
-		menuContainer.innerHTML += `<a id="menu-toggle"><i class="fa-solid fa-volume-high mr4"></i>Dubs</a>
-		<div id="dub-dropdown"><ul>
-		<li><a id="theme-toggle" href="#">Switch Style</a></li>
-		<li><a href="https://myanimelist.net/forum/?action=message&topic_id=1952777&action=message">Send Feedback</a></li>
-		<li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="_blank" rel="noreferrer">Report Issues</a></li>
-		<li><a href="https://discord.gg/wMfD2RM7Vt" target="_blank" rel="noreferrer">Join Discord</a></li>
-		<li><a href="https://ko-fi.com/maldubs" target="_blank" rel="noreferrer">Please Donate<i class="fa-regular fa-heart ml4" style="color: #ff5f5f;"></i></a></li>
-		</ul></div>`;
-		if (document.body.contains(document.querySelector('#contentWrapper>div:nth-child(1)>a.header-right'))) {
-			menuContainer.classList.add("header-right");
-			document.querySelector('#contentWrapper > div:nth-child(1)>a.header-right').after(menuContainer);
-		} else if (document.body.contains(document.querySelector('#contentWrapper>div:nth-child(1)>.h1.edit-info>div.header-right'))) {
-			menuContainer.classList.remove("header-right");
-			menuContainer.classList.add("mr16");
-			document.querySelector("div.header-right").prepend(menuContainer);
-		} else {
-			document.querySelector('#contentWrapper > div:nth-child(1)').prepend(menuContainer);
+		menuContainer.classList.add('header-menu-unit','header-dub')
+		menuContainer.innerHTML += `<a id="menu-toggle" title="MAL-Dubs" tabindex="0" class="header-dub-button text1"><span id="menu-toggle" class="dub-icon icon"></span></a><div id="dub-dropdown"><ul><li><a id="theme-toggle" href="#">Switch Style</a></li><li><a href="https://discord.gg/wMfD2RM7Vt" target="_blank" rel="noreferrer">Dub Club Discord</a></li><li><a href="https://myanimelist.net/forum/?action=message&amp;topic_id=1952777&amp;action=message">Send Feedback</a></li><li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="_blank" rel="noreferrer">Report Issues</a></li><li><a href="https://ko-fi.com/maldubs" target="_blank" rel="noreferrer">Please Donate<i class="fa-regular fa-heart ml4" style="color: #ff5f5f;"></i></a></li></ul></div>`;
+		borderDiv.classList.add('border');
+		if (document.body.contains (document.querySelector('.header-profile'))) {
+			document.querySelector('#header-menu>div.header-profile').before(menuContainer,borderDiv);
+		} else if (document.body.contains (document.querySelector('.header-menu-login'))) {
+			document.querySelector('#header-menu>div.header-menu-login').before(menuContainer);
 		}
 
 		document.getElementById('theme-toggle').addEventListener('click', toggleClassic, false);

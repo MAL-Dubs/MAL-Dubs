@@ -163,19 +163,14 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   font-size: 11px;
   position: absolute;
   z-index: 201;
-  right: -9px;
-  top: 21px;
+  left: -100%;
+  top: 38px;
   border: 2px solid #2e51a2;
   background: white;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .on #dub-dropdown { display: block; }
-
-.header-right + .header-right #dub-dropdown,
-.header-right > div:nth-child(1) > #dub-dropdown {
-  right: -50%;
-}
 
 #dub-dropdown > ul {
   padding: 0;
@@ -213,4 +208,52 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
 
 #dub-dropdown ul li:last-of-type a {
   border-bottom: #2e51a2 0 solid;
+}
+
+.page-common .header-dub {
+  display: table-cell;
+  height: 30px;
+  position: relative;
+  vertical-align: top;
+  width: 30px;
+}
+
+.page-common .header-dub-button .icon {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.page-common .header-dub-button {
+  border-radius: 30px;
+  color: #2e51a2;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  outline: none;
+  position: relative;
+  text-align: center;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  vertical-align: bottom;
+  width: 24px;
+}
+
+.header-menu-login + .header-dub {
+  top: -2px;
+  width: 40px;
+}
+.header-menu-login + .header-dub .header-dub-button .icon { font-size: 29px; }
+
+.header-menu-login + .header-dub #dub-dropdown {
+  top: 39px;
+  left: unset;
+  right: 0;
 }
