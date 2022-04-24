@@ -14,32 +14,51 @@
 .classic .seasonal-anime-list > .seasonal-anime > .image { overflow: hidden; }
 
 [title=Dubbed]::after,
-[title="Incomplete Dub"]::after {
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
+[title="Incomplete Dub"]::after,
+.dub-icon {
+  font-family: "Dubfont Solid";
+  font-weight: 100;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
 }
 
-[title=Dubbed]::after { content: "\f028"; }
-[title="Incomplete Dub"]::after { content: "\f027"; }
+[title=Dubbed]::after { content: "\e000"; }
+[title="Incomplete Dub"]::after { content: "\e001"; }
+.dub-icon::before { content: "\e002"; }
+
+h1[title=Dubbed]::after,
+h1[title="Incomplete Dub"]::after {
+  border: 1px solid;
+  display: inline;
+  border-radius: 3px;
+  padding: 1px 3px;
+  position: absolute;
+}
 
 [title=Dubbed].imagelink::after,
 [title="Incomplete Dub"].imagelink::after {
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   position: absolute;
-  left: 0;
+  right: 0;
   font-size: 14px;
   font-style: normal;
-  padding: 5px 4px;
-  border-radius: 0 0 5px 0;
+  padding: 2px 3px;
+  border-radius: 4px;
+  border: 1px solid white;
+  margin: 4px;
 }
 
 [title=Dubbed]:not(.imagelink)::after,
 [title="Incomplete Dub"]:not(.imagelink)::after {
   text-decoration: none;
   font-style: normal;
-  display: inline-block;
-  margin: 0 0.4em;
+  margin-left: 0.3em;
 }
 
 .classic [title=Dubbed]::after { background-color: #1d439b; }
@@ -63,6 +82,9 @@
   font-size: 10px;
   font-weight: 700;
   font-family: Verdana, Arial, sans-serif;
+  border: none;
+  right: unset;
+  margin: 0;
 }
 
 .classic [title=Dubbed]:not(.imagelink)::after,
@@ -76,8 +98,15 @@
   font-weight: 500;
   border-radius: 0.25em;
   line-height: 1.4em;
-  vertical-align: middle;
+  vertical-align: top;
   font-family: Avenir, "lucida grande", tahoma, verdana, arial, sans-serif;
+  border: none;
+}
+
+body:not(.classic) #anime_recommendation [title=Dubbed].imagelink::after,
+body:not(.classic) #anime_recommendation [title="Incomplete Dub"].imagelink::after {
+  right: unset;
+  left: 0;
 }
 
 input#undubbed-filter { display: none; }
