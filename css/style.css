@@ -250,6 +250,7 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   vertical-align: bottom;
   width: 24px;
 }
+.page-common .header-dub-button:hover { color: #8ba4de; }
 
 .header-menu-login + .header-dub {
   top: -2px;
