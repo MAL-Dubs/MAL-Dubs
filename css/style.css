@@ -87,6 +87,11 @@ h1[title="Incomplete Dub"]::after {
   margin: 0;
 }
 
+.btn-fav [title=Dubbed].imagelink:hover::after,
+.btn-fav [title="Incomplete Dub"].imagelink::after {
+  opacity: 0;
+}
+
 .classic [title=Dubbed]:not(.imagelink)::after,
 .classic [title="Incomplete Dub"]:not(.imagelink)::after {
   content: "Dubbed";
