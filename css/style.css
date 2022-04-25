@@ -38,6 +38,7 @@ h1[title="Incomplete Dub"]::after {
   border-radius: 3px;
   padding: 1px 3px;
   position: absolute;
+  margin-left: 0.3em;
 }
 
 [title=Dubbed].imagelink::after,
@@ -56,10 +57,11 @@ h1[title="Incomplete Dub"]::after {
 
 [title=Dubbed]:not(.imagelink)::after,
 [title="Incomplete Dub"]:not(.imagelink)::after {
-  text-decoration: none;
   font-style: normal;
-  margin-left: 0.3em;
+  display: inline;
 }
+a[title=Dubbed]:not(.imagelink)::after { content: "\00a0\e000"; }
+a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
 
 .classic [title=Dubbed]::after { background-color: #1d439b; }
 .classic [title="Incomplete Dub"]::after { background-color: hsl(0, 0%, 41%); }
