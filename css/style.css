@@ -94,15 +94,15 @@ h1[title="Incomplete Dub"]::after {
 
 .classic [title=Dubbed]:not(.imagelink)::after,
 .classic [title="Incomplete Dub"]:not(.imagelink)::after {
-  content: "Dubbed";
+  content: "DUB";
   display: inline-block;
   color: #fff;
-  padding: 0 0.5em;
+  padding: 0.1em 0.3em 0;
   font-size: 0.8em;
-  margin: 0 0 0 0.5em;
+  margin-left: 0.3em;
   font-weight: 500;
   border-radius: 0.25em;
-  line-height: 1.4em;
+  line-height: 1.3em;
   vertical-align: top;
   font-family: Avenir, "lucida grande", tahoma, verdana, arial, sans-serif;
   border: none;
