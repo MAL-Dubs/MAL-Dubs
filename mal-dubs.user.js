@@ -195,7 +195,7 @@
 			filterCheckbox.id = 'undubbed-filter';
 			label.setAttribute('for','undubbed-filter');
 			label.className = 'fs11 fl-r btn-show-undubbed mr12 fw-n';
-			label.appendChild(document.createTextNode('Dub Only'));
+			label.appendChild(document.createTextNode('Dubs Only'));
 			filterTarget.after(filterCheckbox);
 			filterCheckbox.after(label);
 		}
