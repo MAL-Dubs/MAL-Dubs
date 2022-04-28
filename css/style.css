@@ -1,3 +1,7 @@
+:root {
+  --mal-blue: #2e51a2;
+}
+
 @font-face {
   font-family: "Dubfont Solid";
   src: url(data:application/octet-stream;base64,d09GMk9UVE8AAAdoAAkAAAAACygAAAcjAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAADY0GBmAAagE2AiQDghoEBgWDFQcgG34KEVSsdyD7MeBuzHnylKfMyszoSvtsfi6oDwQvkuOB/lD/yxoiAVngEZ6UC82tAe3SjT1fS6BcLs2/p017f1l2iRyhXbZGj91IxUlNSWoSESViQMyg0GYjCsmUKBWjdXp3nIp/OpsZCGz323WeacCBJBjgTFIfWfPcz3RROBxIio18Il3036giLYCm04FE5TVVGR2Ynfs9rA2YFeyi66UOgCQA8Rj5vmFuYWWFYU1cZZkuPxS7RT2FRsLXCYL5OIG0Nwi8HPLyhJchNwVKzgaSQtR9pTdRilcF4Yg5k4upjXOBQkgWNO/BtTuMFbr9GmIYsHDY+h025FVWNdToiooNfLlOr9dVFDUN46WBNEBhIUQqf+UcPwgCyCNklcBBAhA64LBjjjshSrQYseLES5AoSbIUqdKky5ApS7YcufLkK1CoSDGdEqXKlKtQqUq1GnoGRrXq1GvQqEmzFq3atKMO1IlMyIxOIguyolPoNOpCAuom8qMbSIr8bzY56prD6bCfUTmXdckFO7ZwjLeOOsYcE45R+HSuuY/cLLiV/87e/5Idjf9HOhy3mMurCFzgTWTFzbODeDMlKq6xjBaBg77ulBYlGB4Rji9pRguRxjld1Jc+QTGXEdGY3PwW++yXsQbom9Y0Q4DCQTEkKPJoMpGPOxvbvBJtIzr5Q+SFx2OThyPY/CbLIEQ63qAZ0JIuNBDaiCMZuSgadNEZOuDANa678oObQ0E7TZeQOgxGK8jiZPI7+2QALSMeV4KCKCotgxXd4L5WECSl3oxku2uiJEVFdDq+8FJQ0a535adW46wA2cHvp1lTxT/upLzUhp1AocANpKHQOiZ8jdpIyWf75OIHcv6RW3t/wlE/oe4fseannx5+5BEJ1njlrIio6nFtNSe66OrjunNdaoyof7744p+/t3wRyh0XXSyOeol+4m5OclJOThKHM1JY66Aw3Df40HvCj5nvvZYfkg32DfYPq4aGrKY+7qn1gihJqMjMVpN8WJXJ1Ddk5b7tZB//RcBU8qfF1jdmG7APjFkH2p4VkSDOjxVRqL+pf9DKVXQHvYOybzvss9hPwItjscxi7x+z9dsHRi0D7S+L8wRx1THdJ9Tf3DdoydpUvmngRyT8iD2PPPKw+MQS/NbvrPY5afGy2FCgOo73Upq3pV3WLot1kXiVrjmpPafGQL3+dO05Fye+ir9iTe09LSMm79uzSQts5rHuoZEh2+mxjqGKmQVPYcUpHBKF5RZ7S3/bSeBYjdXanwjuF4OyvlHB6QLXb2YMqT+ctEXRU04aaLutHVqv35Z3ZcGZt9reK3xJNmg19ZtUnSaLeWSfwiR09ptl00W2nJxFHULH6Q511jXpn6e2frJUlUVF3rcPtnSZOhbKD+2/3Pz1HXc2VopKPCzucbu/nCu47355x3n3q7vmI7izXzmKV2a7mQv3vcNYx14Q3JUq5iRhrFOzreJatvRc1RU1M/RUmD+e4v3dYmWI9noU5gSxRORU2VTbbsTO3Z1ip6kv9li5RWWkmMgqvHIb+zd98a5QsYiR8cF07EfXC4uYSM0/YWkwnX5lkRAjLL3YX810zsG6QyH+t6hHrydnVnOlT9Zt2q86USvA8MTdwvCkm+rUUTyRnZAf6mClx6n/Re/0YOVcweP5ZAcOazpjnOC54rle5EnDYWkeRkt6L+KdbJGeYrSy61pr8ozgbFIx3Z2zF8WQMYGqqTfQl809Ymew/zOJJ6+zExOz1XO4OKp1YxvlmGDwOFkmBK5Q56anzp83TlWHf7uUYk59jcPi2E/o0RHb2KitvVW9gzYeNMxMj49Pq693ktrKT0vNv/WoGucfDfb3UFMT7Q02ztbQbehoGG8cqO40yAykbdaroprDKEjPLxqFwkl19AkVpD4hV09t8QWm+wL9hcAA76/K+0nsJANShBSLwtZspq9UnytVz05Rpd3qUi6AxWH0qM02qrYJdtP24RE7V3Zorm3pVJkCvFPUlXPnrnABLmQei5qDlCyihAeA5WYddyxkxqWS6RmasJNOwJPAd9STvicBdAC0zjxayPICAI+DCQASAErBR6YzKRGAQtLiJvHW2iZVo6mO/vtCxKtpRMgBhQm+rwCA+k/5PL4cfm/5Mjk2R4ikFeMQeHvL8VUtaOeXaAJWfd69tWl28z1LbNwAAC2Jh3pN67uaqAB6BYT/yx3gg6IXAVAFII5quwFl+Uz1BIgGBwE8YGbOuMiFA0CgrwwsJOOwUgsowVTv1STQ8ANkkW2IJcjFYSU0cgrJdK6U4ANgCv4UVkHuk9o5/P30f7NEbEGRsSynJrGgRq+rrODD12rYdceBasRRncGT4lds9D5GuQpVqmDAi7Nbl9HJF6tAEaMvPEeNcGtpZPAOCY5KcoJSlCRdA04EaujftPhivqzzAftFOIpiwyXDWlJgwkUuweR8blgI);
@@ -7,7 +11,7 @@
 .seasonal-anime-list > article.js-middle_ad,
 .js-middle_ad.seasonal-middle { display: none !important; }
 
-.footer-ranking li>a::after { margin-left: 9px !important; }
+.footer-ranking li > a::after { margin-left: 9px !important; }
 
 [title=Dubbed].imagelink,
 [title="Incomplete Dub"].imagelink,
@@ -16,15 +20,16 @@
 [title=Dubbed]::after,
 [title="Incomplete Dub"]::after,
 .dub-icon {
+  display: inline;
   font-family: "Dubfont Solid";
   font-weight: 100;
-  display: inline-block;
-  -webkit-font-smoothing: antialiased;
   font-style: normal;
   font-variant: normal;
   line-height: 1;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   text-rendering: auto;
+  text-decoration: none;
 }
 
 [title=Dubbed]::after { content: "\e000"; }
@@ -34,7 +39,6 @@
 h1[title=Dubbed]::after,
 h1[title="Incomplete Dub"]::after {
   border: 1px solid;
-  display: inline;
   border-radius: 3px;
   padding: 1px 3px;
   position: absolute;
@@ -44,34 +48,31 @@ h1[title="Incomplete Dub"]::after {
 [title=Dubbed].imagelink::after,
 [title="Incomplete Dub"].imagelink::after {
   background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
+  color: #fff !important;
+  display: inline-block;
   position: absolute;
   right: 0;
   font-size: 14px;
-  font-style: normal;
   padding: 2px 3px;
   border-radius: 4px;
   border: 1px solid white;
   margin: 4px;
 }
 
-[title=Dubbed]:not(.imagelink)::after,
-[title="Incomplete Dub"]:not(.imagelink)::after {
-  font-style: normal;
-  display: inline;
-}
 a[title=Dubbed]:not(.imagelink)::after { content: "\00a0\e000"; }
 a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
 
-.classic [title=Dubbed]::after { background-color: #1d439b; }
+.classic [title=Dubbed]::after { background-color: var(--mal-blue); }
 .classic [title="Incomplete Dub"]::after { background-color: hsl(0, 0%, 41%); }
 
-[title=Dubbed]:not(.imagelink):hover::after,
-[title="Incomplete Dub"]:not(.imagelink):hover::after { text-decoration: none; }
+.classic [title=Dubbed]::after,
+.classic [title="Incomplete Dub"]::after {
+  content: "Dub";
+  text-transform: uppercase;
+}
 
 .classic [title=Dubbed].imagelink::after,
 .classic [title="Incomplete Dub"].imagelink::after {
-  content: "DUB";
   border-radius: 0;
   transform: rotate(-45deg);
   top: -5px;
@@ -96,9 +97,8 @@ a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
 
 .classic [title=Dubbed]:not(.imagelink)::after,
 .classic [title="Incomplete Dub"]:not(.imagelink)::after {
-  content: "DUB";
   display: inline-block;
-  color: #fff;
+  color: #fff !important;
   padding: 0.1em 0.3em 0;
   font-size: 0.8em;
   margin-left: 0.3em;
@@ -119,11 +119,10 @@ body:not(.classic) #anime_recommendation [title="Incomplete Dub"].imagelink::aft
 input#undubbed-filter { display: none; }
 
 .btn-show-undubbed {
-  background-image: url(/images/icon_check_box.png?v=1626400800);
+  background-image: url(/images/icon_check_box.png);
   background-position: 0 -38px;
   background-repeat: no-repeat;
   background-size: 12px auto;
-  color: #787878;
   cursor: pointer;
   display: inline-block;
   padding-left: 16px;
@@ -133,7 +132,7 @@ input#undubbed-filter { display: none; }
 }
 
 input[type=checkbox]:checked + label.btn-show-undubbed::after {
-  background-image: url(/images/icon_check_box.png?v=1626400800);
+  background-image: url(/images/icon_check_box.png);
   background-position: -1px 3px;
   background-repeat: no-repeat;
   background-size: 12px auto;
@@ -172,8 +171,8 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   z-index: 201;
   left: -100%;
   top: 38px;
-  border: 2px solid #2e51a2;
-  background: white;
+  border: 2px solid var(--mal-blue);
+  background: #fff;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -188,7 +187,7 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
 
 #dub-dropdown a {
   background-color: #fff;
-  border-bottom: #2e51a2 1px solid;
+  border-bottom: 1px solid currentcolor;
   display: block;
   padding: 8px 12px;
   text-decoration: none;
@@ -202,20 +201,8 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   text-align: left;
 }
 
-#dub-dropdown a,
-#dub-dropdown a:visited {
-  text-decoration: none;
-}
-
-#dub-dropdown a:hover {
-  text-decoration: none;
-  color: #1d439b;
-  background-color: #e1e7f5;
-}
-
-#dub-dropdown ul li:last-of-type a {
-  border-bottom: #2e51a2 0 solid;
-}
+#dub-dropdown ul li a:hover { background-color: #e1e7f5; }
+#dub-dropdown ul li:last-of-type a { border-bottom: none; }
 
 .page-common .header-dub {
   display: table-cell;
@@ -225,14 +212,9 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   width: 30px;
 }
 
-.page-common .header-dub-button .icon {
-  font-size: 24px;
-  line-height: 30px;
-}
-
 .page-common .header-dub-button {
   border-radius: 30px;
-  color: #2e51a2;
+  color: var(--mal-blue);
   cursor: pointer;
   display: inline-block;
   height: 30px;
@@ -254,6 +236,11 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
 }
 .page-common .header-dub-button:hover { color: #8ba4de; }
 
+.page-common .header-dub-button .icon {
+  font-size: 24px;
+  line-height: 30px;
+}
+
 .header-menu-login + .header-dub {
   top: -2px;
   width: 40px;
@@ -270,4 +257,15 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
   .dub-icon::before { content: "\e003"; }
+  [title=Dubbed].imagelink::after,
+  [title="Incomplete Dub"].imagelink::after {
+  padding: 1.5px 3px;
+  border-width: 1.5px;
+  }
+
+  h1[title=Dubbed]::after,
+  h1[title="Incomplete Dub"]::after {
+    padding: 1px 3px 1px 3.5px;
+    border-width: 1.5px;
+  }
 }

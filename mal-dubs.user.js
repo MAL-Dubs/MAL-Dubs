@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.33
+// @version      0.9.34
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -194,7 +194,7 @@
 			filterCheckbox.type = 'checkbox';
 			filterCheckbox.id = 'undubbed-filter';
 			label.setAttribute('for','undubbed-filter');
-			label.className = 'fs11 fl-r btn-show-undubbed mr12 fw-n';
+			label.className = 'fs11 fl-r btn-show-undubbed mr12 fw-n fn-grey2';
 			label.appendChild(document.createTextNode('Dubs Only'));
 			filterTarget.after(filterCheckbox);
 			filterCheckbox.after(label);
