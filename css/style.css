@@ -97,14 +97,15 @@ a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
 
 .classic [title=Dubbed]:not(.imagelink)::after,
 .classic [title="Incomplete Dub"]:not(.imagelink)::after {
+  content: "Dub";
   display: inline-block;
   color: #fff !important;
-  padding: 0.1em 0.3em 0;
+  padding: 0.1em 0.25em 0;
   font-size: 0.8em;
-  margin-left: 0.3em;
+  margin-left: 0.32em;
   font-weight: 500;
   border-radius: 0.25em;
-  line-height: 1.3em;
+  line-height: 1.25em;
   vertical-align: top;
   font-family: Avenir, "lucida grande", tahoma, verdana, arial, sans-serif;
   border: none;
@@ -257,10 +258,11 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
   .dub-icon::before { content: "\e003"; }
+
   [title=Dubbed].imagelink::after,
   [title="Incomplete Dub"].imagelink::after {
-  padding: 1.5px 3px;
-  border-width: 1.5px;
+    padding: 1.5px 3px;
+    border-width: 1.5px;
   }
 
   h1[title=Dubbed]::after,
