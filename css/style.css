@@ -170,11 +170,26 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
   font-size: 11px;
   position: absolute;
   z-index: 201;
-  left: -100%;
+  left: -48px;
   top: 38px;
   border: 2px solid var(--mal-blue);
   background: #fff;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+#dub-dropdown .dub-icon::before {
+content: "\e000";
+}
+
+.classic #dub-dropdown .dub-icon::before {
+content: "\e003";
+}
+
+#dub-dropdown i {
+font-size: 12px;
+width: 14px;
+text-align: center;
+display: inline-block;
 }
 
 .on #dub-dropdown { display: block; }

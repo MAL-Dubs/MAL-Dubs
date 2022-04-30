@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.35
+// @version      0.9.36
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering to search, seasonal and top anime pages.
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -241,7 +241,7 @@
 		borderDiv = document.createElement('div');
 		menuContainer.id = "dubmenu";
 		menuContainer.classList.add('header-menu-unit','header-dub');
-		menuContainer.innerHTML += `<a id="menu-toggle" title="MAL-Dubs" tabindex="0" class="header-dub-button text1"><span id="menu-toggle" class="dub-icon icon"></span></a><div id="dub-dropdown"><ul><li><a id="theme-toggle" href="#">Switch Style</a></li><li><a href="https://myanimelist.net/forum/?topicid=1692966">Upcoming Dubs</a></li><li><a href="https://discord.gg/wMfD2RM7Vt" target="_blank" rel="noreferrer">Dub Club Discord</a></li><li><a href="https://myanimelist.net/forum/?action=message&amp;topic_id=1952777&amp;action=message">Send Feedback</a></li><li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="_blank" rel="noreferrer">Report Issues</a></li><li><a href="https://ko-fi.com/maldubs" target="_blank" rel="noreferrer">Please Donate<i class="fa-regular fa-heart ml4" style="color: #ff5f5f;"></i></a></li></ul></div>`;
+		menuContainer.innerHTML += `<a id="menu-toggle" title="MAL-Dubs" tabindex="0" class="header-dub-button text1"><span id="menu-toggle" class="dub-icon icon"></span></a><div id="dub-dropdown"><ul><li><a id="theme-toggle" href="#"><i class="dub-icon mr6"></i>Switch Style</a></li><li><a href="https://myanimelist.net/forum/?topicid=1692966"><i class="fa-solid fa-calendar-clock mr6"></i>Upcoming Dubs</a></li><li><a href="https://myanimelist.net/forum/?action=message&amp;topic_id=1952777&amp;action=message"><i class="fa-solid fa-comment-dots mr6"></i>Send Feedback</a></li><li><a href="https://github.com/MAL-Dubs/MAL-Dubs/issues/new/choose" target="_blank" rel="noreferrer"><i class="fa-brands fa-github mr6"></i>Report an Issue</a></li><li><a href="https://discord.gg/wMfD2RM7Vt" target="_blank" rel="noreferrer"><i class="fa-brands fa-discord mr6"></i>Anime Dub Hub</a></li><li><a href="https://ko-fi.com/maldubs" target="_blank" rel="noreferrer"><i class="fa-solid fa-circle-dollar-to-slot mr6"></i>Donate</a></li></ul></div>`;
 		borderDiv.classList.add('border');
 		if (document.body.contains (document.querySelector('.header-profile'))) {
 			document.querySelector('#header-menu>div.header-profile').before(menuContainer,borderDiv);
