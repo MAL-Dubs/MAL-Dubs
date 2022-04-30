@@ -106,7 +106,7 @@ a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
   font-weight: 500;
   border-radius: 0.25em;
   line-height: 1.25em;
-  vertical-align: top;
+  vertical-align: 0.1em;
   font-family: Avenir, "lucida grande", tahoma, verdana, arial, sans-serif;
   border: none;
 }
