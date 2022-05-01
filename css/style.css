@@ -1,115 +1,117 @@
-:root {
-  --mal-blue: #2e51a2;
-}
+:root { --mal-blue: #2e51a2; }
 
 @font-face {
   font-family: "Dubfont Solid";
-  src: url(data:application/octet-stream;base64,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);
+  src: url("data:application/octet-stream;base64,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");
 }
 
 .hidden,
 .seasonal-anime-list > article.js-middle_ad,
 .js-middle_ad.seasonal-middle { display: none !important; }
 
-[title=Dubbed].imagelink,
+[title="Dubbed"].imagelink,
 [title="Incomplete Dub"].imagelink,
 .classic .seasonal-anime-list > .seasonal-anime > .image { overflow: hidden; }
 
-[title=Dubbed]::after,
+[title="Dubbed"]::after,
 [title="Incomplete Dub"]::after,
 .dub-icon {
   display: inline;
-  font-family: "Dubfont Solid";
   font-weight: 100;
   font-style: normal;
   font-variant: normal;
+  font-family: "Dubfont Solid";
   line-height: 1;
+  text-decoration: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: auto;
-  text-decoration: none;
 }
 
-[title=Dubbed]::after { content: "\e000"; }
+[title="Dubbed"]::after { content: "\e000"; }
+
 [title="Incomplete Dub"]::after { content: "\e001"; }
+
 .dub-icon::before { content: "\e002"; }
 
-h1[title=Dubbed]::after,
+h1[title="Dubbed"]::after,
 h1[title="Incomplete Dub"]::after {
-  border: 1px solid;
-  border-radius: 3px;
-  padding: 1px 3px;
   position: absolute;
   margin-left: 0.3em;
+  padding: 1px 3px;
+  border: 1px solid;
+  border-radius: 3px;
 }
 
-[title=Dubbed].imagelink::after,
+[title="Dubbed"].imagelink::after,
 [title="Incomplete Dub"].imagelink::after {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff !important;
-  display: inline-block;
   position: absolute;
   right: 0;
-  font-size: 14px;
-  padding: 2px 3px;
-  border-radius: 4px;
-  border: 1px solid white;
+  display: inline-block;
   margin: 4px;
+  padding: 2px 3px;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: rgb(0 0 0 / 0.7);
+  color: #fff !important;
+  font-size: 14px;
 }
 
-a[title=Dubbed]:not(.imagelink)::after { content: "\00a0\e000"; }
+a[title="Dubbed"]:not(.imagelink)::after { content: "\00a0\e000"; }
+
 a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
 
-.classic [title=Dubbed]::after { background-color: var(--mal-blue); }
-.classic [title="Incomplete Dub"]::after { background-color: hsl(0, 0%, 41%); }
+.classic [title="Dubbed"]::after { background-color: var(--mal-blue); }
 
-.classic [title=Dubbed]::after,
+.classic [title="Incomplete Dub"]::after { background-color: hsl(0 0% 41%); }
+
+.classic [title="Dubbed"]::after,
 .classic [title="Incomplete Dub"]::after {
   content: "Dub";
   text-transform: uppercase;
 }
 
-.classic [title=Dubbed].imagelink::after,
+.classic [title="Dubbed"].imagelink::after,
 .classic [title="Incomplete Dub"].imagelink::after {
-  border-radius: 0;
-  transform: rotate(-45deg);
   top: -5px;
+  right: unset;
   left: -20px;
-  padding: 12px 0 0 0;
   width: 61px;
   height: 19px;
-  text-align: center;
-  line-height: 1.6;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: Verdana, Arial, sans-serif;
-  border: none;
-  right: unset;
   margin: 0;
+  padding: 12px 0 0;
+  border: none;
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 10px;
+  font-family: "Verdana", "Arial", sans-serif;
+  line-height: 1.6;
+  text-align: center;
+  transform: rotate(-45deg);
 }
 
-.btn-fav [title=Dubbed].imagelink:hover::after,
+.btn-fav [title="Dubbed"].imagelink:hover::after,
 .btn-fav [title="Incomplete Dub"].imagelink::after {
   opacity: 0;
 }
 
-.classic [title=Dubbed]:not(.imagelink)::after,
+.classic [title="Dubbed"]:not(.imagelink)::after,
 .classic [title="Incomplete Dub"]:not(.imagelink)::after {
   content: "Dub";
   display: inline-block;
-  color: #fff !important;
-  padding: 0.1em 0.25em 0;
-  font-size: 0.8em;
-  margin-left: 0.32em;
-  font-weight: 500;
-  border-radius: 0.25em;
-  line-height: 1.25em;
   vertical-align: 0.1em;
-  font-family: Avenir, "lucida grande", tahoma, verdana, arial, sans-serif;
+  margin-left: 0.32em;
+  padding: 0.1em 0.25em 0;
   border: none;
+  border-radius: 0.25em;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 0.8em;
+  font-family: "Avenir", "Lucida Grande", "Tahoma", "Verdana", "Arial", sans-serif;
+  line-height: 1.25em;
 }
 
-body:not(.classic) #anime_recommendation [title=Dubbed].imagelink::after,
+body:not(.classic) #anime_recommendation [title="Dubbed"].imagelink::after,
 body:not(.classic) #anime_recommendation [title="Incomplete Dub"].imagelink::after {
   right: unset;
   left: 0;
@@ -118,38 +120,39 @@ body:not(.classic) #anime_recommendation [title="Incomplete Dub"].imagelink::aft
 input#undubbed-filter { display: none; }
 
 .btn-show-undubbed {
-  background-image: url(/images/icon_check_box.png);
-  background-position: 0 -38px;
-  background-repeat: no-repeat;
-  background-size: 12px auto;
-  cursor: pointer;
-  display: inline-block;
-  padding-left: 16px;
-  padding-right: 2px;
   position: relative;
+  display: inline-block;
+  padding-right: 2px;
+  padding-left: 16px;
+  background-image: url("/images/icon_check_box.png");
+  background-position: 0 -38px;
+  background-size: 12px auto;
+  background-repeat: no-repeat;
   line-height: 1.5em;
+  cursor: pointer;
 }
 
-input[type=checkbox]:checked + label.btn-show-undubbed::after {
-  background-image: url(/images/icon_check_box.png);
-  background-position: -1px 3px;
-  background-repeat: no-repeat;
-  background-size: 12px auto;
+input[type="checkbox"]:checked + label.btn-show-undubbed::after {
   content: "";
-  display: block;
-  height: 12px;
-  left: 0;
   position: absolute;
   top: 2px;
+  left: 0;
+  display: block;
   width: 12px;
+  height: 12px;
+  background-image: url("/images/icon_check_box.png");
+  background-position: -1px 3px;
+  background-size: 12px auto;
+  background-repeat: no-repeat;
 }
 
 .js-search-filter-block .btn-show-undubbed { margin-top: 4px; }
+
 h2.top-rank-header2 .btn-show-undubbed { margin-top: 2px; }
 
-h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::after {
-  background-position: 0 3px;
+h2.top-rank-header2 input[type="checkbox"]:checked + label.btn-show-undubbed::after {
   left: -1px;
+  background-position: 0 3px;
 }
 
 #dubmenu {
@@ -159,95 +162,93 @@ h2.top-rank-header2 input[type=checkbox]:checked + label.btn-show-undubbed::afte
 }
 
 #dubmenu > a {
-  cursor: pointer;
   display: block;
+  cursor: pointer;
 }
 
 #dub-dropdown {
-  display: none;
-  font-size: 11px;
   position: absolute;
-  z-index: 201;
-  left: -48px;
   top: 38px;
+  left: -48px;
+  z-index: 201;
+  display: none;
   border: 2px solid var(--mal-blue);
   background: #fff;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px rgb(0 0 0 / 0.2);
+  font-size: 11px;
 }
 
-#dub-dropdown .dub-icon::before {
-content: "\e000";
-}
+#dub-dropdown .dub-icon::before { content: "\e000"; }
 
-.classic #dub-dropdown .dub-icon::before {
-content: "\e003";
-}
+.classic #dub-dropdown .dub-icon::before { content: "\e003"; }
 
 #dub-dropdown i {
-font-size: 12px;
-width: 14px;
-text-align: center;
-display: inline-block;
+  display: inline-block;
+  width: 14px;
+  font-size: 12px;
+  text-align: center;
 }
 
 .on #dub-dropdown { display: block; }
 
 #dub-dropdown > ul {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 #dub-dropdown li { list-style: none; }
 
 #dub-dropdown a {
-  background-color: #fff;
-  border-bottom: 1px solid currentcolor;
   display: block;
   padding: 8px 12px;
+  border-bottom: 1px solid currentcolor;
+  background-color: #fff;
+  text-align: left;
   text-decoration: none;
+  white-space: nowrap;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
   -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
   -webkit-transition-property: all;
   transition-property: all;
-  -webkit-transition-timing-function: ease-in-out;
-  transition-timing-function: ease-in-out;
-  white-space: nowrap;
-  text-align: left;
 }
 
 #dub-dropdown ul li a:hover { background-color: #e1e7f5; }
+
 #dub-dropdown ul li:last-of-type a { border-bottom: none; }
 
 .page-common .header-dub {
-  display: table-cell;
-  height: 30px;
   position: relative;
+  display: table-cell;
   vertical-align: top;
   width: 30px;
+  height: 30px;
 }
 
 .page-common .header-dub-button {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  width: 24px;
+  height: 30px;
   border-radius: 30px;
   color: var(--mal-blue);
-  cursor: pointer;
-  display: inline-block;
-  height: 30px;
   outline: none;
-  position: relative;
   text-align: center;
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-timing-function: ease-in-out;
-  transition-timing-function: ease-in-out;
+  cursor: pointer;
   -ms-user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  vertical-align: bottom;
-  width: 24px;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
 }
+
 .page-common .header-dub-button:hover { color: #8ba4de; }
 
 .page-common .header-dub-button .icon {
@@ -259,12 +260,13 @@ display: inline-block;
   top: -2px;
   width: 40px;
 }
+
 .header-menu-login + .header-dub .header-dub-button .icon { font-size: 29px; }
 
 .header-menu-login + .header-dub #dub-dropdown {
   top: 39px;
-  left: unset;
   right: 0;
+  left: unset;
 }
 
 @media
@@ -272,13 +274,13 @@ display: inline-block;
   (min-resolution: 192dpi) {
   .dub-icon::before { content: "\e003"; }
 
-  [title=Dubbed].imagelink::after,
+  [title="Dubbed"].imagelink::after,
   [title="Incomplete Dub"].imagelink::after {
     padding: 1.5px 3px;
     border-width: 1.5px;
   }
 
-  h1[title=Dubbed]::after,
+  h1[title="Dubbed"]::after,
   h1[title="Incomplete Dub"]::after {
     padding: 1px 3px 1px 3.5px;
     border-width: 1.5px;
