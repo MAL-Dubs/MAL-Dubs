@@ -11,8 +11,6 @@
 .seasonal-anime-list > article.js-middle_ad,
 .js-middle_ad.seasonal-middle { display: none !important; }
 
-.footer-ranking li > a::after { margin-left: 9px !important; }
-
 [title=Dubbed].imagelink,
 [title="Incomplete Dub"].imagelink,
 .classic .seasonal-anime-list > .seasonal-anime > .image { overflow: hidden; }
