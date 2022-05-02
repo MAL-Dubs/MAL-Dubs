@@ -62,10 +62,6 @@ h1[title="Incomplete Dub"]::after {
   font-size: 14px;
 }
 
-a[title="Dubbed"]:not(.imagelink)::after { content: "\00a0\e000"; }
-
-a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
-
 .classic [title="Dubbed"]::after { background-color: var(--mal-blue); }
 
 .classic [title="Incomplete Dub"]::after { background-color: hsl(0 0% 41%); }
@@ -78,9 +74,11 @@ a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
 
 .classic [title="Dubbed"].imagelink::after,
 .classic [title="Incomplete Dub"].imagelink::after {
+  content: "Dub";
   top: -5px;
   right: unset;
   left: -20px;
+  vertical-align: unset;
   width: 61px;
   height: 19px;
   margin: 0;
@@ -99,10 +97,6 @@ a[title="Incomplete Dub"]:not(.imagelink)::after { content: "\00a0\e001"; }
 .btn-fav [title="Incomplete Dub"].imagelink::after {
   opacity: 0;
 }
-
-.classic [title="Dubbed"]:not(.imagelink)::after,
-.classic [title="Incomplete Dub"]:not(.imagelink)::after {
-  content: "Dub";
   display: inline-block;
   vertical-align: 0.1em;
   margin-left: 0.32em;
