@@ -28,13 +28,17 @@
   text-rendering: auto;
 }
 
-[title="Dubbed"]::after { content: "\e000"; }
+[title="Dubbed"]::after { content: "\00a0\e000"; }
 
-[title="Incomplete Dub"]::after { content: "\e001"; }
+[title="Incomplete Dub"]::after { content: "\00a0\e001"; }
 
 .dub-icon::before { content: "\e002"; }
 
 h1[title="Dubbed"]::after,
+a[title="Dubbed"].imagelink::after { content: "\e000"; }
+
+h1[title="Incomplete Dub"]::after,
+a[title="Incomplete Dub"].imagelink::after { content: "\e001"; }
 h1[title="Incomplete Dub"]::after {
   position: absolute;
   margin-left: 0.3em;
