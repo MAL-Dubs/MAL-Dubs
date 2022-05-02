@@ -22,7 +22,6 @@
   font-variant: normal;
   font-family: "Dubfont Solid";
   line-height: 1;
-  text-decoration: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: auto;
@@ -39,12 +38,13 @@ a[title="Dubbed"].imagelink::after { content: "\e000"; }
 
 h1[title="Incomplete Dub"]::after,
 a[title="Incomplete Dub"].imagelink::after { content: "\e001"; }
+
+h1[title="Dubbed"]::after,
 h1[title="Incomplete Dub"]::after {
-  position: absolute;
   margin-left: 0.3em;
-  padding: 1px 3px;
+  padding: 1px 3px 1px 3.5px;
   border: 1px solid;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 [title="Dubbed"].imagelink::after,
@@ -69,6 +69,16 @@ h1[title="Incomplete Dub"]::after {
 .classic [title="Dubbed"]::after,
 .classic [title="Incomplete Dub"]::after {
   content: "Dub";
+  display: inline;
+  vertical-align: 0.1em;
+  margin-left: 0.32em;
+  padding: 0 0.25em;
+  border: none;
+  border-radius: 0.3em;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.8em;
+  font-family: "Verdana", "Arial", sans-serif;
   text-transform: uppercase;
 }
 
@@ -93,22 +103,17 @@ h1[title="Incomplete Dub"]::after {
   transform: rotate(-45deg);
 }
 
-.btn-fav [title="Dubbed"].imagelink:hover::after,
-.btn-fav [title="Incomplete Dub"].imagelink::after {
-  opacity: 0;
-}
+.classic h1[title="Dubbed"]::after,
+.classic h1[title="Incomplete Dub"]::after {
   display: inline-block;
-  vertical-align: 0.1em;
-  margin-left: 0.32em;
-  padding: 0.1em 0.25em 0;
-  border: none;
-  border-radius: 0.25em;
-  color: #fff !important;
-  font-weight: 500;
-  font-size: 0.8em;
-  font-family: "Avenir", "Lucida Grande", "Tahoma", "Verdana", "Arial", sans-serif;
-  line-height: 1.25em;
+  margin-left: 5px;
+  padding: 1px 3px;
+  font-size: 13px;
+  line-height: 16px;
 }
+
+.btn-fav [title="Dubbed"].imagelink:hover::after,
+.btn-fav [title="Incomplete Dub"].imagelink::after { opacity: 0; }
 
 body:not(.classic) #anime_recommendation [title="Dubbed"].imagelink::after,
 body:not(.classic) #anime_recommendation [title="Incomplete Dub"].imagelink::after {
@@ -283,5 +288,6 @@ h2.top-rank-header2 input[type="checkbox"]:checked + label.btn-show-undubbed::af
   h1[title="Incomplete Dub"]::after {
     padding: 1px 3px 1px 3.5px;
     border-width: 1.5px;
+    font-size: 15px;
   }
 }
