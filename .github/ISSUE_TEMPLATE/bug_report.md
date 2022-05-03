@@ -27,6 +27,8 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. macOS]
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
+ - Tampermonkey Version
+ - MAL-Dubs Version
 
 **Additional context**
 Add any other context about the problem here.
