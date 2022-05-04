@@ -50,12 +50,13 @@ function dubCache() {
 }
 
 function labelDub(anime) {
+  const animeElement = anime;
   if (animeURLregex.test(anime.href)) {
     const linkID = parseInt(anime.href.match(/(\/|\.php\?id=)(\d+)\/?/)[2], 10);
     if (dubbedIDs.includes(linkID)) {
-      anime.title = 'Dubbed';
-      if (incompleteDubs.includes(linkID)) { anime.title = 'Incomplete Dub'; }
-    } else { anime.title = 'Undubbed'; }
+      animeElement.title = 'Dubbed';
+      if (incompleteDubs.includes(linkID)) { animeElement.title = 'Incomplete Dub'; }
+    } else { animeElement.title = 'Undubbed'; }
   }
 }
 
