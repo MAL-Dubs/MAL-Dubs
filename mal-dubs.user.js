@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.37
+// @version      0.9.38
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -218,31 +218,24 @@ function placeHeaderMenu() {
   document.getElementById('menu-toggle').addEventListener('click', toggleMenu, false);
 }
 
-function scanList() {
-  const listEntries = document.querySelectorAll('#list-container>div.list-block>div>table>tbody[class=list-item]>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle');
+function labelList() {
+  const listEntries = document.querySelectorAll('#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle');
   listEntries.forEach((e) => {
-    if (e.classList.contains('checked')) {
-      return true;
-    } else {
+    if (!['Undubbed', 'Dubbed', 'Incomplete Dub'].includes(e.title)) {
       labelDub(e);
-      e.classList.add('checked');
     }
   });
 }
 
-function addScrollListener() {
-  document.addEventListener('scroll', function scroll(event) {
-    event.currentTarget.removeEventListener(event.type, scroll);
-    scanList();
-    setTimeout(() => addScrollListener(), 1000);
-  });
-}
-
-function parseList() {
-  window.addEventListener('load', () => {
-    scanList();
-    addScrollListener();
-  });
+function processList() {
+  const listContainer = document.getElementById('list-container');
+  if (!listContainer) {
+    labelList();
+  } else {
+    new MutationObserver(() => labelList()).observe(listContainer, {
+      childList: true, subtree: true,
+    });
+  }
 }
 
 function processSite() {
@@ -252,7 +245,7 @@ function processSite() {
 
 function onComplete() {
   if (document.location.href.match(/.*\/animelist\/.*/)) {
-    setTimeout(() => parseList(), 0);
+    processList();
   } else {
     processSite();
     if (document.location.href.match(filterableURLregex)) { searchFilter(); }
