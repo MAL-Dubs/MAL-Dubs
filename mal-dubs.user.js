@@ -22,8 +22,8 @@
 
 const dubbedLinks = document.querySelectorAll("p.title-text>a,p.data a.title,.content-result .information>a:first-child,.list>.information>a:first-child,table.anime_detail_related_anime a[href^='/anime'],  .content-result .title>a:first-child,td.data.title>a:first-child,.list td:nth-child(2)>a.hoverinfo_trigger,#content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'],#content>div>div>table>tbody>tr>td>a[href*='/anime'],div[id^=raArea]+div>a:first-child,.news-container h2 a[href*='/anime/'],li.ranking-unit>div>h3>a,tr.ranking-list>td:nth-child(2)>div>div>h3>a,div.borderClass>a[href^='anime/'],#content>table>tbody>tr>td:nth-child(1)>a:nth-child(1),[id^='#revAreaItemTrigger'],.news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,.profile div.updates.anime>div.statistics-updates>div.data>a,.history_content_wrapper td:first-child>a,.forum_topic_message a[href^='https://myanimelist.net/anime/'],.forum_topic_message a[href^='/anime/'],.page-blog-detail a[href^='https://myanimelist.net/anime/'],.page-blog-detail a[href^='/anime/'],.pmessage-message-history a[href^='https://myanimelist.net/anime/'],.pmessage-message-history a[href^='/anime/'],a.js-people-title,.profile .anime>div>div.data>div.title>a,a[id^='sinfo'],[id^='#revAreaAnimeHover'],#dialog>tbody>tr>td>a,.company-favorites-ranking-table>tbody>tr>td.popularity>p>a,.company-favorites-ranking-table>tbody>tr>td.score>p>a,div.list.js-categories-seasonal>table>tbody>tr>td:nth-child(2)>div:nth-child(1)>a,.stacks #content>div.content-left>div.list-anime-list>div>div.head>div.title-text>h2>a,.footer-ranking li>a,#content > div:nth-child(3) > a[href^='/anime'],.blog_detail_content_wrapper a,div[id^=comment]>table>tbody>tr>td:nth-child(2)>a,.recommendations_h3>a,.reviews_h3>a,.friend_list_updates a.fw-b,.info>p>a.fw-b,#content>div.borderDark>table>tbody>tr>td>a");
 const dubbedThumbs = 'div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1),#anime_favorites>.fav-slide-outer>ul>li>a';
-const rgx = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
-const filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
+const animeURLregex = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
+const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
 let dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
@@ -50,7 +50,7 @@ function dubCache() {
 }
 
 function labelDub(anime) {
-  if (rgx.test(anime.href)) {
+  if (animeURLregex.test(anime.href)) {
     const linkID = parseInt(anime.href.match(/(\/|\.php\?id=)(\d+)\/?/)[2], 10);
     if (dubbedIDs.includes(linkID)) {
       anime.title = 'Dubbed';
@@ -79,7 +79,7 @@ function quickAdd() {
 }
 
 function animePages() {
-  const thispage = rgx.exec(document.location.href)[3];
+  const thispage = animeURLregex.exec(document.location.href)[3];
   const recommendations = document.querySelectorAll("div#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*='suggestion'])");
   const recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+-\d+)\/?.*/;
   if (dubbedIDs.includes(parseInt(thispage, 10))) {
@@ -255,8 +255,8 @@ function onComplete() {
     setTimeout(() => parseList(), 0);
   } else {
     parseSite();
-    if (document.location.href.match(filteruri)) { searchFilter(); }
-    if (document.location.href.match(rgx)) { animePages(); }
+    if (document.location.href.match(filterableURLregex)) { searchFilter(); }
+    if (document.location.href.match(animeURLregex)) { animePages(); }
     if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) { quickAdd(); }
     placeHeaderMenu();
     setTimeout(() => labelThumbnails(), 400);
