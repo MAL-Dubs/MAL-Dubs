@@ -26,44 +26,10 @@ const rgx = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
 const filteruri = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
-GM_addStyle(GM_getResourceText('CSS'));
-
 let dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
 let incompleteDubs = JSON.parse(localStorage.getItem('incompleteIDs'));
 
-if (dubbedIDs === null || incompleteDubs === null) {
-  GM_xmlhttpRequest({
-    method: 'GET',
-    nocache: true,
-    url: IDURL,
-    onload(response) {
-      const data = JSON.parse(response.responseText);
-      dubbedIDs = data.dubbed;
-      incompleteDubs = data.incomplete;
-      localStorage.setItem('dubIDs', JSON.stringify(dubbedIDs));
-      localStorage.setItem('incompleteIDs', JSON.stringify(incompleteDubs));
-      onComplete();
-      localStorage.setItem('dubCacheDate', Date.now());
-    }
-  });
-} else {
-  onComplete();
-  dubCache();
-}
-
-function onComplete() {
-  if (document.location.href.match(/.*\/animelist\/.*/)) {
-    setTimeout(() => parseList(), 0);
-  } else {
-    parseSite();
-    if (document.location.href.match(filteruri)) { searchFilter(); }
-    if (document.location.href.match(rgx)) { animePages(); }
-    if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) { quickAdd(); }
-    placeHeaderMenu();
-    setTimeout(() => labelThumbnails(), 400);
-  }
-  setTheme();
-}
+GM_addStyle(GM_getResourceText('CSS'));
 
 function dubCache() {
   if (localStorage.getItem('dubCacheDate') === null) { localStorage.setItem('dubCacheDate', Date.now()); }
@@ -93,9 +59,16 @@ function labelDub(anime) {
   }
 }
 
-function parseSite() {
-  labelThumbnails();
-  dubbedLinks.forEach((e) => { labelDub(e); });
+function labelThumbnails() {
+  document.querySelectorAll(dubbedThumbs).forEach((e) => {
+    labelDub(e);
+    e.classList.add('imagelink');
+  });
+}
+
+function quickAddSearch() {
+  const recEntries = document.querySelectorAll('.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
+  recEntries.forEach((e) => { labelDub(e); });
 }
 
 function quickAdd() {
@@ -103,11 +76,6 @@ function quickAdd() {
   new MutationObserver(() => { quickAddSearch(); }).observe(searchResults, {
     childList: true, subtree: true,
   });
-}
-
-function quickAddSearch() {
-  const recEntries = document.querySelectorAll('.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
-  recEntries.forEach((e) => { labelDub(e); });
 }
 
 function animePages() {
@@ -127,40 +95,6 @@ function animePages() {
       recElement.classList.add('imagelink');
       if (incompleteDubs.includes(recID)) { recElement.title = 'Incomplete Dub'; }
     }
-  });
-}
-
-function scanList() {
-  const listEntries = document.querySelectorAll('#list-container>div.list-block>div>table>tbody[class=list-item]>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle');
-  listEntries.forEach((e) => {
-    if (e.classList.contains('checked')) {
-      return true;
-    } else {
-      labelDub(e);
-      e.classList.add('checked');
-    }
-  });
-}
-
-function addScrollListener() {
-  document.addEventListener('scroll', function scroll(event) {
-    event.currentTarget.removeEventListener(event.type, scroll);
-    scanList();
-    setTimeout(() => addScrollListener(), 1000);
-  });
-}
-
-function parseList() {
-  window.addEventListener('load', () => {
-    scanList();
-    addScrollListener();
-  });
-}
-
-function labelThumbnails() {
-  document.querySelectorAll(dubbedThumbs).forEach((e) => {
-    labelDub(e);
-    e.classList.add('imagelink');
   });
 }
 
@@ -224,6 +158,33 @@ function searchFilter() {
   }, false);
 }
 
+// hide function from jquery
+function isVisible(elem) {
+  return !!elem && !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+}
+
+function hideOnClickOutside(element) {
+  const outsideClickListener = (event) => {
+    if (!element.contains(event.target) && isVisible(element)) {
+      element.classList.remove('on');
+      removeClickListener();
+    }
+  };
+  const removeClickListener = () => document.removeEventListener('click', outsideClickListener);
+  document.addEventListener('click', outsideClickListener);
+}
+// source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
+
+function toggleMenu() {
+  const dropdown = document.getElementById('dubmenu');
+  if (dropdown.classList.contains('on')) {
+    dropdown.classList.remove('on');
+  } else {
+    dropdown.classList.add('on');
+    hideOnClickOutside(dropdown);
+  }
+}
+
 function setTheme() {
   if (localStorage.getItem('classicTheme') === 'true') {
     document.body.classList.add('classic');
@@ -257,29 +218,68 @@ function placeHeaderMenu() {
   document.getElementById('menu-toggle').addEventListener('click', toggleMenu, false);
 }
 
-function toggleMenu() {
-  const dropdown = document.getElementById('dubmenu');
-  if (dropdown.classList.contains('on')) {
-    dropdown.classList.remove('on');
-  } else {
-    dropdown.classList.add('on');
-    hideOnClickOutside(dropdown);
-  }
-}
-
-// hide function from jquery
-function hideOnClickOutside(element) {
-  const outsideClickListener = (event) => {
-    if (!element.contains(event.target) && isVisible(element)) {
-      element.classList.remove('on');
-      removeClickListener();
+function scanList() {
+  const listEntries = document.querySelectorAll('#list-container>div.list-block>div>table>tbody[class=list-item]>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle');
+  listEntries.forEach((e) => {
+    if (e.classList.contains('checked')) {
+      return true;
+    } else {
+      labelDub(e);
+      e.classList.add('checked');
     }
-  };
-  const removeClickListener = () => document.removeEventListener('click', outsideClickListener);
-  document.addEventListener('click', outsideClickListener);
+  });
 }
 
-function isVisible(elem) {
-  return !!elem && !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+function addScrollListener() {
+  document.addEventListener('scroll', function scroll(event) {
+    event.currentTarget.removeEventListener(event.type, scroll);
+    scanList();
+    setTimeout(() => addScrollListener(), 1000);
+  });
 }
-// source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
+
+function parseList() {
+  window.addEventListener('load', () => {
+    scanList();
+    addScrollListener();
+  });
+}
+
+function parseSite() {
+  labelThumbnails();
+  dubbedLinks.forEach((e) => { labelDub(e); });
+}
+
+function onComplete() {
+  if (document.location.href.match(/.*\/animelist\/.*/)) {
+    setTimeout(() => parseList(), 0);
+  } else {
+    parseSite();
+    if (document.location.href.match(filteruri)) { searchFilter(); }
+    if (document.location.href.match(rgx)) { animePages(); }
+    if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) { quickAdd(); }
+    placeHeaderMenu();
+    setTimeout(() => labelThumbnails(), 400);
+  }
+  setTheme();
+}
+
+if (dubbedIDs === null || incompleteDubs === null) {
+  GM_xmlhttpRequest({
+    method: 'GET',
+    nocache: true,
+    url: IDURL,
+    onload(response) {
+      const data = JSON.parse(response.responseText);
+      dubbedIDs = data.dubbed;
+      incompleteDubs = data.incomplete;
+      localStorage.setItem('dubIDs', JSON.stringify(dubbedIDs));
+      localStorage.setItem('incompleteIDs', JSON.stringify(incompleteDubs));
+      onComplete();
+      localStorage.setItem('dubCacheDate', Date.now());
+    },
+  });
+} else {
+  onComplete();
+  dubCache();
+}
