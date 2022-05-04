@@ -245,7 +245,7 @@ function parseList() {
   });
 }
 
-function parseSite() {
+function processSite() {
   labelThumbnails();
   dubbedLinks.forEach((e) => { labelDub(e); });
 }
@@ -254,7 +254,7 @@ function onComplete() {
   if (document.location.href.match(/.*\/animelist\/.*/)) {
     setTimeout(() => parseList(), 0);
   } else {
-    parseSite();
+    processSite();
     if (document.location.href.match(filterableURLregex)) { searchFilter(); }
     if (document.location.href.match(animeURLregex)) { animePages(); }
     if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) { quickAdd(); }
