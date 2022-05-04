@@ -69,12 +69,12 @@ function labelThumbnails() {
 
 function quickAddSearch() {
   const recEntries = document.querySelectorAll('.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
-  recEntries.forEach((e) => { labelDub(e); });
+  recEntries.forEach((e) => labelDub(e));
 }
 
 function quickAdd() {
   const searchResults = document.getElementById('content');
-  new MutationObserver(() => { quickAddSearch(); }).observe(searchResults, {
+  new MutationObserver(() => quickAddSearch()).observe(searchResults, {
     childList: true, subtree: true,
   });
 }
@@ -203,7 +203,7 @@ function toggleClassic() {
 }
 
 function placeHeaderMenu() {
-  const menuContainer = document.createElement('div', { class: 'header-menu-unit header-dub' });
+  const menuContainer = document.createElement('div');
   const borderDiv = document.createElement('div');
   menuContainer.id = 'dubmenu';
   menuContainer.classList.add('header-menu-unit', 'header-dub');
@@ -214,7 +214,6 @@ function placeHeaderMenu() {
   } else if (document.body.contains(document.querySelector('.header-menu-login'))) {
     document.querySelector('#header-menu>div.header-menu-login').after(menuContainer);
   }
-
   document.getElementById('theme-toggle').addEventListener('click', toggleClassic, false);
   document.getElementById('menu-toggle').addEventListener('click', toggleMenu, false);
 }
