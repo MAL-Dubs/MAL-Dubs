@@ -2,7 +2,7 @@
 name: Dub is Missing
 about: Propose an addition to the list of dubs
 title: "[MISSING-DUB]"
-labels: midding dub
+labels: ''
 assignees: ''
 
 ---
