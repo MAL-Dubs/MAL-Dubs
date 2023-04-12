@@ -271,6 +271,29 @@ h2.top-rank-header2 input[type="checkbox"]:checked + label.btn-show-undubbed::af
   left: unset;
 }
 
+.dark-mode .page-common .header-dub-button { color: #e0e0e0; }
+.dark-mode .page-common .header-dub-button:hover { color: #a5a5a5; }
+
+.dark-mode #dub-dropdown ul li a {
+  display: block;
+  padding: 8px 12px;
+  background-color: #353535;
+  color: #e0e0e0;
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+}
+
+.dark-mode #dub-dropdown ul li a:hover {
+  background-color: #f0f0f0;
+  color: #121212;
+}
+
 @media
   (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
