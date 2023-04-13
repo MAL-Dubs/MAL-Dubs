@@ -249,8 +249,8 @@ function onComplete() {
     processList();
   } else {
     processSite();
-    if (document.location.href.match(filterableURLregex)) { searchFilter(); }
-    if (document.location.href.match(animeURLregex)) { animePages(); }
+    if (filterableURLregex.test(document.location.href)) { searchFilter(); }
+    if (animeURLregex.test(document.location.href)) { animePages(); }
     if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) { quickAdd(); }
     placeHeaderMenu();
     setTimeout(() => labelThumbnails(), 400);
