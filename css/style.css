@@ -178,7 +178,7 @@ h2.top-rank-header2 input[type="checkbox"]:checked + label.btn-show-undubbed::af
   display: none;
   background: #fff;
   box-shadow: 1px 1px 5px rgb(0 0 0 / 0.2);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 #dub-dropdown .dub-icon::before { content: "\e000"; }
