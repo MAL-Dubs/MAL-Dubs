@@ -134,7 +134,11 @@ function searchFilter() {
     filterCheckbox.id = 'undubbed-filter';
     label.setAttribute('for', 'undubbed-filter');
     label.className = 'fs11 fl-r btn-show-undubbed mr12 fw-n fn-grey2';
-    label.appendChild(document.createTextNode('Dubs Only'));
+    label.innerHTML = `
+    <i class="fa-regular fa-square fa-stack-2x"></i>
+    <i class="fa-solid fa-check fa-stack-1x"></i>
+    Dubs Only
+    `.trim();
     filterTarget.after(filterCheckbox);
     filterCheckbox.after(label);
   }

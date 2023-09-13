@@ -127,37 +127,37 @@ input#undubbed-filter { display: none; }
   position: relative;
   display: inline-block;
   padding-right: 2px;
-  padding-left: 16px;
-  background-image: url("/images/icon_check_box.png");
-  background-position: 0 -38px;
-  background-size: 12px auto;
-  background-repeat: no-repeat;
+  padding-left: 18px;
   line-height: 1.5em;
   cursor: pointer;
 }
 
-input[type="checkbox"]:checked + label.btn-show-undubbed::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 0;
-  display: block;
-  width: 12px;
-  height: 12px;
-  background-image: url("/images/icon_check_box.png");
-  background-position: -1px 3px;
-  background-size: 12px auto;
-  background-repeat: no-repeat;
+.page-common .btn-show-undubbed .fa-square {
+  width: 14px;
+  color: #888;
+  font-size: 1.5em;
 }
+
+.page-common .btn-show-undubbed .fa-check {
+  width: 14px;
+  color: #080;
+  font-size: 1em;
+}
+
+.dark-mode .page-common .btn-show-undubbed .fa-square {
+  color: #a3a3a3;
+}
+
+.dark-mode .page-common .btn-show-undubbed .fa-check {
+  color: #3dc53d;
+}
+
+input[type="checkbox"] + .btn-show-undubbed > .fa-check { display: none; }
+input[type="checkbox"]:checked + .btn-show-undubbed > .fa-check { display: block; }
 
 .js-search-filter-block .btn-show-undubbed { margin-top: 4px; }
 
 h2.top-rank-header2 .btn-show-undubbed { margin-top: 2px; }
-
-h2.top-rank-header2 input[type="checkbox"]:checked + label.btn-show-undubbed::after {
-  left: -1px;
-  background-position: 0 3px;
-}
 
 #dubmenu {
   position: relative;
