@@ -25,6 +25,7 @@ const dubbedLinks = document.querySelectorAll("p.title-text>a,p.data a.title,.co
 const dubbedThumbs = 'div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1),#anime_favorites>.fav-slide-outer>ul>li>a';
 const animeURLregex = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
 const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
+const filterable = filterableURLregex.test(document.location.href);
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
 let dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
@@ -57,7 +58,18 @@ function labelDub(anime) {
     if (dubbedIDs.includes(linkID)) {
       animeElement.title = 'Dubbed';
       if (incompleteDubs.includes(linkID)) { animeElement.title = 'Incomplete Dub'; }
-    } else { animeElement.title = 'Undubbed'; }
+    } else {
+      animeElement.title = 'Undubbed';
+      if (filterable) {
+        if (document.location.href.match(/.*\/topanime\.php.*/)) {
+          animeElement.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('noDub');
+        } else if (document.location.href.match(/.*anime\.php\?.*q=.*/)) {
+          animeElement.parentNode.parentNode.parentNode.classList.add('noDub');
+        } else if (document.querySelector('div.list.js-categories-seasonal')) {
+          animeElement.parentNode.parentNode.parentNode.classList.add('noDub');
+        } else { animeElement.parentNode.parentNode.classList.add('noDub'); }
+      }
+    }
   }
 }
 
@@ -100,32 +112,9 @@ function animePages() {
   });
 }
 
-function hideUndubbed(links) {
-  links.forEach((e) => {
-    if (document.location.href.match(/.*\/topanime\.php.*/)) {
-      e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('hidden');
-    } else if (document.location.href.match(/.*anime\.php\?.*q=.*/)) {
-      e.parentNode.parentNode.parentNode.classList.add('hidden');
-    } else if (document.querySelector('div.list.js-categories-seasonal')) {
-      e.parentNode.parentNode.parentNode.classList.add('hidden');
-    } else { e.parentNode.parentNode.classList.add('hidden'); }
-  });
-}
-
-function showUndubbed(links) {
-  links.forEach((e) => {
-    if (document.location.href.match(/.*\/topanime\.php.*/)) {
-      e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove('hidden');
-    } else if (document.location.href.match(/.*anime\.php\?.*q=.*/)) {
-      e.parentNode.parentNode.parentNode.classList.remove('hidden');
-    } else if (document.querySelector('div.list.js-categories-seasonal')) {
-      e.parentNode.parentNode.parentNode.classList.remove('hidden');
-    } else { e.parentNode.parentNode.classList.remove('hidden'); }
-  });
 }
 
 function searchFilter() {
-  const undubbed = document.querySelectorAll('[title="Undubbed"]');
   const filterTarget = document.querySelector('.js-search-filter-block>div.fl-r.di-ib.mt4.mr12,div.horiznav-nav-seasonal>span[data-id="sort"],h2.top-rank-header2>span.fs10.fw-n.ff-Verdana.di-ib.ml16,.normal_header.js-search-filter-block>.di-ib,.normal_header>div.fl-r.di-ib.fs11.fw-n');
   const filterCheckbox = document.createElement('input');
   const label = document.createElement('label');
@@ -154,12 +143,12 @@ function searchFilter() {
 
   if (filter) {
     filterCheckbox.checked = filterUndubbed;
-    if (filterCheckbox.checked === true) { hideUndubbed(undubbed); }
+    if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
   }
 
   filterCheckbox.addEventListener('change', () => {
-    if (filterCheckbox.checked === true) { hideUndubbed(undubbed); }
-    if (filterCheckbox.checked === false) { showUndubbed(undubbed); }
+    if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
+    if (filterCheckbox.checked === false) { document.body.classList.remove('filterOn'); }
     localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
   }, false);
 }
@@ -253,7 +242,7 @@ function onComplete() {
     processList();
   } else {
     processSite();
-    if (filterableURLregex.test(document.location.href)) { searchFilter(); }
+    if (filterable) { searchFilter(); }
     if (animeURLregex.test(document.location.href)) { animePages(); }
     if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) { quickAdd(); }
     placeHeaderMenu();
