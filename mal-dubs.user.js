@@ -58,18 +58,7 @@ function labelDub(anime) {
     if (dubbedIDs.includes(linkID)) {
       animeElement.title = 'Dubbed';
       if (incompleteDubs.includes(linkID)) { animeElement.title = 'Incomplete Dub'; }
-    } else {
-      animeElement.title = 'Undubbed';
-      if (filterable) {
-        if (document.location.href.match(/.*\/topanime\.php.*/)) {
-          animeElement.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('noDub');
-        } else if (document.location.href.match(/.*anime\.php\?.*q=.*/)) {
-          animeElement.parentNode.parentNode.parentNode.classList.add('noDub');
-        } else if (document.querySelector('div.list.js-categories-seasonal')) {
-          animeElement.parentNode.parentNode.parentNode.classList.add('noDub');
-        } else { animeElement.parentNode.parentNode.classList.add('noDub'); }
-      }
-    }
+    } else { animeElement.title = 'Undubbed'; }
   }
 }
 
@@ -119,7 +108,21 @@ function seasonalCount() {
   countDisplay.textContent = `${showingArray.length}/${titlesArray.length}`;
 }
 
+function filterContainers() {
+  const undubbed = document.querySelectorAll('[title="Undubbed"]');
+  undubbed.forEach((e) => {
+    if (document.location.href.match(/.*\/topanime\.php.*/)) {
+      e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('noDub');
+    } else if (document.location.href.match(/.*anime\.php\?.*q=.*/)) {
+      e.parentNode.parentNode.parentNode.classList.add('noDub');
+    } else if (document.querySelector('div.list.js-categories-seasonal')) {
+      e.parentNode.parentNode.parentNode.classList.add('noDub');
+    } else { e.parentNode.parentNode.classList.add('noDub'); }
+  });
+}
+
 function searchFilter() {
+  filterContainers();
   const filterTarget = document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div:last-of-type');
   const filterCheckbox = document.createElement('input');
   const label = document.createElement('label');
