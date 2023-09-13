@@ -112,6 +112,11 @@ function animePages() {
   });
 }
 
+function seasonalCount() {
+  const titlesArray = [].slice.call(document.querySelectorAll('.seasonal-anime'));
+  const showingArray = titlesArray.filter((el) => getComputedStyle(el).display !== 'none');
+  const countDisplay = document.querySelector('.js-visible-anime-count');
+  countDisplay.textContent = `${showingArray.length}/${titlesArray.length}`;
 }
 
 function searchFilter() {
@@ -150,6 +155,7 @@ function searchFilter() {
     if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
     if (filterCheckbox.checked === false) { document.body.classList.remove('filterOn'); }
     localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
+    if (document.location.href.match(/.*\/season\/?.*/)) { seasonalCount(); }
   }, false);
 }
 
