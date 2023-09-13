@@ -26,6 +26,8 @@ const dubbedThumbs = 'div.auto-recommendations>div.items>a.item,div.recommendati
 const animeURLregex = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
 const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
 const filterable = filterableURLregex.test(document.location.href);
+const searchURLregex = /.*\/((anime\.php\??(?!id).*)|anime\/genre\/?.*)/;
+const searchPage = searchURLregex.test(document.location.href);
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
 let dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
@@ -69,15 +71,15 @@ function labelThumbnails() {
   });
 }
 
-function quickAddSearch() {
-  const recEntries = document.querySelectorAll('.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
-  recEntries.forEach((e) => labelDub(e));
+function labelResults(selector) {
+  const results = document.querySelectorAll(selector);
+  results.forEach((e) => labelDub(e));
 }
 
-function quickAdd() {
-  const searchResults = document.getElementById('content');
-  new MutationObserver(() => quickAddSearch()).observe(searchResults, {
-    childList: true, subtree: true,
+function searchObserver(containerID, resultSelector) {
+  const searchContainer = document.getElementById(containerID);
+  new MutationObserver(() => labelResults(resultSelector)).observe(searchContainer, {
+    childList: true, subtree: true, attributes: true, attributeFilter: ['href'],
   });
 }
 
@@ -244,6 +246,7 @@ function processList() {
 function processSite() {
   labelThumbnails();
   dubbedLinks.forEach((e) => { labelDub(e); });
+  searchObserver('menu_right', '#top-search-bar>#topSearchResultList>div>div>a');
 }
 
 function onComplete() {
@@ -252,8 +255,13 @@ function onComplete() {
   } else {
     processSite();
     if (filterable) { searchFilter(); }
+    if (searchPage) {
+      searchObserver('#content', '#advancedsearch>div>#advancedSearchResultList>div>div>a')
+    }
     if (animeURLregex.test(document.location.href)) { animePages(); }
-    if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) { quickAdd(); }
+    if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) {
+      searchObserver('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
+    }
     placeHeaderMenu();
     setTimeout(() => labelThumbnails(), 400);
   }
