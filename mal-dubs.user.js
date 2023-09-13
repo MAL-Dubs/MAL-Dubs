@@ -115,7 +115,7 @@ function animePages() {
 }
 
 function searchFilter() {
-  const filterTarget = document.querySelector('.js-search-filter-block>div.fl-r.di-ib.mt4.mr12,div.horiznav-nav-seasonal>span[data-id="sort"],h2.top-rank-header2>span.fs10.fw-n.ff-Verdana.di-ib.ml16,.normal_header.js-search-filter-block>.di-ib,.normal_header>div.fl-r.di-ib.fs11.fw-n');
+  const filterTarget = document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div:last-of-type');
   const filterCheckbox = document.createElement('input');
   const label = document.createElement('label');
   if (filterTarget !== null) {
