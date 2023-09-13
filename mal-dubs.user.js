@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      0.9.43
+// @version      0.9.44
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -256,7 +256,7 @@ function onComplete() {
     processSite();
     if (filterable) { searchFilter(); }
     if (searchPage) {
-      searchObserver('#content', '#advancedsearch>div>#advancedSearchResultList>div>div>a')
+      searchObserver('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a')
     }
     if (animeURLregex.test(document.location.href)) { animePages(); }
     if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) {
