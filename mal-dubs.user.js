@@ -35,9 +35,12 @@ let incompleteDubs = JSON.parse(localStorage.getItem('incompleteIDs'));
 
 GM_addStyle(GM_getResourceText('CSS'));
 
-function dubCache() {
-  if (localStorage.getItem('dubCacheDate') === null) { localStorage.setItem('dubCacheDate', Date.now()); }
-  if (parseInt(localStorage.getItem('dubCacheDate'), 10) + 600000 < Date.now()) {
+function cacheDubs() {
+  const lastCached = localStorage.getItem('dubCacheDate');
+  if (
+    lastCached === null
+    || (lastCached !== undefined && parseInt(lastCached, 10) + 600000 < Date.now())
+  ) {
     GM_xmlhttpRequest({
       method: 'GET',
       url: IDURL,
@@ -45,8 +48,10 @@ function dubCache() {
       revalidate: true,
       onload(response) {
         const data = JSON.parse(response.responseText);
-        localStorage.setItem('dubIDs', JSON.stringify(data.dubbed));
-        localStorage.setItem('incompleteIDs', JSON.stringify(data.incomplete));
+        dubbedIDs = data.dubbed;
+        incompleteDubs = data.incomplete;
+        localStorage.setItem('dubIDs', JSON.stringify(dubbedIDs));
+        localStorage.setItem('incompleteIDs', JSON.stringify(incompleteDubs));
         localStorage.setItem('dubCacheDate', Date.now());
       },
     });
@@ -269,21 +274,7 @@ function onComplete() {
 }
 
 if (dubbedIDs === null || incompleteDubs === null) {
-  GM_xmlhttpRequest({
-    method: 'GET',
-    nocache: true,
-    url: IDURL,
-    onload(response) {
-      const data = JSON.parse(response.responseText);
-      dubbedIDs = data.dubbed;
-      incompleteDubs = data.incomplete;
-      localStorage.setItem('dubIDs', JSON.stringify(dubbedIDs));
-      localStorage.setItem('incompleteIDs', JSON.stringify(incompleteDubs));
-      onComplete();
-      localStorage.setItem('dubCacheDate', Date.now());
-    },
-  });
-} else {
-  onComplete();
-  dubCache();
+  cacheDubs();
 }
+
+onComplete();
