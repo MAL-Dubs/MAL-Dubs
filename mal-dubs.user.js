@@ -119,7 +119,7 @@ function seasonalCount() {
 function filterContainers() {
   const undubbed = document.querySelectorAll('[title="Undubbed"]');
   undubbed.forEach((e) => {
-    const container = animeElement.closest('.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
+    const container = e.closest('.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
     if (container !== undefined) { container.classList.add('noDub'); }
   });
 }
