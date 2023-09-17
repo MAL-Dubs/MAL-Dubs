@@ -109,13 +109,6 @@ function animePages() {
   });
 }
 
-function seasonalCount() {
-  const titlesArray = [].slice.call(document.querySelectorAll('.seasonal-anime'));
-  const showingArray = titlesArray.filter((el) => getComputedStyle(el).display !== 'none');
-  const countDisplay = document.querySelector('.js-visible-anime-count');
-  countDisplay.textContent = `${showingArray.length}/${titlesArray.length}`;
-}
-
 function filterContainers() {
   const undubbed = document.querySelectorAll('[title="Undubbed"]');
   undubbed.forEach((e) => {
@@ -160,6 +153,12 @@ function searchFilter() {
       if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
       if (filterCheckbox.checked === false) { document.body.classList.remove('filterOn'); }
       localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
+      if (document.body.classList.contains('season')) {
+        const titlesArray = [].slice.call(document.querySelectorAll('.seasonal-anime'));
+        const showingArray = titlesArray.filter((el) => getComputedStyle(el).display !== 'none');
+        const countDisplay = document.querySelector('.js-visible-anime-count');
+        countDisplay.textContent = `${showingArray.length}/${titlesArray.length}`;
+      }
     }, false);
   }
 }
