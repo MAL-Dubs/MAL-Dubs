@@ -89,17 +89,18 @@ function searchObserver(containerID, resultSelector) {
 }
 
 function animePages() {
-  const thispage = animeURLregex.exec(document.location.href)[3];
+  const thisPage = animeURLregex.exec(document.location.href)[3];
+  const thisPageID = parseInt(thisPage, 10);
   const recommendations = document.querySelectorAll("div#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*='suggestion'])");
   const recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+-\d+)\/?.*/;
-  if (dubbedIDs.includes(parseInt(thispage, 10))) {
+  if (dubbedIDs.includes(thisPageID)) {
     const pagetitle = document.querySelectorAll('h1.title-name')[0];
     pagetitle.title = 'Dubbed';
-    if (incompleteDubs.includes(parseInt(thispage, 10))) { pagetitle.title = 'Incomplete Dub'; }
+    if (incompleteDubs.includes(thisPageID)) { pagetitle.title = 'Incomplete Dub'; }
   }
   recommendations.forEach((e) => {
     const recElement = e;
-    const recID = parseInt(recrgx.exec(e.href)[2].replace(`${thispage}-`, '').replace(`-${thispage}`, ''), 10);
+    const recID = parseInt(recrgx.exec(e.href)[2].replace(`-*${thisPage}-*`, ''), 10);
     if (dubbedIDs.includes(recID)) {
       recElement.title = 'Dubbed';
       recElement.classList.add('imagelink');
