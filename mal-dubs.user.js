@@ -190,12 +190,6 @@ function toggleMenu() {
   }
 }
 
-function setTheme() {
-  if (localStorage.getItem('classicTheme') === 'true') {
-    document.body.classList.add('classic');
-  }
-}
-
 function toggleClassic() {
   if (localStorage.getItem('classicTheme') === 'true') {
     document.body.classList.remove('classic');
@@ -264,7 +258,6 @@ function onComplete() {
     placeHeaderMenu();
     setTimeout(() => labelThumbnails(), 400);
   }
-  setTheme();
 }
 
 if (dubbedIDs === null || incompleteDubs === null) {
@@ -272,3 +265,4 @@ if (dubbedIDs === null || incompleteDubs === null) {
 }
 
 onComplete();
+if (localStorage.getItem('classicTheme') === 'true') { document.body.classList.add('classic'); }
