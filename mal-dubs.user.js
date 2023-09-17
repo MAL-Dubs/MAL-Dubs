@@ -119,13 +119,8 @@ function seasonalCount() {
 function filterContainers() {
   const undubbed = document.querySelectorAll('[title="Undubbed"]');
   undubbed.forEach((e) => {
-    if (document.location.href.match(/.*\/topanime\.php.*/)) {
-      e.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('noDub');
-    } else if (document.location.href.match(/.*anime\.php\?.*q=.*/)) {
-      e.parentNode.parentNode.parentNode.classList.add('noDub');
-    } else if (document.querySelector('div.list.js-categories-seasonal')) {
-      e.parentNode.parentNode.parentNode.classList.add('noDub');
-    } else { e.parentNode.parentNode.classList.add('noDub'); }
+    const container = animeElement.closest('.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
+    if (container !== undefined) { container.classList.add('noDub'); }
   });
 }
 
