@@ -141,28 +141,27 @@ function searchFilter() {
     `.trim();
     filterTarget.after(filterCheckbox);
     filterCheckbox.after(label);
-  }
 
-  let filter = true;
-  let filterUndubbed = (localStorage.getItem('dubOnlySearch') === 'true');
-  if (filterUndubbed === null) {
-    filterUndubbed = false;
-    localStorage.setItem('dubOnlySearch', filterUndubbed);
-    filterCheckbox.checked = filterUndubbed;
-    filter = false;
-  }
+    let filter = true;
+    let filterUndubbed = (localStorage.getItem('dubOnlySearch') === 'true');
+    if (filterUndubbed === null) {
+      filterUndubbed = false;
+      localStorage.setItem('dubOnlySearch', filterUndubbed);
+      filterCheckbox.checked = filterUndubbed;
+      filter = false;
+    }
 
-  if (filter) {
-    filterCheckbox.checked = filterUndubbed;
-    if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
-  }
+    if (filter) {
+      filterCheckbox.checked = filterUndubbed;
+      if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
+    }
 
-  filterCheckbox.addEventListener('change', () => {
-    if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
-    if (filterCheckbox.checked === false) { document.body.classList.remove('filterOn'); }
-    localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
-    if (document.location.href.match(/.*\/season\/?.*/)) { seasonalCount(); }
-  }, false);
+    filterCheckbox.addEventListener('change', () => {
+      if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
+      if (filterCheckbox.checked === false) { document.body.classList.remove('filterOn'); }
+      localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
+    }, false);
+  }
 }
 
 // hide function from jquery
