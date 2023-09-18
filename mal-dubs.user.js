@@ -111,16 +111,16 @@ function animePages() {
   });
 }
 
-function filterContainers() {
-  const undubbed = document.querySelectorAll('[title="Undubbed"]');
+function filterContainers(parent, selectors) {
+  const undubbed = parent.querySelectorAll(':not(.noDub) [title="Undubbed"]');
   undubbed.forEach((e) => {
-    const container = e.closest('.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
+    const container = e.closest(selectors);
     if (container !== undefined) { container.classList.add('noDub'); }
   });
 }
 
 function searchFilter() {
-  filterContainers();
+  filterContainers(document, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
   const filterTarget = document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n');
   const filterCheckbox = document.createElement('input');
   const label = document.createElement('label');
