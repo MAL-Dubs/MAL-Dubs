@@ -194,7 +194,7 @@ function toggleMenu() {
   }
 }
 
-function toggleClassic() {
+function switchStyle() {
   if (localStorage.getItem('classicTheme') === 'true') {
     currentBodyClassList.remove('classic');
     localStorage.setItem('classicTheme', false);
@@ -216,7 +216,7 @@ function placeHeaderMenu() {
   } else if (document.body.contains(document.querySelector('.header-menu-login'))) {
     document.querySelector('#header-menu>div.header-menu-login').after(menuContainer);
   }
-  document.getElementById('theme-toggle').addEventListener('click', toggleClassic, false);
+  document.getElementById('theme-toggle').addEventListener('click', switchStyle, false);
   document.getElementById('menu-toggle').addEventListener('click', toggleMenu, false);
 }
 
