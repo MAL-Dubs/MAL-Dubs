@@ -174,10 +174,9 @@ function hideOnClickOutside(element) {
   const outsideClickListener = (event) => {
     if (!element.contains(event.target) && isVisible(element)) {
       element.classList.remove('on');
-      removeClickListener();
+      document.removeEventListener('click', outsideClickListener);
     }
   };
-  const removeClickListener = () => document.removeEventListener('click', outsideClickListener);
   document.addEventListener('click', outsideClickListener);
 }
 // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
