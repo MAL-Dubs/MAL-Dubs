@@ -119,12 +119,11 @@ function filterContainers(parent, selectors) {
   });
 }
 
-function searchFilter() {
+function addDubFilter(targetNode) {
   filterContainers(document, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
-  const filterTarget = document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n');
   const filterCheckbox = document.createElement('input');
   const label = document.createElement('label');
-  if (filterTarget !== null) {
+  if (targetNode !== null) {
     filterCheckbox.type = 'checkbox';
     filterCheckbox.id = 'undubbed-filter';
     label.setAttribute('for', 'undubbed-filter');
@@ -134,7 +133,7 @@ function searchFilter() {
     <i class="fa-solid fa-check fa-stack-1x"></i>
     Dubs Only
     `.trim();
-    filterTarget.after(filterCheckbox);
+    targetNode.after(filterCheckbox);
     filterCheckbox.after(label);
 
     let filter = true;
@@ -247,8 +246,8 @@ function onComplete() {
     processSite();
     const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
     const searchURLregex = /.*\/((anime\.php\??(?!id).*)|anime\/genre\/?.*)/;
-    if (filterableURLregex.test(currentURL)) { searchFilter(); }
-    if (searchURLregex.test(currentURL);) {
+    if (filterableURLregex.test(currentURL)) { addDubFilter(document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n')); }
+    if (searchURLregex.test(currentURL)) {
       watchForDubs('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a', 'search')
     }
     if (animeURLregex.test(currentURL)) { animePages(); }
