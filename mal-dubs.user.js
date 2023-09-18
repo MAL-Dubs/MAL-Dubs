@@ -24,7 +24,7 @@
 const currentURL = document.location.href;
 const currentBodyClassList = document.body.classList;
 
-const dubbedLinks = document.querySelectorAll("p.title-text>a,p.data a.title,.content-result .information>a:first-child,.list>.information>a:first-child,table.anime_detail_related_anime a[href^='/anime'],.content-result .title>a:first-child,td.data.title>a:first-child,.list td:nth-child(2)>a.hoverinfo_trigger,#content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'],#content>div>div>table>tbody>tr>td>a[href*='/anime'],div[id^=raArea]+div>a:first-child,.news-container h2 a[href*='/anime/'],li.ranking-unit>div>h3>a,tr.ranking-list>td:nth-child(2)>div>div>h3>a,div.borderClass>a[href^='anime/'],#content>table>tbody>tr>td:nth-child(1)>a:nth-child(1),[id^='#revAreaItemTrigger'],.news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,.profile div.updates.anime>div.statistics-updates>div.data>a,.history_content_wrapper td:first-child>a,.forum-topic-message a[href^='https://myanimelist.net/anime/'],.forum-topic-message a[href^='/anime/'],.page-blog-detail a[href^='https://myanimelist.net/anime/'],.page-blog-detail a[href^='/anime/'],.pmessage-message-history a[href^='https://myanimelist.net/anime/'],.pmessage-message-history a[href^='/anime/'],a.js-people-title,.profile .anime>div>div.data>div.title>a,a[id^='sinfo'],[id^='#revAreaAnimeHover'],#dialog>tbody>tr>td>a,.company-favorites-ranking-table>tbody>tr>td.popularity>p>a,.company-favorites-ranking-table>tbody>tr>td.score>p>a,div.list.js-categories-seasonal>table>tbody>tr>td:nth-child(2)>div:nth-child(1)>a,.stacks #content>div.content-left>div.list-anime-list>div>div.head>div.title-text>h2>a,.footer-ranking li>a,#content > div:nth-child(3) > a[href^='/anime'],.blog_detail_content_wrapper a,div[id^=comment]>table>tbody>tr>td:nth-child(2)>a,.recommendations_h3>a,.reviews_h3>a,.friend_list_updates a.fw-b,.info>p>a.fw-b,#content>div.borderDark>table>tbody>tr>td>a,.js-history-updates-item .work-title>a:first-of-type");
+const dubbedLinks = document.querySelectorAll("p.title-text>a,p.data a.title,.content-result .information>a:first-child,.list>.information>a:first-child,table.anime_detail_related_anime a[href^='/anime'],.content-result .title>a:first-child,td.data.title>a:first-child,.list td:nth-child(2)>a.hoverinfo_trigger,#content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'],#content>div>div>table>tbody>tr>td>a[href*='/anime'],div[id^=raArea]+div>a:first-child,.news-container h2 a[href*='/anime/'],li.ranking-unit>div>h3>a,tr.ranking-list>td:nth-child(2)>div>div>h3>a,div.borderClass>a[href^='anime/'],#content>table>tbody>tr>td:nth-child(1)>a:nth-child(1),[id^='#revAreaItemTrigger'],.news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,.profile div.updates.anime>div.statistics-updates>div.data>a,.history_content_wrapper td:first-child>a,.forum-topic-message a[href^='https://myanimelist.net/anime/'],.forum-topic-message a[href^='/anime/'],.page-blog-detail a[href^='https://myanimelist.net/anime/'],.page-blog-detail a[href^='/anime/'],.pmessage-message-history a[href^='https://myanimelist.net/anime/'],.pmessage-message-history a[href^='/anime/'],a.js-people-title,.profile .anime>div>div.data>div.title>a,a[id^='sinfo'],[id^='#revAreaAnimeHover'],#dialog>tbody>tr>td>a,.company-favorites-ranking-table>tbody>tr>td.popularity>p>a,.company-favorites-ranking-table>tbody>tr>td.score>p>a,div.list.js-categories-seasonal>table>tbody>tr>td:nth-child(2)>div:nth-child(1)>a,.stacks #content>div.content-left>div.list-anime-list>div>div.head>div.title-text>h2>a,.footer-ranking li>a,#content > div:nth-child(3) > a[href^='/anime'],.blog_detail_content_wrapper a,div[id^=comment]>table>tbody>tr>td:nth-child(2)>a,.recommendations_h3>a,.reviews_h3>a,.friend_list_updates a.fw-b,.info>p>a.fw-b,#content>div.borderDark>table>tbody>tr>td>a,.js-history-updates-item .work-title>a:first-of-type,#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle");
 const animeURLregex = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
@@ -120,7 +120,6 @@ function filterContainers(parent, selectors) {
 }
 
 function addDubFilter(targetNode) {
-  filterContainers(document, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
   if (targetNode !== null) {
     const filterCheckbox = document.createElement('input');
     filterCheckbox.type = 'checkbox';
@@ -214,51 +213,36 @@ function placeHeaderMenu() {
   document.getElementById('menu-toggle').addEventListener('click', toggleMenu, false);
 }
 
-function labelList() {
-  const listEntries = document.querySelectorAll('#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link,div#list_surround>table>tbody>tr>td>a.animetitle');
-  listEntries.forEach((e) => {
-    if (!['Undubbed', 'Dubbed', 'Incomplete Dub'].includes(e.title)) {
-      labelDub(e);
-    }
-  });
-}
+cacheDubs();
+dubbedLinks.forEach((e) => { labelDub(e); });
 
-function processList() {
-  labelList();
+if (currentBodyClassList.contains('page-common')) {
+  const searchURLregex = /.*\/((anime\.php\??(?!id).*)|anime\/genre\/?.*)/;
+  const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
+
+  watchForDubs('menu_right', '#top-search-bar>#topSearchResultList>div>div>a', 'search');
+  placeHeaderMenu();
+  labelThumbnails();
+  setTimeout(() => labelThumbnails(), 400);
+
+  if (filterableURLregex.test(currentURL)) {
+    if (searchURLregex.test(currentURL)) {
+      watchForDubs('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a', 'search');
+    }
+
+    filterContainers(document, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
+    addDubFilter(document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n'));
+  }
+
+  if (animeURLregex.test(currentURL)) {
+    animePages();
+  } else if (currentURL === 'https://myanimelist.net/addtolist.php') {
+    watchForDubs('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
+  }
+} else if (currentBodyClassList.contains('ownlist')) {
   if (currentBodyClassList.contains('anime')) {
     watchForDubs('list-container', '#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([title="Dubbed"],[title="Undubbed"],[title="Incomplete Dub"])');
   }
 }
 
-function processSite() {
-  labelThumbnails();
-  dubbedLinks.forEach((e) => { labelDub(e); });
-  watchForDubs('menu_right', '#top-search-bar>#topSearchResultList>div>div>a', 'search');
-}
-
-function onComplete() {
-  if (currentURL.match(/.*\/animelist\/.*/)) {
-    processList();
-  } else {
-    processSite();
-    const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
-    const searchURLregex = /.*\/((anime\.php\??(?!id).*)|anime\/genre\/?.*)/;
-    if (filterableURLregex.test(currentURL)) { addDubFilter(document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n')); }
-    if (searchURLregex.test(currentURL)) {
-      watchForDubs('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a', 'search')
-    }
-    if (animeURLregex.test(currentURL)) { animePages(); }
-    if (currentURL.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) {
-      watchForDubs('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
-    }
-    placeHeaderMenu();
-    setTimeout(() => labelThumbnails(), 400);
-  }
-}
-
-if (dubbedIDs === null || incompleteDubs === null) {
-  cacheDubs();
-}
-
-onComplete();
 if (localStorage.getItem('classicTheme') === 'true') { currentBodyClassList.add('classic'); }
