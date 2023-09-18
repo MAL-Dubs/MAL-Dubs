@@ -79,16 +79,17 @@ function labelThumbnails() {
   });
 }
 
-function labelResults(selector) {
-  const results = document.querySelectorAll(selector);
-  results.forEach((e) => labelDub(e));
-}
+function watchForDubs(containerID, resultSelector, pageType) {
+  const container = document.getElementById(containerID);
+  const options = { childList: true, subtree: true };
+  if (pageType === 'search') {
+    options.attributes = true;
+    options.attributeFilter = ['href'];
+  }
 
-function searchObserver(containerID, resultSelector) {
-  const searchContainer = document.getElementById(containerID);
-  new MutationObserver(() => labelResults(resultSelector)).observe(searchContainer, {
-    childList: true, subtree: true, attributes: true, attributeFilter: ['href'],
-  });
+  new MutationObserver(() => {
+    container.querySelectorAll(resultSelector).forEach((e) => labelDub(e));
+  }).observe(container, options);
 }
 
 function animePages() {
@@ -229,20 +230,16 @@ function labelList() {
 }
 
 function processList() {
-  const listContainer = document.getElementById('list-container');
-  if (!listContainer) {
-    labelList();
-  } else {
-    new MutationObserver(() => labelList()).observe(listContainer, {
-      childList: true, subtree: true,
-    });
+  labelList();
+  if (currentBodyClassList.contains('anime')) {
+    watchForDubs('list-container', '#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([title="Dubbed"],[title="Undubbed"],[title="Incomplete Dub"])');
   }
 }
 
 function processSite() {
   labelThumbnails();
   dubbedLinks.forEach((e) => { labelDub(e); });
-  searchObserver('menu_right', '#top-search-bar>#topSearchResultList>div>div>a');
+  watchForDubs('menu_right', '#top-search-bar>#topSearchResultList>div>div>a', 'search');
 }
 
 function onComplete() {
@@ -252,11 +249,11 @@ function onComplete() {
     processSite();
     if (filterable) { searchFilter(); }
     if (searchPage) {
-      searchObserver('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a')
+      watchForDubs('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a', 'search')
     }
     if (animeURLregex.test(currentURL)) { animePages(); }
     if (currentURL.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) {
-      searchObserver('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
+      watchForDubs('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
     }
     placeHeaderMenu();
     setTimeout(() => labelThumbnails(), 400);
