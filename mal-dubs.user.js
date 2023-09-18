@@ -121,20 +121,17 @@ function filterContainers(parent, selectors) {
 
 function addDubFilter(targetNode) {
   filterContainers(document, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
-  const filterCheckbox = document.createElement('input');
-  const label = document.createElement('label');
   if (targetNode !== null) {
+    const filterCheckbox = document.createElement('input');
     filterCheckbox.type = 'checkbox';
     filterCheckbox.id = 'undubbed-filter';
-    label.setAttribute('for', 'undubbed-filter');
-    label.className = 'fs11 fl-r btn-show-undubbed mr12 fw-n fn-grey2';
-    label.innerHTML = `
-    <i class="fa-regular fa-square fa-stack-2x"></i>
-    <i class="fa-solid fa-check fa-stack-1x"></i>
-    Dubs Only
-    `.trim();
     targetNode.after(filterCheckbox);
-    filterCheckbox.after(label);
+    filterCheckbox.insertAdjacentHTML('afterend', `
+      <label for="undubbed-filter" class="fs11 fl-r btn-show-undubbed mr12 fw-n fn-grey2">
+        <i class="fa-regular fa-square fa-stack-2x"></i>
+        <i class="fa-solid fa-check fa-stack-1x"></i>
+        Dubs Only
+      </label>`.trim());
 
     let filter = true;
     let filterUndubbed = (localStorage.getItem('dubOnlySearch') === 'true');
