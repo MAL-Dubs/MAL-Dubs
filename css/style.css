@@ -66,12 +66,20 @@ h1[title="Incomplete Dub"]::after {
   font-size: 14px;
 }
 
-.classic [title="Dubbed"]::after { background-color: var(--mal-blue); }
+.classic [title="Dubbed"]::after,
+.classic [title="Dubbed"] > div > div.info.anime > div.name::after {
+  background-color: var(--mal-blue);
+}
 
-.classic [title="Incomplete Dub"]::after { background-color: hsl(0 0% 41%); }
+.classic [title="Incomplete Dub"]::after,
+.classic [title="Incomplete Dub"] > div > div.info.anime > div.name {
+  background-color: hsl(0 0% 41%);
+}
 
 .classic [title="Dubbed"]::after,
-.classic [title="Incomplete Dub"]::after {
+.classic [title="Incomplete Dub"]::after,
+.classic [title="Dubbed"]::after > div > div.info.anime > div.name,
+.classic [title="Incomplete Dub"]::after > div > div.info.anime > div.name {
   content: "Dub";
   display: inline;
   vertical-align: 0.1em;
