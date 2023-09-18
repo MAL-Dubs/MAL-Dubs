@@ -21,12 +21,15 @@
 // @icon         data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 460 460"><circle fill="#FFFFFF" cx="230" cy="230" r="230"/><g><circle fill="#2E51A2" cx="230" cy="230" r="210"/></g><path fill="#FFFFFF" d="M407.1,242.3c10.4-19.7,2.6-44.2-17.3-54.2c-3.4-1.7-5.9-4.5-7.2-7.9c-1.4-3.8-1.2-7.9,0.7-11.5 c10.1-18.9,1.9-44.3-17.4-53.6c-17.6-9-38.8-3.9-50.3,12.1c0,0-36.3,50-36.3,50c6.6,6.2,11.9,13.6,15.8,21.7l16.6-5.4 c4.6-10.5,19.8-10.7,24.5-0.1c5.3,11.9-7.7,23.7-19,17.2c0,0-16.6,5.4-16.6,5.4c1.7,8.9,1.7,18.1,0,26.9l58.8,19.1 C378,268.2,398.2,259.9,407.1,242.3z"/><path fill="#FFFFFF" d="M239,158.4c9,1.1,17.7,4,25.7,8.4c0,0,36.3-50,36.3-50c27.8-40.6-25.4-85.9-61-51.8 c-5.4,5.7-14.9,5.7-20.3,0.2c-14.8-15.4-41.6-15.4-56.4,0c-13.9,14-15.7,35.7-4.1,51.6l36.3,49.9c7.9-4.3,16.6-7.2,25.5-8.3l0-17.5 c-6.1-5.1-6.1-16.2,1.2-21.1c14.5-9.1,28.8,9.6,16.7,21.1C239,140.9,239,158.4,239,158.4z"/><path fill="#FFFFFF" d="M335.2,356.5c21.1,3.8,42.7-12,45.6-33.1c3.1-19.5-8.3-38.1-27.1-44.2l-58.8-19.1c-2.2,4.6-4.9,9-8,13.1 c0,0-7.7,129.3-7.7,129.3c19.5,0.1,36.5-14.4,39.5-33.6C319.7,361,327.4,355.1,335.2,356.5z"/><path fill="#FFFFFF" d="M165.1,260.1c0,0-58.6,19.1-58.6,19.1c-18.8,6.1-30.1,24.7-27.1,44.2c3,21.8,24.4,37.4,45.7,33.6 c7.8-1.6,15.6,3.8,16.8,11.8c3,18.9,19.2,32.9,38,33.6c0,0-7.7-130.4-7.7-130.4C169.4,268.2,167,264.2,165.1,260.1z"/><path fill="#FFFFFF" d="M191.2,289.9l7.2,120.9c20.5,3.6,41.9,3.6,62.5,0.2c0,0,7.1-120.5,7.1-120.5 C245.1,305.1,213.8,304.9,191.2,289.9z"/><path fill="#FFFFFF" d="M53,242.2C42.5,222.5,50.4,198,70.3,188c3.4-1.7,5.9-4.5,7.2-7.9c1.4-3.8,1.2-7.9-0.7-11.5 c-10.1-18.9-1.9-44.3,17.4-53.6c17.6-9,38.8-3.9,50.3,12.1c0,0,36.3,50,36.3,50c-6.6,6.2-11.9,13.6-15.8,21.7l-16.6-5.4 c-4.6-10.5-19.8-10.7-24.5-0.1c-5.3,11.9,7.7,23.7,19,17.2c0,0,16.6,5.4,16.6,5.4c-1.7,8.9-1.7,18.1,0,26.9L100.8,262 C82,268.1,61.9,259.8,53,242.2z"/><circle fill="#FFFFFF" cx="230" cy="230" r="54"/></svg>
 // ==/UserScript==
 
+const currentURL = document.location.href;
+const currentBodyClassList = document.body.classList;
+
 const dubbedLinks = document.querySelectorAll("p.title-text>a,p.data a.title,.content-result .information>a:first-child,.list>.information>a:first-child,table.anime_detail_related_anime a[href^='/anime'],.content-result .title>a:first-child,td.data.title>a:first-child,.list td:nth-child(2)>a.hoverinfo_trigger,#content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'],#content>div>div>table>tbody>tr>td>a[href*='/anime'],div[id^=raArea]+div>a:first-child,.news-container h2 a[href*='/anime/'],li.ranking-unit>div>h3>a,tr.ranking-list>td:nth-child(2)>div>div>h3>a,div.borderClass>a[href^='anime/'],#content>table>tbody>tr>td:nth-child(1)>a:nth-child(1),[id^='#revAreaItemTrigger'],.news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,.profile div.updates.anime>div.statistics-updates>div.data>a,.history_content_wrapper td:first-child>a,.forum-topic-message a[href^='https://myanimelist.net/anime/'],.forum-topic-message a[href^='/anime/'],.page-blog-detail a[href^='https://myanimelist.net/anime/'],.page-blog-detail a[href^='/anime/'],.pmessage-message-history a[href^='https://myanimelist.net/anime/'],.pmessage-message-history a[href^='/anime/'],a.js-people-title,.profile .anime>div>div.data>div.title>a,a[id^='sinfo'],[id^='#revAreaAnimeHover'],#dialog>tbody>tr>td>a,.company-favorites-ranking-table>tbody>tr>td.popularity>p>a,.company-favorites-ranking-table>tbody>tr>td.score>p>a,div.list.js-categories-seasonal>table>tbody>tr>td:nth-child(2)>div:nth-child(1)>a,.stacks #content>div.content-left>div.list-anime-list>div>div.head>div.title-text>h2>a,.footer-ranking li>a,#content > div:nth-child(3) > a[href^='/anime'],.blog_detail_content_wrapper a,div[id^=comment]>table>tbody>tr>td:nth-child(2)>a,.recommendations_h3>a,.reviews_h3>a,.friend_list_updates a.fw-b,.info>p>a.fw-b,#content>div.borderDark>table>tbody>tr>td>a,.js-history-updates-item .work-title>a:first-of-type");
 const animeURLregex = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
 const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
-const filterable = filterableURLregex.test(document.location.href);
+const filterable = filterableURLregex.test(currentURL);
 const searchURLregex = /.*\/((anime\.php\??(?!id).*)|anime\/genre\/?.*)/;
-const searchPage = searchURLregex.test(document.location.href);
+const searchPage = searchURLregex.test(currentURL);
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
 let dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
@@ -89,7 +92,7 @@ function searchObserver(containerID, resultSelector) {
 }
 
 function animePages() {
-  const thisPage = animeURLregex.exec(document.location.href)[3];
+  const thisPage = animeURLregex.exec(currentURL)[3];
   const thisPageID = parseInt(thisPage, 10);
   const recommendations = document.querySelectorAll("div#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*='suggestion'])");
   const recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+-\d+)\/?.*/;
@@ -146,14 +149,14 @@ function searchFilter() {
 
     if (filter) {
       filterCheckbox.checked = filterUndubbed;
-      if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
+      if (filterCheckbox.checked === true) { currentBodyClassList.add('filterOn'); }
     }
 
     filterCheckbox.addEventListener('change', () => {
-      if (filterCheckbox.checked === true) { document.body.classList.add('filterOn'); }
-      if (filterCheckbox.checked === false) { document.body.classList.remove('filterOn'); }
+      if (filterCheckbox.checked === true) { currentBodyClassList.add('filterOn'); }
+      if (filterCheckbox.checked === false) { currentBodyClassList.remove('filterOn'); }
       localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
-      if (document.body.classList.contains('season')) {
+      if (currentBodyClassList.contains('season')) {
         const titlesArray = [].slice.call(document.querySelectorAll('.seasonal-anime'));
         const showingArray = titlesArray.filter((el) => getComputedStyle(el).display !== 'none');
         const countDisplay = document.querySelector('.js-visible-anime-count');
@@ -192,10 +195,10 @@ function toggleMenu() {
 
 function toggleClassic() {
   if (localStorage.getItem('classicTheme') === 'true') {
-    document.body.classList.remove('classic');
+    currentBodyClassList.remove('classic');
     localStorage.setItem('classicTheme', false);
   } else {
-    document.body.classList.add('classic');
+    currentBodyClassList.add('classic');
     localStorage.setItem('classicTheme', true);
   }
 }
@@ -243,7 +246,7 @@ function processSite() {
 }
 
 function onComplete() {
-  if (document.location.href.match(/.*\/animelist\/.*/)) {
+  if (currentURL.match(/.*\/animelist\/.*/)) {
     processList();
   } else {
     processSite();
@@ -251,8 +254,8 @@ function onComplete() {
     if (searchPage) {
       searchObserver('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a')
     }
-    if (animeURLregex.test(document.location.href)) { animePages(); }
-    if (document.location.href.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) {
+    if (animeURLregex.test(currentURL)) { animePages(); }
+    if (currentURL.match(/https:\/\/myanimelist\.net\/addtolist\.php/)) {
       searchObserver('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
     }
     placeHeaderMenu();
@@ -265,4 +268,4 @@ if (dubbedIDs === null || incompleteDubs === null) {
 }
 
 onComplete();
-if (localStorage.getItem('classicTheme') === 'true') { document.body.classList.add('classic'); }
+if (localStorage.getItem('classicTheme') === 'true') { currentBodyClassList.add('classic'); }
