@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      1.0.0
+// @version      1.0.1
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -115,7 +115,7 @@ function filterContainers(parent, selectors) {
   const undubbed = parent.querySelectorAll(':not(.noDub) [title="Undubbed"]');
   undubbed.forEach((e) => {
     const container = e.closest(selectors);
-    if (container !== undefined) { container.classList.add('noDub'); }
+    if (container !== undefined && container !== null) { container.classList.add('noDub'); }
   });
 }
 
