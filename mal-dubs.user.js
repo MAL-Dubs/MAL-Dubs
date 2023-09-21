@@ -59,9 +59,9 @@ function labelDub(anime) {
   if (animeURLregex.test(anime.href)) {
     const linkID = parseInt(anime.href.match(/(\/|\.php\?id=)(\d+)\/?/)[2], 10);
     if (dubbedIDs.includes(linkID)) {
-      animeElement.title = 'Dubbed';
-      if (incompleteDubs.includes(linkID)) { animeElement.title = 'Incomplete Dub'; }
-    } else { animeElement.title = 'Undubbed'; }
+      animeElement.setAttribute('dub-data', 'yes');
+      if (incompleteDubs.includes(linkID)) { animeElement.setAttribute('dub-data', 'partial'); }
+    } else { animeElement.setAttribute('dub-data', 'no'); }
   }
 }
 
@@ -94,23 +94,23 @@ function animePages() {
 
   if (dubbedIDs.includes(animePageIDNum)) {
     const pagetitle = document.querySelectorAll('h1.title-name')[0];
-    pagetitle.title = 'Dubbed';
-    if (incompleteDubs.includes(animePageIDNum)) { pagetitle.title = 'Incomplete Dub'; }
+    pagetitle.setAttribute('dub-data', 'yes');
+    if (incompleteDubs.includes(animePageIDNum)) { pagetitle.setAttribute('dub-data', 'partial'); }
   }
 
   recommendations.forEach((e) => {
     const recElement = e;
     const recID = parseInt(recrgx.exec(e.href)[2].replace(`-*${animePageID}-*`, ''), 10);
     if (dubbedIDs.includes(recID)) {
-      recElement.title = 'Dubbed';
+      recElement.setAttribute('dub-data', 'yes');
       recElement.classList.add('imagelink');
-      if (incompleteDubs.includes(recID)) { recElement.title = 'Incomplete Dub'; }
+      if (incompleteDubs.includes(recID)) { recElement.setAttribute('dub-data', 'partial'); }
     }
   });
 }
 
 function filterContainers(parent, selectors) {
-  const undubbed = parent.querySelectorAll(':not(.noDub) [title="Undubbed"]');
+  const undubbed = parent.querySelectorAll(':not(.noDub) [dub-data="no"]');
   undubbed.forEach((e) => {
     const container = e.closest(selectors);
     if (container !== undefined && container !== null) { container.classList.add('noDub'); }
@@ -236,13 +236,13 @@ if (currentBodyClassList.contains('page-common')) {
   if (animeURLregex.test(currentURL)) {
     animePages();
   } else if (currentBodyClassList.contains('page-forum')) {
-    watchForDubs('content', 'div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([title="Dubbed"],[title="Undubbed"],[title="Incomplete Dub"])');
+    watchForDubs('content', 'div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([dub-data])');
   } else if (currentURL === 'https://myanimelist.net/addtolist.php') {
     watchForDubs('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
   }
 } else if (currentBodyClassList.contains('ownlist')) {
   if (currentBodyClassList.contains('anime')) {
-    watchForDubs('list-container', '#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([title="Dubbed"],[title="Undubbed"],[title="Incomplete Dub"])');
+    watchForDubs('list-container', '#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([dub-data])');
   } else {
     const listDubs = document.body.querySelectorAll('div#list_surround>table>tbody>tr>td>a.animetitle');
     listDubs.forEach((e) => labelDub(e));

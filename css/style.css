@@ -9,14 +9,14 @@
 .seasonal-anime-list > article.js-middle_ad,
 .js-middle_ad.seasonal-middle { display: none !important; }
 
-[title="Dubbed"].imagelink,
-[title="Incomplete Dub"].imagelink,
+[dub-data="yes"].imagelink,
+[dub-data="partial"].imagelink,
 .classic .seasonal-anime-list > .seasonal-anime > .image { overflow: hidden; }
 
-[title="Dubbed"]::after,
-[title="Incomplete Dub"]::after,
-a[title="Dubbed"] > div > div.info.anime > div.name::after,
-a[title="Incomplete Dub"] > div > div.info.anime > div.name::after,
+[dub-data="yes"]::after,
+[dub-data="partial"]::after,
+a[dub-data="yes"] > div > div.info.anime > div.name::after,
+a[dub-data="partial"] > div > div.info.anime > div.name::after,
 .dub-icon {
   display: inline;
   font-weight: 100;
@@ -29,30 +29,30 @@ a[title="Incomplete Dub"] > div > div.info.anime > div.name::after,
   text-rendering: auto;
 }
 
-[title="Dubbed"]::after,
-a[title="Dubbed"] > div > div.info.anime > div.name::after { content: "\00a0\e000"; }
+[dub-data="yes"]::after,
+a[dub-data="yes"] > div > div.info.anime > div.name::after { content: "\00a0\e000"; }
 
-[title="Incomplete Dub"]::after,
-a[title="Incomplete Dub"] > div > div.info.anime > div.name::after { content: "\00a0\e001"; }
+[dub-data="partial"]::after,
+a[dub-data="partial"] > div > div.info.anime > div.name::after { content: "\00a0\e001"; }
 
 .dub-icon::before { content: "\e002"; }
 
-h1[title="Dubbed"]::after,
-a[title="Dubbed"].imagelink::after { content: "\e000"; }
+h1[dub-data="yes"]::after,
+a[dub-data="yes"].imagelink::after { content: "\e000"; }
 
-h1[title="Incomplete Dub"]::after,
-a[title="Incomplete Dub"].imagelink::after { content: "\e001"; }
+h1[dub-data="partial"]::after,
+a[dub-data="partial"].imagelink::after { content: "\e001"; }
 
-h1[title="Dubbed"]::after,
-h1[title="Incomplete Dub"]::after {
+h1[dub-data="yes"]::after,
+h1[dub-data="partial"]::after {
   margin-left: 0.3em;
   padding: 1px 3px 1px 3.5px;
   border: 1px solid;
   border-radius: 4px;
 }
 
-[title="Dubbed"].imagelink::after,
-[title="Incomplete Dub"].imagelink::after {
+[dub-data="yes"].imagelink::after,
+[dub-data="partial"].imagelink::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -66,20 +66,20 @@ h1[title="Incomplete Dub"]::after {
   font-size: 14px;
 }
 
-.classic [title="Dubbed"]::after,
-.classic [title="Dubbed"] > div > div.info.anime > div.name::after {
+.classic [dub-data="yes"]::after,
+.classic [dub-data="yes"] > div > div.info.anime > div.name::after {
   background-color: var(--mal-blue);
 }
 
-.classic [title="Incomplete Dub"]::after,
-.classic [title="Incomplete Dub"] > div > div.info.anime > div.name::after {
+.classic [dub-data="partial"]::after,
+.classic [dub-data="partial"] > div > div.info.anime > div.name::after {
   background-color: hsl(0 0% 41%);
 }
 
-.classic [title="Dubbed"]::after,
-.classic [title="Incomplete Dub"]::after,
-.classic [title="Dubbed"] > div > div.info.anime > div.name::after,
-.classic [title="Incomplete Dub"] > div > div.info.anime > div.name::after {
+.classic [dub-data="yes"]::after,
+.classic [dub-data="partial"]::after,
+.classic [dub-data="yes"] > div > div.info.anime > div.name::after,
+.classic [dub-data="partial"] > div > div.info.anime > div.name::after {
   content: "Dub";
   display: inline;
   vertical-align: 0.1em;
@@ -94,8 +94,8 @@ h1[title="Incomplete Dub"]::after {
   text-transform: uppercase;
 }
 
-.classic [title="Dubbed"].imagelink::after,
-.classic [title="Incomplete Dub"].imagelink::after {
+.classic [dub-data="yes"].imagelink::after,
+.classic [dub-data="partial"].imagelink::after {
   content: "Dub";
   top: -5px;
   right: unset;
@@ -115,8 +115,8 @@ h1[title="Incomplete Dub"]::after {
   transform: rotate(-45deg);
 }
 
-.classic h1[title="Dubbed"]::after,
-.classic h1[title="Incomplete Dub"]::after {
+.classic h1[dub-data="yes"]::after,
+.classic h1[dub-data="partial"]::after {
   display: inline-block;
   margin-left: 5px;
   padding: 1px 3px;
@@ -124,11 +124,11 @@ h1[title="Incomplete Dub"]::after {
   line-height: 16px;
 }
 
-.btn-fav [title="Dubbed"].imagelink:hover::after,
-.btn-fav [title="Incomplete Dub"].imagelink::after { opacity: 0; }
+.btn-fav [dub-data="yes"].imagelink:hover::after,
+.btn-fav [dub-data="partial"].imagelink::after { opacity: 0; }
 
-body:not(.classic) #anime_recommendation [title="Dubbed"].imagelink::after,
-body:not(.classic) #anime_recommendation [title="Incomplete Dub"].imagelink::after {
+body:not(.classic) #anime_recommendation [dub-data="yes"].imagelink::after,
+body:not(.classic) #anime_recommendation [dub-data="partial"].imagelink::after {
   right: unset;
   left: 0;
 }
@@ -311,14 +311,14 @@ h2.top-rank-header2 .btn-show-undubbed { margin-top: 2px; }
   (min-resolution: 192dpi) {
   .dub-icon::before { content: "\e003"; }
 
-  [title="Dubbed"].imagelink::after,
-  [title="Incomplete Dub"].imagelink::after {
+  [dub-data="yes"].imagelink::after,
+  [dub-data="partial"].imagelink::after {
     padding: 1.5px 3px;
     border-width: 1.5px;
   }
 
-  h1[title="Dubbed"]::after,
-  h1[title="Incomplete Dub"]::after {
+  h1[dub-data="yes"]::after,
+  h1[dub-data="partial"]::after {
     padding: 1px 3px 1px 3.5px;
     border-width: 1.5px;
     font-size: 15px;
