@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      1.0.2
+// @version      1.1.0
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -110,44 +110,43 @@ function animePages() {
 }
 
 function filterContainers(parent, selectors) {
-  const undubbed = parent.querySelectorAll(':not(.noDub) [dub-data="no"]');
-  undubbed.forEach((e) => {
+  const dubDataLinks = parent.querySelectorAll(':not([dub-container]) [dub-data]');
+  dubDataLinks.forEach((e) => {
     const container = e.closest(selectors);
-    if (container !== undefined && container !== null) { container.classList.add('noDub'); }
+    if (container !== undefined && container !== null) {
+      container.setAttribute('dub-container', e.getAttribute('dub-data'));
+    }
   });
 }
 
-function addDubFilter(targetNode) {
+function addDubFilter(targetNode, position = 'afterend') {
+  let labelClass = 'fs11 fl-r fw-n fn-grey2 mr12';
   if (targetNode !== null) {
-    const filterCheckbox = document.createElement('input');
-    filterCheckbox.type = 'checkbox';
-    filterCheckbox.id = 'undubbed-filter';
-    targetNode.after(filterCheckbox);
-    filterCheckbox.insertAdjacentHTML('afterend', `
-      <label for="undubbed-filter" class="fs11 fl-r btn-show-undubbed mr12 fw-n fn-grey2">
+    const filterButton = document.createElement('input');
+    filterButton.type = 'button';
+    filterButton.id = 'dub-filter';
+    targetNode.insertAdjacentElement(position, filterButton);
+    filterButton.insertAdjacentHTML('afterend', `
+      <label for="dub-filter" class="btn-show-dubs ${labelClass}">
         <i class="fa-regular fa-square fa-stack-2x"></i>
+        <i class="fa-solid fa-xmark fa-stack-1x"></i>
         <i class="fa-solid fa-check fa-stack-1x"></i>
-        Dubs Only
+        Dubbed
       </label>`.trim());
 
-    let filter = true;
-    let filterUndubbed = (localStorage.getItem('dubOnlySearch') === 'true');
-    if (filterUndubbed === null) {
-      filterUndubbed = false;
-      localStorage.setItem('dubOnlySearch', filterUndubbed);
-      filterCheckbox.checked = filterUndubbed;
-      filter = false;
-    }
+    const filterOptions = ['filter-off', 'only-dubs', 'no-dubs'];
+    let filter = (localStorage.getItem('dubFilter'));
+    if (!(filter)) { filter = 'filter-off'; }
+    currentBodyClassList.add(filter);
 
-    if (filter) {
-      filterCheckbox.checked = filterUndubbed;
-      if (filterCheckbox.checked === true) { currentBodyClassList.add('filterOn'); }
-    }
+    let filterIndex = filterOptions.indexOf(filter);
+    filterButton.addEventListener('click', () => {
+      currentBodyClassList.replace(
+        filter,
+        filter = filterOptions[(filterIndex += 1) % filterOptions.length],
+      );
+      localStorage.setItem('dubFilter', filter);
 
-    filterCheckbox.addEventListener('change', () => {
-      if (filterCheckbox.checked === true) { currentBodyClassList.add('filterOn'); }
-      if (filterCheckbox.checked === false) { currentBodyClassList.remove('filterOn'); }
-      localStorage.setItem('dubOnlySearch', filterCheckbox.checked);
       if (currentBodyClassList.contains('season')) {
         const titlesArray = [].slice.call(document.querySelectorAll('.seasonal-anime'));
         const showingArray = titlesArray.filter((el) => getComputedStyle(el).display !== 'none');
@@ -229,7 +228,7 @@ if (currentBodyClassList.contains('page-common')) {
       watchForDubs('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a', 'search');
     }
 
-    filterContainers(document, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
+    filterContainers(document.body, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
     addDubFilter(document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n'));
   }
 
