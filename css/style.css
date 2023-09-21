@@ -169,7 +169,12 @@ input#dub-filter { display: none; }
   font-size: 1em;
 }
 
-}
+.ownlist .btn-show-dubs,
+.ownlist .btn-show-dubs .fa-square,
+.ownlist .btn-show-dubs .fa-check,
+.ownlist .btn-show-dubs .fa-xmark {
+  color: inherit;
+
 
 body.only-dubs .btn-show-dubs > .fa-check { display: block; }
 body.no-dubs .btn-show-dubs > .fa-xmark { display: block; }
