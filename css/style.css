@@ -11,14 +11,11 @@
 .seasonal-anime-list > article.js-middle_ad,
 .js-middle_ad.seasonal-middle { display: none !important; }
 
-[dub-data="yes"].imagelink,
-[dub-data="partial"].imagelink,
+[dub-data].imagelink,
 .classic .seasonal-anime-list > .seasonal-anime > .image { overflow: hidden; }
 
-[dub-data="yes"]::after,
-[dub-data="partial"]::after,
-a[dub-data="yes"] > div > div.info.anime > div.name::after,
-a[dub-data="partial"] > div > div.info.anime > div.name::after,
+[dub-data]::after,
+a[dub-data] > div > div.info.anime > div.name::after,
 .dub-icon {
   display: inline;
   font-weight: 100;
@@ -45,16 +42,14 @@ a[dub-data="yes"].imagelink::after { content: "\e000"; }
 h1[dub-data="partial"]::after,
 a[dub-data="partial"].imagelink::after { content: "\e001"; }
 
-h1[dub-data="yes"]::after,
-h1[dub-data="partial"]::after {
+h1[dub-data]::after {
   margin-left: 0.3em;
   padding: 1px 3px 1px 3.5px;
   border: 1px solid;
   border-radius: 4px;
 }
 
-[dub-data="yes"].imagelink::after,
-[dub-data="partial"].imagelink::after {
+[dub-data].imagelink::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -78,10 +73,8 @@ h1[dub-data="partial"]::after {
   background-color: hsl(0 0% 41%);
 }
 
-.classic [dub-data="yes"]::after,
-.classic [dub-data="partial"]::after,
-.classic [dub-data="yes"] > div > div.info.anime > div.name::after,
-.classic [dub-data="partial"] > div > div.info.anime > div.name::after {
+.classic [dub-data]::after,
+.classic [dub-data] > div > div.info.anime > div.name::after {
   content: "Dub";
   display: inline;
   vertical-align: 0.1em;
@@ -96,8 +89,7 @@ h1[dub-data="partial"]::after {
   text-transform: uppercase;
 }
 
-.classic [dub-data="yes"].imagelink::after,
-.classic [dub-data="partial"].imagelink::after {
+.classic [dub-data].imagelink::after {
   content: "Dub";
   top: -5px;
   right: unset;
@@ -117,8 +109,7 @@ h1[dub-data="partial"]::after {
   transform: rotate(-45deg);
 }
 
-.classic h1[dub-data="yes"]::after,
-.classic h1[dub-data="partial"]::after {
+.classic h1[dub-data]::after {
   display: inline-block;
   margin-left: 5px;
   padding: 1px 3px;
@@ -126,11 +117,10 @@ h1[dub-data="partial"]::after {
   line-height: 16px;
 }
 
-.btn-fav [dub-data="yes"].imagelink:hover::after,
-.btn-fav [dub-data="partial"].imagelink::after { opacity: 0; }
+.btn-fav [dub-data].imagelink:hover::after,
+.statistics .chart-wrapper [dub-data].imagelink:hover::after { opacity: 0; }
 
-body:not(.classic) #anime_recommendation [dub-data="yes"].imagelink::after,
-body:not(.classic) #anime_recommendation [dub-data="partial"].imagelink::after {
+body:not(.classic) #anime_recommendation [dub-data].imagelink::after {
   right: unset;
   left: 0;
 }
@@ -320,14 +310,12 @@ h2.top-rank-header2 .btn-show-dubs { margin-top: 2px; }
   (min-resolution: 192dpi) {
   .dub-icon::before { content: "\e003"; }
 
-  [dub-data="yes"].imagelink::after,
-  [dub-data="partial"].imagelink::after {
+  [dub-data].imagelink::after {
     padding: 1.5px 3px;
     border-width: 1.5px;
   }
 
-  h1[dub-data="yes"]::after,
-  h1[dub-data="partial"]::after {
+  h1[dub-data]::after {
     padding: 1px 3px 1px 3.5px;
     border-width: 1.5px;
     font-size: 15px;
