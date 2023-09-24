@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      1.1.3
+// @version      1.1.4
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -27,7 +27,7 @@ const animeURLregex = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
 let dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
-let incompleteDubs = JSON.parse(localStorage.getItem('incompleteIDs'));
+let incompleteIDs = JSON.parse(localStorage.getItem('incompleteIDs'));
 
 GM_addStyle(GM_getResourceText('CSS'));
 
@@ -45,9 +45,9 @@ function cacheDubs() {
       onload(response) {
         const data = JSON.parse(response.responseText);
         dubbedIDs = data.dubbed;
-        incompleteDubs = data.incomplete;
+        incompleteIDs = data.incomplete;
         localStorage.setItem('dubIDs', JSON.stringify(dubbedIDs));
-        localStorage.setItem('incompleteIDs', JSON.stringify(incompleteDubs));
+        localStorage.setItem('incompleteIDs', JSON.stringify(incompleteIDs));
         localStorage.setItem('dubCacheDate', Date.now());
       },
     });
@@ -70,10 +70,10 @@ function labelDub(animeLink, relatedNode, relatedSelector, image = false) {
   if (animeURLregex.test(animeLink.href)) {
     const linkID = parseInt(animeLink.href.match(/(\/|\.php\?id=)(\d+)\/?/)[2], 10);
     if (dubbedIDs.includes(linkID)) {
-      animeElement.setAttribute('dub-data', 'yes');
-      if (incompleteDubs.includes(linkID)) { animeElement.setAttribute('dub-data', 'partial'); }
+      animeElement.dataset.dub = 'yes'
+      if (incompleteIDs.includes(linkID)) { animeElement.dataset.dub = 'partial'; }
       if (image) { animeElement.classList.add('imagelink'); }
-    } else { animeElement.setAttribute('dub-data', 'no'); }
+    } else { animeElement.dataset.dub = 'no'; }
   }
 }
 
@@ -89,9 +89,7 @@ function watchForDubs(containerID, resultSelector, pageType) {
   if (pageType === 'search') {
     options.attributes = true;
     options.attributeFilter = ['href'];
-  } else if (pageType === 'statistics') {
-    image = true;
-  }
+  } else if (pageType === 'statistics') { image = true; }
 
   new MutationObserver(() => {
     container.querySelectorAll(resultSelector).forEach((e) => labelDub(e, ...Array(2), image));
@@ -106,27 +104,27 @@ function animePages() {
 
   if (dubbedIDs.includes(animePageIDNum)) {
     const pagetitle = document.querySelectorAll('h1.title-name')[0];
-    pagetitle.setAttribute('dub-data', 'yes');
-    if (incompleteDubs.includes(animePageIDNum)) { pagetitle.setAttribute('dub-data', 'partial'); }
+    pagetitle.dataset.dub = 'yes';
+    if (incompleteIDs.includes(animePageIDNum)) { pagetitle.dataset.dub = 'partial'; }
   }
 
   recommendations.forEach((e) => {
     const recElement = e;
     const recID = parseInt(recrgx.exec(e.href)[2].replace(`-*${animePageID}-*`, ''), 10);
     if (dubbedIDs.includes(recID)) {
-      recElement.setAttribute('dub-data', 'yes');
+      recElement.dataset.dub = 'yes';
       recElement.classList.add('imagelink');
-      if (incompleteDubs.includes(recID)) { recElement.setAttribute('dub-data', 'partial'); }
+      if (incompleteIDs.includes(recID)) { recElement.dataset.dub = 'partial'; }
     }
   });
 }
 
 function filterContainers(parent, selectors) {
-  const dubDataLinks = parent.querySelectorAll(':not([dub-container]) [dub-data]');
+  const dubDataLinks = parent.querySelectorAll(':not([data-dub-container]) [data-dub]');
   dubDataLinks.forEach((e) => {
     const container = e.closest(selectors);
     if (container !== undefined && container !== null) {
-      container.setAttribute('dub-container', e.getAttribute('dub-data'));
+      container.dataset.dubContainer = e.dataset.dub;
     }
   });
 }
@@ -247,7 +245,7 @@ if (currentBodyClassList.contains('page-common')) {
   if (animeURLregex.test(currentURL)) {
     animePages();
   } else if (currentBodyClassList.contains('page-forum')) {
-    watchForDubs('content', 'div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([dub-data])');
+    watchForDubs('content', 'div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([data-dub])');
   } else if (currentURL === 'https://myanimelist.net/addtolist.php') {
     watchForDubs('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
   } else if (currentBodyClassList.contains('statistics')) {
@@ -255,7 +253,7 @@ if (currentBodyClassList.contains('page-common')) {
   }
 } else if (currentBodyClassList.contains('ownlist')) {
   if (currentBodyClassList.contains('anime')) {
-    watchForDubs('list-container', '#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([dub-data])');
+    watchForDubs('list-container', '#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([data-dub])');
   } else {
     const listDubs = document.body.querySelectorAll('div#list_surround>table>tbody>tr>td>a.animetitle');
     listDubs.forEach((e) => labelDub(e));
