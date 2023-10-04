@@ -91,29 +91,6 @@ function watchForDubs(containerID, resultSelector, pageType) {
   }).observe(container, options);
 }
 
-function animePages() {
-  const animePageID = animeURLregex.exec(currentURL)[3];
-  const animePageIDNum = parseInt(animePageID, 10);
-  const recommendations = document.querySelectorAll("div#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*='suggestion'])");
-  const recrgx = /^(https?:\/\/myanimelist\.net)?\/recommendations\/anime\/(\d+-\d+)\/?.*/;
-
-  if (dubbedIDs.includes(animePageIDNum)) {
-    const pagetitle = document.querySelectorAll('h1.title-name')[0];
-    pagetitle.dataset.dub = 'yes';
-    if (incompleteIDs.includes(animePageIDNum)) { pagetitle.dataset.dub = 'partial'; }
-  }
-
-  recommendations.forEach((e) => {
-    const recElement = e;
-    const recID = parseInt(recrgx.exec(e.href)[2].replace(`-*${animePageID}-*`, ''), 10);
-    if (dubbedIDs.includes(recID)) {
-      recElement.dataset.dub = 'yes';
-      recElement.classList.add('imagelink');
-      if (incompleteIDs.includes(recID)) { recElement.dataset.dub = 'partial'; }
-    }
-  });
-}
-
 function filterContainers(parent, selectors) {
   const dubDataLinks = parent.querySelectorAll(':not([data-dub-container]) [data-dub]');
   dubDataLinks.forEach((e) => {
@@ -238,7 +215,10 @@ if (currentBodyClassList.contains('page-common')) {
   }
 
   if (animeURLregex.test(currentURL)) {
-    animePages();
+    const animePageID = animeURLregex.exec(currentURL)[3];
+    const recommendations = document.querySelectorAll('#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*="suggestion"])');
+    labelDub(document.querySelector('h1.title-name'), false, currentURL);
+    recommendations.forEach((e) => labelDub(e, true, e.href.replace(`-*${animePageID}-*`, '')));
   } else if (currentBodyClassList.contains('page-forum')) {
     watchForDubs('content', 'div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([data-dub])');
   } else if (currentURL === 'https://myanimelist.net/addtolist.php') {
