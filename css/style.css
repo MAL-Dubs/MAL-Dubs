@@ -6,8 +6,8 @@
 }
 
 .only-dubs [data-dub-container="no"],
-.no-dubs [data-dub-container="yes"],
-.no-dubs [data-dub-container="partial"],
+.no-dubs [data-dub-container="dubbed"],
+.no-dubs [data-dub-container="incomplete"],
 .seasonal-anime-list > article.js-middle_ad,
 .js-middle_ad.seasonal-middle { display: none !important; }
 
@@ -28,19 +28,19 @@ a[data-dub] > div > div.info.anime > div.name::after,
   text-rendering: auto;
 }
 
-[data-dub="yes"]::after,
-a[data-dub="yes"] > div > div.info.anime > div.name::after { content: "\00a0\e000"; }
+[data-dub="dubbed"]::after,
+a[data-dub="dubbed"] > div > div.info.anime > div.name::after { content: "\00a0\e000"; }
 
-[data-dub="partial"]::after,
-a[data-dub="partial"] > div > div.info.anime > div.name::after { content: "\00a0\e001"; }
+[data-dub="incomplete"]::after,
+a[data-dub="incomplete"] > div > div.info.anime > div.name::after { content: "\00a0\e001"; }
 
 .dub-icon::before { content: "\e002"; }
 
-h1[data-dub="yes"]::after,
-a[data-dub="yes"].imagelink::after { content: "\e000"; }
+h1[data-dub="dubbed"]::after,
+a[data-dub="dubbed"].imagelink::after { content: "\e000"; }
 
-h1[data-dub="partial"]::after,
-a[data-dub="partial"].imagelink::after { content: "\e001"; }
+h1[data-dub="incomplete"]::after,
+a[data-dub="incomplete"].imagelink::after { content: "\e001"; }
 
 h1[data-dub]::after {
   margin-left: 0.3em;
@@ -63,20 +63,20 @@ h1[data-dub]::after {
   font-size: 14px;
 }
 
-.classic [data-dub="yes"]::after,
-.classic [data-dub="yes"] > div > div.info.anime > div.name::after {
+.classic [data-dub="dubbed"]::after,
+.classic [data-dub="dubbed"] > div > div.info.anime > div.name::after {
   background-color: var(--mal-blue);
 }
 
-.classic [data-dub="partial"]::after,
-.classic [data-dub="partial"] > div > div.info.anime > div.name::after {
+.classic [data-dub="incomplete"]::after,
+.classic [data-dub="incomplete"] > div > div.info.anime > div.name::after {
   background-color: hsl(0 0% 41%);
 }
 
-.classic [data-dub="yes"]::after,
-.classic a[data-dub="yes"] > div > div.info.anime > div.name::after,
-.classic [data-dub="partial"]::after,
-.classic a[data-dub="partial"] > div > div.info.anime > div.name::after {
+.classic [data-dub="dubbed"]::after,
+.classic a[data-dub="dubbed"] > div > div.info.anime > div.name::after,
+.classic [data-dub="incomplete"]::after,
+.classic a[data-dub="incomplete"] > div > div.info.anime > div.name::after {
   content: "Dub";
   display: inline;
   vertical-align: 0.1em;

@@ -26,8 +26,7 @@ const currentBodyClassList = document.body.classList;
 const animeURLregex = /^(https?:\/\/myanimelist\.net)?\/?anime(\/|\.php\?id=)(\d+)\/?.*$/;
 const IDURL = 'https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/data/dubInfo.json';
 
-let dubbedIDs = JSON.parse(localStorage.getItem('dubIDs'));
-let incompleteIDs = JSON.parse(localStorage.getItem('incompleteIDs'));
+let dubInfo = JSON.parse(localStorage.getItem('dubInfo'));
 
 GM_addStyle(GM_getResourceText('CSS'));
 
@@ -35,6 +34,7 @@ function cacheDubs() {
   const lastCached = localStorage.getItem('dubCacheDate');
   if (
     lastCached === null
+    || dubInfo === null
     || (lastCached !== undefined && parseInt(lastCached, 10) + 600000 < Date.now())
   ) {
     GM_xmlhttpRequest({
@@ -43,43 +43,38 @@ function cacheDubs() {
       nocache: true,
       revalidate: true,
       onload(response) {
-        const data = JSON.parse(response.responseText);
-        dubbedIDs = data.dubbed;
-        incompleteIDs = data.incomplete;
-        localStorage.setItem('dubIDs', JSON.stringify(dubbedIDs));
-        localStorage.setItem('incompleteIDs', JSON.stringify(incompleteIDs));
+        dubInfo = JSON.parse(response.responseText);
+        localStorage.setItem('dubInfo', JSON.stringify(dubInfo));
         localStorage.setItem('dubCacheDate', Date.now());
       },
     });
   }
 }
 
-function labelDub(animeLink, relatedNode, relatedSelector, image = false) {
-  let animeElement;
-  switch (relatedNode) {
-    case 'parent':
-      animeElement = animeLink.closest(relatedSelector);
-      break;
-    case 'child':
-      animeElement = animeLink.querySelector(relatedSelector);
-      break;
-    default:
-      animeElement = animeLink;
-  }
+function labelDub(linkNode, image = false, linkURL = linkNode.href, labelTarget = false) {
+  if (animeURLregex.test(linkURL)) {
+    const linkID = parseInt(animeURLregex.exec(linkURL)[3], 10);
+    let animeElement = linkNode;
+    let dubData = 'no';
 
-  if (animeURLregex.test(animeLink.href)) {
-    const linkID = parseInt(animeLink.href.match(/(\/|\.php\?id=)(\d+)\/?/)[2], 10);
-    if (dubbedIDs.includes(linkID)) {
-      animeElement.dataset.dub = 'yes'
-      if (incompleteIDs.includes(linkID)) { animeElement.dataset.dub = 'partial'; }
-      if (image) { animeElement.classList.add('imagelink'); }
-    } else { animeElement.dataset.dub = 'no'; }
+    if (labelTarget) {
+      animeElement = linkNode.querySelector(labelTarget) || linkNode.closest(labelTarget);
+    }
+
+    Object.keys(dubInfo).every((key) => {
+      if (dubInfo[key].includes(linkID)) {
+        dubData = key;
+        if (image) { animeElement.classList.add('imagelink'); }
+        return false;
+      }
+    });
+    animeElement.dataset.dub = dubData;
   }
 }
 
 function labelThumbnails(container = document.body) {
   const dubbedThumbs = 'div.auto-recommendations>div.items>a.item,div.recommendations div.items>a.item,div#widget-seasonal-video li.btn-anime>a.link,div#anime_recommendation li.btn-anime.auto>a.link,.js-seasonal-anime>.image>a:nth-child(1),#anime_favorites>.fav-slide-outer>ul>li>a';
-  container.querySelectorAll(dubbedThumbs).forEach((e) => labelDub(e, ...Array(2), true));
+  container.querySelectorAll(dubbedThumbs).forEach((e) => labelDub(e, true));
 }
 
 function watchForDubs(containerID, resultSelector, pageType) {
@@ -92,7 +87,7 @@ function watchForDubs(containerID, resultSelector, pageType) {
   } else if (pageType === 'statistics') { image = true; }
 
   new MutationObserver(() => {
-    container.querySelectorAll(resultSelector).forEach((e) => labelDub(e, ...Array(2), image));
+    container.querySelectorAll(resultSelector).forEach((e) => labelDub(e, image));
   }).observe(container, options);
 }
 
