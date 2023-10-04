@@ -234,12 +234,12 @@ if (currentBodyClassList.contains('page-common')) {
   setTimeout(() => labelThumbnails(), 400);
 
   if (filterableURLregex.test(currentURL)) {
-    if (searchURLregex.test(currentURL)) {
-      watchForDubs('content', '#advancedsearch>div>#advancedSearchResultList>div>div>a', 'search');
-    }
-
     filterContainers(document.body, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
     addDubFilter(document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n'));
+  }
+
+  if (searchURLregex.test(currentURL)) {
+    watchForDubs('content', '#advancedSearchResultList>div>div>a', 'search');
   }
 
   if (animeURLregex.test(currentURL)) {
