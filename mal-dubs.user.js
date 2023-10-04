@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
 // @namespace    https://github.com/MAL-Dubs
-// @version      1.1.4
+// @version      1.2.0
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
@@ -67,6 +67,7 @@ function labelDub(linkNode, image = false, linkURL = linkNode.href, labelTarget 
         if (image) { animeElement.classList.add('imagelink'); }
         return false;
       }
+      return true;
     });
     animeElement.dataset.dub = dubData;
   }
