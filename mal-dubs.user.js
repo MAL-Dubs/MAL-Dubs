@@ -81,14 +81,15 @@ function labelThumbnails(container = document.body) {
   container.querySelectorAll(dubbedThumbs).forEach((e) => labelDub(e, true));
 }
 
-function watchForDubs(containerID, resultSelector, pageType) {
+function watchForDubs(resultSelector, pageType, containerID = 'content') {
   const container = document.getElementById(containerID);
   const options = { childList: true, subtree: true };
-  let image = false;
+  let args = [];
   if (pageType === 'search') {
     options.attributes = true;
     options.attributeFilter = ['href'];
-  } else if (pageType === 'statistics') { image = true; }
+    args = [undefined, 'div.info.anime>div.name'];
+  } else if (pageType === 'statistics') { args = [true]; }
 
   new MutationObserver(() => {
     container.querySelectorAll(resultSelector).forEach((e) => labelDub(e, ...args));
@@ -197,7 +198,7 @@ if (currentBodyClassList.contains('page-common')) {
   const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
 
   dubbedLinks.forEach((e) => { labelDub(e); });
-  watchForDubs('menu_right', '#top-search-bar>#topSearchResultList>div>div>a', 'search');
+  watchForDubs('#top-search-bar>#topSearchResultList>div>div>a', 'search', 'menu_right');
   placeHeaderMenu();
   labelThumbnails();
   setTimeout(() => labelThumbnails(), 400);
@@ -212,7 +213,7 @@ if (currentBodyClassList.contains('page-common')) {
   }
 
   if (searchURLregex.test(currentURL)) {
-    watchForDubs('content', '#advancedSearchResultList>div>div>a', 'search');
+    watchForDubs('#advancedSearchResultList>div>div>a', 'search');
   }
 
   if (animeURLregex.test(currentURL)) {
@@ -221,15 +222,15 @@ if (currentBodyClassList.contains('page-common')) {
     labelDub(document.querySelector('h1.title-name'), false, currentURL);
     recommendations.forEach((e) => labelDub(e, true, e.href.replace(`-*${animePageID}-*`, '')));
   } else if (currentBodyClassList.contains('page-forum')) {
-    watchForDubs('content', 'div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([data-dub])');
+    watchForDubs('div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([data-dub])');
   } else if (currentURL === 'https://myanimelist.net/addtolist.php') {
-    watchForDubs('content', '.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
   } else if (currentBodyClassList.contains('statistics')) {
-    watchForDubs('content', '#statistics-anime-score-diff-desc .container .item>a, #statistics-anime-score-diff-asc .container .item>a', 'statistics');
+    watchForDubs('.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
+    watchForDubs('#statistics-anime-score-diff-desc .container .item>a, #statistics-anime-score-diff-asc .container .item>a', 'statistics');
   }
 } else if (currentBodyClassList.contains('ownlist')) {
   if (currentBodyClassList.contains('anime')) {
-    watchForDubs('list-container', '#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([data-dub])');
+    watchForDubs('#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([data-dub])', undefined, 'list-container');
   } else {
     const listDubs = document.body.querySelectorAll('div#list_surround>table>tbody>tr>td>a.animetitle');
     listDubs.forEach((e) => labelDub(e));
