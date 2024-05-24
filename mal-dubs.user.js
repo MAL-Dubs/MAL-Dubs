@@ -219,9 +219,10 @@ if (currentBodyClassList.contains('page-common')) {
   if (animeURLregex.test(currentURL)) {
     const animePageID = animeURLregex.exec(currentURL)[3];
     const recommendations = document.querySelectorAll('#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*="suggestion"])');
-    labelDub(document.querySelector('h1.title-name'), false, currentURL);
-    recommendations.forEach((e) => labelDub(e, true, e.href.replace(`-*${animePageID}-*`, '')));
   } else if (currentBodyClassList.contains('page-forum')) {
+    labelDub(document.querySelector('h1.title-name'), false, false, currentURL);
+    const recRegex = new RegExp(`recommendations\\/|-*${animePageID}-*`, 'g');
+    recommendations.forEach((e) => labelDub(e, true, false, e.href.replace(recRegex, '')));
     watchForDubs('div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([data-dub])');
   } else if (currentURL === 'https://myanimelist.net/addtolist.php') {
   } else if (currentBodyClassList.contains('statistics')) {
