@@ -174,10 +174,12 @@ function placeHeaderMenu() {
     localStorage.setItem('classicTheme', !isClassic);
   }
 
-  if (document.body.contains(document.querySelector('.header-profile'))) {
-    document.querySelector('#header-menu>div.header-profile').before(menuContainer, borderDiv);
-  } else if (document.body.contains(document.querySelector('.header-menu-login'))) {
-    document.querySelector('#header-menu>div.header-menu-login').after(menuContainer);
+  const headerMenu = document.querySelector('#header-menu');
+
+  if (headerMenu) {
+    const targetElement = headerMenu.querySelector('.header-profile')
+      || headerMenu.querySelector('.header-menu-login');
+    if (targetElement) { targetElement.before(menuContainer, borderDiv); }
   }
   document.getElementById('theme-toggle').addEventListener('click', switchStyle, false);
   document.getElementById('menu-toggle').addEventListener('click', toggleMenu, false);
