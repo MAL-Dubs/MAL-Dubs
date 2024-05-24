@@ -95,8 +95,9 @@ function watchForDubs(containerID, resultSelector, pageType) {
   }).observe(container, options);
 }
 
-function filterContainers(parent, selectors) {
-  const dubDataLinks = parent.querySelectorAll(':not([data-dub-container]) [data-dub]');
+function filterContainers() {
+  const dubDataLinks = document.body.querySelectorAll(':not([data-dub-container]) [data-dub]');
+  const selectors = '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list';
   dubDataLinks.forEach((e) => {
     const container = e.closest(selectors);
     if (container !== undefined && container !== null) {
@@ -106,7 +107,11 @@ function filterContainers(parent, selectors) {
 }
 
 function addDubFilter(targetNode, position = 'afterend') {
-  let labelClass = 'fs11 fl-r fw-n fn-grey2 mr12';
+  filterContainers();
+  const labelClass = 'fs11 fl-r fw-n fn-grey2 mr12';
+  // if (mobile === true) {
+  //   labelClass = 'btn-filter fa-stack fs14 mr12';
+  // }
   if (targetNode !== null) {
     const filterButton = document.createElement('input');
     filterButton.type = 'button';
@@ -121,19 +126,18 @@ function addDubFilter(targetNode, position = 'afterend') {
       </label>`.trim());
 
     const filterOptions = ['filter-off', 'only-dubs', 'no-dubs'];
-    let filter = (localStorage.getItem('dubFilter'));
-    if (!(filter)) { filter = 'filter-off'; }
+    let filter = localStorage.getItem('dubFilter') || 'filter-off';
     currentBodyClassList.add(filter);
-
     let filterIndex = filterOptions.indexOf(filter);
+
     filterButton.addEventListener('click', () => {
       currentBodyClassList.replace(
         filter,
-        filter = filterOptions[(filterIndex += 1) % filterOptions.length],
+        (filter = filterOptions[(filterIndex += 1) % filterOptions.length]),
       );
       localStorage.setItem('dubFilter', filter);
 
-      if (currentBodyClassList.contains('season')) {
+      if (hasBodyClass('season')) {
         const titlesArray = [].slice.call(document.querySelectorAll('.seasonal-anime'));
         const showingArray = titlesArray.filter((el) => getComputedStyle(el).display !== 'none');
         const countDisplay = document.querySelector('.js-visible-anime-count');
@@ -199,8 +203,12 @@ if (currentBodyClassList.contains('page-common')) {
   setTimeout(() => labelThumbnails(), 400);
 
   if (filterableURLregex.test(currentURL)) {
-    filterContainers(document.body, '.seasonal-anime.js-seasonal-anime.js-anime-type-all,.js-block-list.list>table>tbody>tr,tr.ranking-list');
-    addDubFilter(document.querySelector('.js-search-filter-block>div:last-of-type,div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,h2.top-rank-header2>span:last-of-type,.normal_header>div.view-style2:last-of-type,.normal_header>div.fl-r.di-ib.fs11.fw-n'));
+    const filterTarget = `.js-search-filter-block>div:last-of-type,
+    div.horiznav-nav-seasonal>span.js-btn-show-sort:last-of-type,
+    h2.top-rank-header2>span:last-of-type,
+    .normal_header>div.view-style2:last-of-type,
+    .normal_header>div.fl-r.di-ib.fs11.fw-n`;
+    addDubFilter(document.querySelector(filterTarget));
   }
 
   if (searchURLregex.test(currentURL)) {
