@@ -192,7 +192,7 @@ function placeHeaderMenu() {
 
 cacheDubs();
 
-if (currentBodyClassList.contains('page-common')) {
+if (hasBodyClass('page-common')) {
   const dubbedLinks = document.querySelectorAll("p.title-text>a,p.data a.title,.content-result .information>a:first-child,.list>.information>a:first-child,table.anime_detail_related_anime a[href^='/anime'],.content-result .title>a:first-child,td.data.title>a:first-child,.list td:nth-child(2)>a.hoverinfo_trigger,#content>table>tbody>tr>td>table>tbody>tr>td.borderClass>a[href*='myanimelist.net/anime/'],#content>div>div>table>tbody>tr>td>a[href*='/anime'],div[id^=raArea]+div>a:first-child,.news-container h2 a[href*='/anime/'],li.ranking-unit>div>h3>a,tr.ranking-list>td:nth-child(2)>div>div>h3>a,div.borderClass>a[href^='anime/'],#content>table>tbody>tr>td:nth-child(1)>a:nth-child(1),[id^='#revAreaItemTrigger'],.news-container a[href^='https://myanimelist.net/anime/'],.animeography>.title>a,.profile div.updates.anime>div.statistics-updates>div.data>a,.history_content_wrapper td:first-child>a,.forum-topic-message a[href^='https://myanimelist.net/anime/'],.forum-topic-message a[href^='/anime/'],.page-blog-detail a[href^='https://myanimelist.net/anime/'],.page-blog-detail a[href^='/anime/'],.pmessage-message-history a[href^='https://myanimelist.net/anime/'],.pmessage-message-history a[href^='/anime/'],a.js-people-title,.profile .anime>div>div.data>div.title>a,a[id^='sinfo'],[id^='#revAreaAnimeHover'],#dialog>tbody>tr>td>a,.company-favorites-ranking-table>tbody>tr>td.popularity>p>a,.company-favorites-ranking-table>tbody>tr>td.score>p>a,div.list.js-categories-seasonal>table>tbody>tr>td:nth-child(2)>div:nth-child(1)>a,.stacks #content>div.content-left>div.list-anime-list>div>div.head>div.title-text>h2>a,.footer-ranking li>a,#content > div:nth-child(3) > a[href^='/anime'],.blog_detail_content_wrapper a,div[id^=comment]>table>tbody>tr>td:nth-child(2)>a,.recommendations_h3>a,.reviews_h3>a,.friend_list_updates a.fw-b,.info>p>a.fw-b,#content>div.borderDark>table>tbody>tr>td>a,.js-history-updates-item .work-title>a:first-of-type,.review-element .titleblock .title,.video-info-title>a:nth-child(2),div.related-entries");
   const searchURLregex = /.*\/((anime\.php\??(?!id).*)|anime\/genre\/?.*)/;
   const filterableURLregex = /.*\/(((anime\.php\?(?!id).+|topanime\.php.*))|anime\/(genre|producer|season)\/?.*)/;
@@ -219,18 +219,18 @@ if (currentBodyClassList.contains('page-common')) {
   if (animeURLregex.test(currentURL)) {
     const animePageID = animeURLregex.exec(currentURL)[3];
     const recommendations = document.querySelectorAll('#anime_recommendation>div.anime-slide-outer>.anime-slide>li.btn-anime>a.link:not([href*="suggestion"])');
-  } else if (currentBodyClassList.contains('page-forum')) {
     labelDub(document.querySelector('h1.title-name'), false, false, currentURL);
     const recRegex = new RegExp(`recommendations\\/|-*${animePageID}-*`, 'g');
     recommendations.forEach((e) => labelDub(e, true, false, e.href.replace(recRegex, '')));
+  } else if (hasBodyClass('page-forum')) {
     watchForDubs('div.message-container>div.content>table.body a[href^="https://myanimelist.net/anime/"]:not([data-dub])');
   } else if (currentURL === 'https://myanimelist.net/addtolist.php') {
-  } else if (currentBodyClassList.contains('statistics')) {
     watchForDubs('.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
+  } else if (hasBodyClass('statistics')) {
     watchForDubs('#statistics-anime-score-diff-desc .container .item>a, #statistics-anime-score-diff-asc .container .item>a', 'statistics');
   }
-} else if (currentBodyClassList.contains('ownlist')) {
-  if (currentBodyClassList.contains('anime')) {
+} else if (hasBodyClass('ownlist')) {
+  if (hasBodyClass('anime')) {
     watchForDubs('#list-container>div.list-block>div>table>tbody.list-item>tr.list-table-data>td.data.title>a.link:not([data-dub])', undefined, 'list-container');
   } else {
     const listDubs = document.body.querySelectorAll('div#list_surround>table>tbody>tr>td>a.animetitle');
