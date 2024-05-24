@@ -50,6 +50,10 @@ function cacheDubs() {
   }
 }
 
+function hasBodyClass(selector) {
+  return document.body.classList.contains(selector);
+}
+
 function labelDub(linkNode, image = false, labelNode = false, linkURL = linkNode.href) {
   if (animeURLregex.test(linkURL)) {
     const linkID = parseInt(animeURLregex.exec(linkURL)[3], 10);
