@@ -165,12 +165,8 @@ function placeHeaderMenu() {
 
   function toggleMenu() {
     const dropdown = document.getElementById('dubmenu');
-    if (dropdown.classList.contains('on')) {
-      dropdown.classList.remove('on');
-    } else {
-      dropdown.classList.add('on');
-      hideOnClickOutside(dropdown);
-    }
+    dropdown.classList.toggle('on');
+    if (dropdown.classList.contains('on')) { hideOnClickOutside(dropdown); }
   }
 
   function switchStyle() {
