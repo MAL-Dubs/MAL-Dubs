@@ -228,6 +228,8 @@ if (hasBodyClass('page-common')) {
     watchForDubs('.quickAdd-anime-result-unit>table>tbody>tr>td:nth-child(1)>a');
   } else if (hasBodyClass('statistics')) {
     watchForDubs('#statistics-anime-score-diff-desc .container .item>a, #statistics-anime-score-diff-asc .container .item>a', 'statistics');
+  } else if (hasBodyClass('notification')) {
+    watchForDubs('li.related_anime_add>div>div>a');
   }
 } else if (hasBodyClass('ownlist')) {
   if (hasBodyClass('anime')) {
