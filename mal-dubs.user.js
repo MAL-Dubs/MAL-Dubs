@@ -50,14 +50,14 @@ function cacheDubs() {
   }
 }
 
-function labelDub(linkNode, image = false, linkURL = linkNode.href, labelTarget = false) {
+function labelDub(linkNode, image = false, labelNode = false, linkURL = linkNode.href) {
   if (animeURLregex.test(linkURL)) {
     const linkID = parseInt(animeURLregex.exec(linkURL)[3], 10);
     let animeElement = linkNode;
     let dubData = 'no';
 
-    if (labelTarget) {
-      animeElement = linkNode.querySelector(labelTarget) || linkNode.closest(labelTarget);
+    if (labelNode) {
+      animeElement = linkNode.querySelector(labelNode) || linkNode.closest(labelNode);
     }
 
     Object.keys(dubInfo).every((key) => {
@@ -87,7 +87,7 @@ function watchForDubs(containerID, resultSelector, pageType) {
   } else if (pageType === 'statistics') { image = true; }
 
   new MutationObserver(() => {
-    container.querySelectorAll(resultSelector).forEach((e) => labelDub(e, image));
+    container.querySelectorAll(resultSelector).forEach((e) => labelDub(e, ...args));
   }).observe(container, options);
 }
 
