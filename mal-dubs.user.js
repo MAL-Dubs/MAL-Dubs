@@ -170,13 +170,9 @@ function placeHeaderMenu() {
   }
 
   function switchStyle() {
-    if (localStorage.getItem('classicTheme') === 'true') {
-      currentBodyClassList.remove('classic');
-      localStorage.setItem('classicTheme', false);
-    } else {
-      currentBodyClassList.add('classic');
-      localStorage.setItem('classicTheme', true);
-    }
+    const isClassic = localStorage.getItem('classicTheme') === 'true';
+    currentBodyClassList.toggle('classic', !isClassic);
+    localStorage.setItem('classicTheme', !isClassic);
   }
 
   if (document.body.contains(document.querySelector('.header-profile'))) {
