@@ -143,21 +143,16 @@ function addDubFilter(targetNode, position = 'afterend') {
   }
 }
 
-// hide function from jquery
-function isVisible(elem) {
-  return !!elem && !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
-}
-
 function hideOnClickOutside(element) {
   const outsideClickListener = (event) => {
-    if (!element.contains(event.target) && isVisible(element)) {
+    const isVisible = !!(element && element.offsetWidth && element.offsetHeight);
+    if (!element.contains(event.target) && isVisible) {
       element.classList.remove('on');
       document.removeEventListener('click', outsideClickListener);
     }
   };
   document.addEventListener('click', outsideClickListener);
 }
-// source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
 
 function placeHeaderMenu() {
   const menuContainer = document.createElement('div');
