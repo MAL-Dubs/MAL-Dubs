@@ -16,7 +16,7 @@ Whether you choose dubs so you can multitask while watching, rely on them for yo
 
 **Step 1: Install the [Tampermonkey](https://www.tampermonkey.net/) Script Manager extension**
 
-Available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/), [Safari](https://apps.apple.com/app/apple-store/id1482490089), [Chrome](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Opera](https://addons.opera.com/en/extensions/details/tampermonkey-beta/) or [Edge](https://microsoftedge.microsoft.com/addons/detail/iikmkjmpaadaobahmlepeloendndfphd)
+Available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/), [Safari](https://apps.apple.com/app/apple-store/id6738342400), [Chrome](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Opera](https://addons.opera.com/en/extensions/details/tampermonkey-beta/) or [Edge](https://microsoftedge.microsoft.com/addons/detail/iikmkjmpaadaobahmlepeloendndfphd)
 
 **Step 2: Install the script**
 
@@ -33,3 +33,14 @@ I personally add each title every time I see a new dub announcement. Your suppor
 If you love dubbed anime and want a place to chat about it:
 
 [![Anime Dub Club Discord Server](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/discord.svg)](https://discord.gg/wMfD2RM7Vt)
+
+## Copyright & Licensing
+
+MAL (MyAnimeList) Dubs
+© 2019-2025 MAL-Dubs
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation. A copy of the license is provided in the **LICENSE** file.
+
+### Trademark & Copyright Notice
+
+The custom "D" plus sound wave glyph is a trademark and copyrighted design of the MAL-Dubs project, Copyright © 2022-2025. Nothing in the AGPL-3.0-or-later license grants any rights to use this trademark.
