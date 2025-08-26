@@ -34,13 +34,6 @@ If you love dubbed anime and want a place to chat about it:
 
 [![Anime Dub Club Discord Server](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/discord.svg)](https://discord.gg/wMfD2RM7Vt)
 
-## Copyright & Licensing
-
-MAL (MyAnimeList) Dubs
-© 2019-2025 MAL-Dubs
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation. A copy of the license is provided in the **LICENSE** file.
-
 ### Trademark & Copyright Notice
 
 The custom "D" plus sound wave glyph is a trademark and copyrighted design of the MAL-Dubs project, Copyright © 2022-2025. Nothing in the AGPL-3.0-or-later license grants any rights to use this trademark.
