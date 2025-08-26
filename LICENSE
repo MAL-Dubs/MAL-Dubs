@@ -664,10 +664,13 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 
                     ADDITIONAL TERMS UNDER AGPL §7
 
-The custom glyph within this software's font, which depicts a stylized letter
-"D" combined with sound waves, is a copyrighted design and a common-law
-trademark of the MAL-Dubs project, Copyright (c) 2022 MAL-Dubs. This trademark
-is used to uniquely identify this project. Nothing in the AGPL license grants
-any rights to use this trademark.
+The custom "D" glyph contained in this software’s font, which combines a
+letter "D" with sound waves to indicate dubbed audio, is a copyrighted design
+and a common-law trademark of the MAL-Dubs project, Copyright (c) 2022 MAL-Dubs.
 
-All software code remains under AGPL-3.0-or-later.
+This trademark serves to uniquely identify the MAL-Dubs project and its
+official releases. Nothing in this license grants any rights to use this
+trademark or any confusingly similar mark in any way that would imply
+endorsement, affiliation, or origin.
+
+Use of the trademark remains subject to applicable trademark law.
