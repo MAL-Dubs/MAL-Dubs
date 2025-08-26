@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name         MAL (MyAnimeList) Dubs
-// @namespace    https://github.com/MAL-Dubs
 // @version      1.2.2
 // @description  Labels English dubbed titles on MyAnimeList.net and adds dub only filtering
+// @namespace    https://github.com/MAL-Dubs
+// @copyright    © 2019-2025 MAL-Dubs; Icons and glyphs within this project are TM MAL-Dubs
+// @license      GNU AGPLv3; https://github.com/MAL-Dubs/MAL-Dubs/raw/main/LICENSE
 // @author       MAL Dubs
 // @supportURL   https://github.com/MAL-Dubs/MAL-Dubs/issues
 // @downloadURL  https://github.com/MAL-Dubs/MAL-Dubs/raw/main/mal-dubs.user.js
 // @updateURL    https://github.com/MAL-Dubs/MAL-Dubs/raw/main/mal-dubs.user.js
 // @match        https://myanimelist.net/*
 // @iconURL      https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/images/icon.png
-// @license      GNU AGPLv3; https://www.gnu.org/licenses/agpl-3.0.html
 // @resource     CSS https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/css/style.css
 // @grant        GM_xmlhttpRequest
 // @grant        GM_addStyle

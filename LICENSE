@@ -659,3 +659,15 @@ specific requirements.
 if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU AGPL, see
 <https://www.gnu.org/licenses/>.
+
+=======================================================================
+
+                    ADDITIONAL TERMS UNDER AGPL §7
+
+The custom glyph within this software's font, which depicts a stylized letter
+"D" combined with sound waves, is a copyrighted design and a common-law
+trademark of the MAL-Dubs project, Copyright (c) 2022 MAL-Dubs. This trademark
+is used to uniquely identify this project. Nothing in the AGPL license grants
+any rights to use this trademark.
+
+All software code remains under AGPL-3.0-or-later.
