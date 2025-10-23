@@ -1,7 +1,7 @@
 # MAL (MyAnimeList) Dubs
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MAL-Dubs/MAL-Dubs?label=Version)](#mal-myanimelist-dubs) [![GitHub license](https://img.shields.io/github/license/mal-dubs/mal-dubs)](https://github.com/MAL-Dubs/MAL-Dubs/blob/main/LICENSE) [![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMAL-Dubs%2FMAL-Dubs%2Fmain%2Fdata%2FdubInfo.json&query=%24.dubbed.length&logo=myanimelist&label=Dubs&color=2e51a2)](#mal-myanimelist-dubs) [![Install with Tampermonkey](https://img.shields.io/badge/Install%20with-Tampermonkey-00485b?logo=tampermonkey)](https://raw.githubusercontent.com/MAL-Dubs/MAL-Dubs/main/mal-dubs.user.js) [![Discord](https://img.shields.io/discord/850163973080743967?color=5865F2&logo=discord&logoColor=white&label=Anime%20Dub%20Hub)](https://discord.gg/wMfD2RM7Vt)
 
-MAL Dubs is a userscript which labels over 5400 English dubbed titles on [MyAnimeList.net](https://myanimelist.net/) and adds a **Dubbed** filter to search, seasonal, company and top anime pages.
+MAL Dubs is a userscript which labels over 5500 English dubbed titles on [MyAnimeList.net](https://myanimelist.net/) and adds a **Dubbed** filter to search, seasonal, company and top anime pages.
 
 Whether you choose dubs so you can multitask while watching, rely on them for your accessibility needs, or simply enjoy the immersive experience of hearing a performance in the language you speak, navigating MyAnimeList to find English-dubbed anime can be a challenge. This userscript fixes that.
 
