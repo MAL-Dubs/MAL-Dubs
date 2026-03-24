@@ -37,6 +37,6 @@ MAL (MyAnimeList) Dubs
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation. A copy of the license is provided in the [**LICENSE** file](LICENSE).
 
-### Trademark Notice
+### Trademark & Copyright Notice
 
 The custom "D" plus sound wave glyph is a trademark and copyrighted design of the MAL-Dubs project, Copyright © 2022-2025. Nothing in the AGPL-3.0-or-later license grants any rights to use this trademark.
